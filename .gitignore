@@ -54,6 +54,7 @@ models/*
 # Source/reference files (assets live in dashboard/public/)
 *.mp3
 /Logo.png
+/logo_empresa.png
 /particle_system.html
 
 # FleetView / Claude Code internals
