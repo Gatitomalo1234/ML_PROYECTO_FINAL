@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useExperienceStore } from "@/state/experienceStore";
 import { useBootAudio } from "@/hooks/useBootAudio";
+import BootParticleIntro from "@/components/ui/BootParticleIntro";
 
 // ─── Boot text lines ───────────────────────────────────────────────────────
 const LINES = [
@@ -294,32 +295,8 @@ export default function BootSequence() {
             </div>
           </motion.div>
 
-          {/* ── Click-to-enter overlay (shown before user clicks) ── */}
-          <AnimatePresence>
-            {!started && (
-              <motion.div
-                className="absolute inset-0 flex cursor-pointer flex-col items-center justify-center z-10"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.4 }}
-                onClick={handleStart}
-              >
-                <motion.div
-                  className="text-center"
-                  animate={{ opacity: [0.35, 0.85, 0.35] }}
-                  transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <div className="font-mono text-[8px] tracking-[0.55em] text-white/25 mb-4">
-                    AEROSPACE INTELLIGENCE SYSTEM
-                  </div>
-                  <div className="font-mono text-[10.5px] tracking-[0.48em] text-white/50">
-                    CLICK PARA INICIALIZAR
-                  </div>
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {/* ── Particle intro (shown before user clicks) ── */}
+          {!started && <BootParticleIntro onStart={handleStart} />}
 
           {/* ── System text lines (shown after click) ── */}
           {started && (

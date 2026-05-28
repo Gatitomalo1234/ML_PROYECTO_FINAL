@@ -51,8 +51,10 @@ models/*
 # Dashboard cache
 .streamlit/
 
-# Audio source files (assets live in dashboard/public/audio/)
+# Source/reference files (assets live in dashboard/public/)
 *.mp3
+/Logo.png
+/particle_system.html
 
 # FleetView / Claude Code internals
 .agents/
