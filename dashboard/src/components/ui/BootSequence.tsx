@@ -75,11 +75,15 @@ export default function BootSequence() {
     return () => clearTimeout(id);
   }, [started]);
 
-  // Dismiss when both initialized and minimum time have passed
+  // Dismiss when both initialized and minimum time have passed.
+  // Fallback: force close after 8 s in case ExperienceController never fires.
   useEffect(() => {
-    if (!initialized || !canClose) return;
+    if (!canClose) return;
+    const fallback = setTimeout(() => setVisible(false), 8000);
+    if (!initialized) return () => clearTimeout(fallback);
+    clearTimeout(fallback);
     const id = setTimeout(() => setVisible(false), 700);
-    return () => clearTimeout(id);
+    return () => { clearTimeout(id); clearTimeout(fallback); };
   }, [initialized, canClose]);
 
   // Sequential text reveals (only after click)

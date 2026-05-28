@@ -36,7 +36,8 @@ function createCircleTexture(): THREE.CanvasTexture {
 
 // ─── Sample logo → N random 3-D positions (same approach as particle_system.html)
 async function sampleLogo(src: string, n: number): Promise<Float32Array> {
-  const W = 512, H = 512;
+  // 1024×1024 preserves fine detail from 1254×1254 source images (4× more sample points)
+  const W = 1024, H = 1024;
   const cv  = document.createElement("canvas");
   cv.width  = W; cv.height = H;
   const ctx = cv.getContext("2d")!;
@@ -52,8 +53,8 @@ async function sampleLogo(src: string, n: number): Promise<Float32Array> {
     }
   }
 
-  // Same scale approach as particle_system.html (scale = worldSize / canvasSize)
-  const scale = 5.2 / W;
+  // scale 6.0 → logo fills ~78% of visible frustum width (up from 68%)
+  const scale = 6.0 / W;
   const out   = new Float32Array(n * 3);
   for (let i = 0; i < n; i++) {
     const p       = pts[Math.floor(Math.random() * pts.length)];
@@ -220,10 +221,6 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
           }
         }
         goTo("AIS_ASSEMBLE");
-        if (textRef.current) {
-          textRef.current.style.transition = "opacity 2.0s ease";
-          textRef.current.style.opacity    = "0.40";
-        }
       }
       else if (st.ph === "AIS_ASSEMBLE" && aisT) {
         let maxD = 0;
@@ -234,7 +231,7 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
         if (maxD < 0.12 || e > 4.0) {
           goTo("IDLE");
           if (textRef.current) {
-            textRef.current.style.transition = "opacity 1.0s ease";
+            textRef.current.style.transition = "opacity 1.6s ease";
             textRef.current.style.opacity    = "1";
           }
         }
@@ -353,6 +350,11 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
       geometry.attributes.position.needsUpdate = true;
       geometry.attributes.color.needsUpdate    = true;
 
+      // Gentle pendular Z-rotation — logo floats like a badge, never goes edge-on
+      if (st.ph !== "STREAM" && st.ph !== "DISPERSING") {
+        points.rotation.z = Math.sin(t * 0.14) * 0.022;
+      }
+
       renderer.render(scene, camera);
     };
     animate();
@@ -394,9 +396,6 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
           whiteSpace:    "nowrap",
           opacity:       "0",
           transition:    "opacity 0s",
-          padding:       "9px 28px",
-          border:        "1px solid rgba(56, 189, 248, 0.22)",
-          borderRadius:  "2px",
           animation:     "bpi-pulse 2.6s ease-in-out infinite",
           animationPlayState: "paused",
         }}
