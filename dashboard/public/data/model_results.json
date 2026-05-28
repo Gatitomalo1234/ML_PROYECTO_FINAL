@@ -1,0 +1,10 @@
+[
+  { "date": "2026-05-01", "region": "IR", "predicted_level": 1, "confidence": 0.62 },
+  { "date": "2026-05-02", "region": "IR", "predicted_level": 1, "confidence": 0.64 },
+  { "date": "2026-05-03", "region": "IR", "predicted_level": 1, "confidence": 0.66 },
+  { "date": "2026-05-04", "region": "IR", "predicted_level": 2, "confidence": 0.74 },
+  { "date": "2026-05-05", "region": "IR", "predicted_level": 2, "confidence": 0.78 },
+  { "date": "2026-05-06", "region": "IR", "predicted_level": 2, "confidence": 0.82 },
+  { "date": "2026-05-07", "region": "IR", "predicted_level": 2, "confidence": 0.88 }
+]
+

@@ -1,0 +1,28 @@
+# --- Extracción de Datos ---
+telethon          # Para la API de Telegram
+feedparser        # Para leer RSS de noticias
+requests          # Peticiones HTTP genéricas
+beautifulsoup4    # Scraping básico de UKMTO/otros
+selenium          # Scraping complejo si es necesario
+python-dotenv     # Carga de variables de entorno (.env)
+
+# --- Procesamiento y Análisis ---
+pandas            # Estructuras de datos
+numpy             # Cálculos numéricos
+scipy             # Estadísticas
+python-dateutil   # Manejo avanzado de fechas
+
+# --- Machine Learning y NLP ---
+scikit-learn      # Modelos KNN, Naive Bayes, etc.
+nltk              # NLP básico (tokenización, stop words)
+textblob          # Análisis de sentimiento rápido
+
+# --- Bases de Datos ---
+pymongo[srv]      # Cliente para MongoDB (Data Lake)
+# sqlite3 ya viene incluido en Python standard library
+
+# --- Utilidades ---
+tqdm              # Barras de progreso
+matplotlib        # Gráficos básicos para notebooks
+seaborn           # Gráficos estadísticos
+ipykernel         # Soporte para Jupyter Notebooks
