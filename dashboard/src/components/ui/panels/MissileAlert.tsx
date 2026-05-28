@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useExperienceStore } from "@/state/experienceStore";
-import { useAlarmAudio } from "@/hooks/useAlarmAudio";
+import { useMissileAudio } from "@/hooks/useMissileAudio";
 
 export default function MissileAlert() {
   const missileT         = useExperienceStore((s) => s.missileT);
@@ -14,7 +14,7 @@ export default function MissileAlert() {
   const done             = missileT >= 1.0;
   const hasTransitioned  = useRef(false);
 
-  useAlarmAudio(!impacted);
+  useMissileAudio(missileT);
 
   useEffect(() => {
     if (!done || hasTransitioned.current) return;
