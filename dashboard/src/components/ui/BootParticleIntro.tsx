@@ -164,9 +164,10 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
       goTo("NIAN_ASSEMBLE");
     });
 
-    // ── Click ─────────────────────────────────────────────────────────────
+    // ── Click — works from NIAN_HOLD onwards so user is never stuck ──────
     const onClick = () => {
-      if (st.ph !== "IDLE") return;
+      const ph = st.ph;
+      if (ph === "LOADING" || ph === "NIAN_ASSEMBLE" || ph === "DISPERSING") return;
       goTo("DISPERSING");
       if (textRef.current) textRef.current.style.opacity = "0";
       setTimeout(() => onStartRef.current(), 1200);
@@ -202,24 +203,27 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
         }
         if (maxD < 0.12 || e > 4.0) goTo("NIAN_HOLD");
       }
-      else if (st.ph === "NIAN_HOLD" && e > 1.4) {
+      else if (st.ph === "NIAN_HOLD" && e > 2.0) {
         goTo("STREAM");
       }
-      else if (st.ph === "STREAM" && e > 1.4) {
-        // Converge to AIS logo
+      else if (st.ph === "STREAM" && e > 2.5) {
+        // Converge to AIS logo; show text at low opacity as assembly begins
         if (aisT) {
           for (let i = 0; i < PARTICLE_COUNT; i++) {
             const i3 = i * 3;
             targets[i3]     = aisT[i3];
             targets[i3 + 1] = aisT[i3 + 1];
             targets[i3 + 2] = aisT[i3 + 2];
-            // AIS system cyan
             targetColors[i3]     = 0.13;
             targetColors[i3 + 1] = 0.77;
             targetColors[i3 + 2] = 0.88;
           }
         }
         goTo("AIS_ASSEMBLE");
+        if (textRef.current) {
+          textRef.current.style.transition = "opacity 2.0s ease";
+          textRef.current.style.opacity    = "0.40";
+        }
       }
       else if (st.ph === "AIS_ASSEMBLE" && aisT) {
         let maxD = 0;
@@ -227,10 +231,10 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
           const i3 = i * 3;
           maxD = Math.max(maxD, Math.abs(pos[i3] - aisT[i3]) + Math.abs(pos[i3 + 1] - aisT[i3 + 1]));
         }
-        if (maxD < 0.12 || e > 3.5) {
+        if (maxD < 0.12 || e > 4.0) {
           goTo("IDLE");
           if (textRef.current) {
-            textRef.current.style.transition = "opacity 1.4s ease";
+            textRef.current.style.transition = "opacity 1.0s ease";
             textRef.current.style.opacity    = "1";
           }
         }
@@ -284,28 +288,33 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
         }
 
         else if (st.ph === "STREAM") {
-          // Dynamic comet: head sweeps from left to right, tail trails behind
-          const cometT = clamp(e / 1.4, 0, 1);
-          const headX  = lerp(-5.5, 5.5, cometT);
-          const headY  = lerp(0.7, -0.7, cometT);
-          const t_i    = twk[i];
-          const spread = t_i * t_i;         // quadratic: more particles in head
-          tx = headX - spread * 7.0;        // tail stretches behind head
-          ty = headY + (twk2[i] - 0.5) * spread * 0.9;
-          tz = (twk2[i] - 0.5) * spread * 0.35;
-          tr = lerp(1.0, 0.02, spread);     // white head → dark tail
-          tg = lerp(1.0, 0.45, spread);
-          tb = lerp(1.0, 1.00, spread);     // white → electric blue
-          // Fast physics so particles chase the moving head
+          if (!nianT) continue;
+          // A gentle wave of warm light passes through the NIAN logo shape.
+          // Particles ripple softly around their logo positions as it sweeps by.
+          const waveT  = clamp(e / 2.5, 0, 1);
+          const waveX  = lerp(-3.5, 4.5, waveT);
+          const baseX  = nianT[i3];
+          const baseY  = nianT[i3 + 1];
+          const dx     = baseX - waveX;             // distance of particle from wave front
+          const infl   = Math.exp(-dx * dx * 0.65); // gaussian width ≈ ±1.6 units
+          // Stable per-particle offset — no random, no flicker
+          tx = baseX + (twk[i]  - 0.5) * 1.2 * infl;
+          ty = baseY + (twk2[i] - 0.5) * 0.7 * infl;
+          tz = nianT[i3 + 2] + infl * 0.12;
+          // Wave crest warms to near-white; surrounding stays cool silver-blue
+          tr = lerp(0.82, 1.00, infl * 0.85);
+          tg = lerp(0.90, 0.98, infl * 0.65);
+          tb = 1.0;
+          // Gentle drift so motion reads as fluid, not mechanical
           velocities[i3]     *= FRICTION;
           velocities[i3 + 1] *= FRICTION;
           velocities[i3 + 2] *= FRICTION;
-          pos[i3]     += (tx - pos[i3])     * 0.28 + velocities[i3]     * dt;
-          pos[i3 + 1] += (ty - pos[i3 + 1]) * 0.28 + velocities[i3 + 1] * dt;
-          pos[i3 + 2] += (tz - pos[i3 + 2]) * 0.28 + velocities[i3 + 2] * dt;
-          col[i3]     += (tr - col[i3])     * 0.18;
-          col[i3 + 1] += (tg - col[i3 + 1]) * 0.18;
-          col[i3 + 2] += (tb - col[i3 + 2]) * 0.18;
+          pos[i3]     += (tx - pos[i3])     * 0.055 + velocities[i3]     * dt;
+          pos[i3 + 1] += (ty - pos[i3 + 1]) * 0.055 + velocities[i3 + 1] * dt;
+          pos[i3 + 2] += (tz - pos[i3 + 2]) * 0.055 + velocities[i3 + 2] * dt;
+          col[i3]     += (tr - col[i3])     * 0.07;
+          col[i3 + 1] += (tg - col[i3 + 1]) * 0.07;
+          col[i3 + 2] += (tb - col[i3 + 2]) * 0.07;
           continue;
         }
 
@@ -365,21 +374,35 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
       className="absolute inset-0 z-50 cursor-pointer"
       style={{ background: "#060a0e" }}
     >
+      <style>{`
+        @keyframes bpi-pulse {
+          0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(56,189,248,0); }
+          50%       { opacity: 0.55; box-shadow: 0 0 12px 2px rgba(56,189,248,0.12); }
+        }
+      `}</style>
       <span
         ref={textRef}
         style={{
           position:      "absolute",
-          bottom:        "26%",
+          bottom:        "6%",
           left:          "50%",
           transform:     "translateX(-50%)",
           fontFamily:    "'Space Mono', monospace",
-          fontSize:      "11px",
-          letterSpacing: "0.44em",
-          color:         "rgba(34, 197, 224, 0.72)",
-          pointerEvents: "none",
+          fontSize:      "10px",
+          letterSpacing: "0.46em",
+          color:         "rgba(56, 189, 248, 0.90)",
           whiteSpace:    "nowrap",
           opacity:       "0",
           transition:    "opacity 0s",
+          padding:       "9px 28px",
+          border:        "1px solid rgba(56, 189, 248, 0.22)",
+          borderRadius:  "2px",
+          animation:     "bpi-pulse 2.6s ease-in-out infinite",
+          animationPlayState: "paused",
+        }}
+        onTransitionEnd={(ev) => {
+          if ((ev.target as HTMLElement).style.opacity === "1")
+            (ev.target as HTMLElement).style.animationPlayState = "running";
         }}
       >
         CLICK PARA INICIALIZAR
