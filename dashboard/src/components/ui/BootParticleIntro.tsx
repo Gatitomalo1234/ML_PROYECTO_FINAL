@@ -144,9 +144,6 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
     let nianT: Float32Array | null = null;
     let aisT:  Float32Array | null = null;
 
-    // Pre-computed per-particle stream x positions (populated on STREAM entry)
-    const streamTargets = new Float32Array(PARTICLE_COUNT * 3);
-
     // ── Load logos ───────────────────────────────────────────────────────
     Promise.all([
       sampleLogo("/logo_empresa.png", PARTICLE_COUNT),
@@ -182,7 +179,7 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
     });
 
     // ── RAF — structure identical to particle_system.html animate() ──────
-    let prev = performance.now(), rafId = 0, rotY = 0;
+    let prev = performance.now(), rafId = 0;
 
     const animate = () => {
       rafId = requestAnimationFrame(animate);
@@ -206,25 +203,6 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
         if (maxD < 0.12 || e > 4.0) goTo("NIAN_HOLD");
       }
       else if (st.ph === "NIAN_HOLD" && e > 1.4) {
-        // Build stream targets: horizontal right-sweep band
-        // twk[i] controls x position: leftmost particles travel least, rightmost cross screen
-        for (let i = 0; i < PARTICLE_COUNT; i++) {
-          const i3  = i * 3;
-          const t_i = twk[i];
-          streamTargets[i3]     = lerp(-1.5, 9.5, t_i);
-          streamTargets[i3 + 1] = (twk2[i] - 0.5) * 1.6;
-          streamTargets[i3 + 2] = (twk[i]  - 0.5) * 0.3;
-          // Color gradient: left = warm gold, right = electric cyan
-          targetColors[i3]     = lerp(1.0, 0.18, t_i);
-          targetColors[i3 + 1] = lerp(0.72, 0.88, t_i);
-          targetColors[i3 + 2] = lerp(0.22, 1.00, t_i);
-        }
-        for (let i = 0; i < PARTICLE_COUNT; i++) {
-          const i3 = i * 3;
-          targets[i3]     = streamTargets[i3];
-          targets[i3 + 1] = streamTargets[i3 + 1];
-          targets[i3 + 2] = streamTargets[i3 + 2];
-        }
         goTo("STREAM");
       }
       else if (st.ph === "STREAM" && e > 1.4) {
@@ -305,6 +283,32 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
           }
         }
 
+        else if (st.ph === "STREAM") {
+          // Dynamic comet: head sweeps from left to right, tail trails behind
+          const cometT = clamp(e / 1.4, 0, 1);
+          const headX  = lerp(-5.5, 5.5, cometT);
+          const headY  = lerp(0.7, -0.7, cometT);
+          const t_i    = twk[i];
+          const spread = t_i * t_i;         // quadratic: more particles in head
+          tx = headX - spread * 7.0;        // tail stretches behind head
+          ty = headY + (twk2[i] - 0.5) * spread * 0.9;
+          tz = (twk2[i] - 0.5) * spread * 0.35;
+          tr = lerp(1.0, 0.02, spread);     // white head → dark tail
+          tg = lerp(1.0, 0.45, spread);
+          tb = lerp(1.0, 1.00, spread);     // white → electric blue
+          // Fast physics so particles chase the moving head
+          velocities[i3]     *= FRICTION;
+          velocities[i3 + 1] *= FRICTION;
+          velocities[i3 + 2] *= FRICTION;
+          pos[i3]     += (tx - pos[i3])     * 0.28 + velocities[i3]     * dt;
+          pos[i3 + 1] += (ty - pos[i3 + 1]) * 0.28 + velocities[i3 + 1] * dt;
+          pos[i3 + 2] += (tz - pos[i3 + 2]) * 0.28 + velocities[i3 + 2] * dt;
+          col[i3]     += (tr - col[i3])     * 0.18;
+          col[i3 + 1] += (tg - col[i3 + 1]) * 0.18;
+          col[i3 + 2] += (tb - col[i3 + 2]) * 0.18;
+          continue;
+        }
+
         else if (st.ph === "DISPERSING" && aisT) {
           const ox = aisT[i3], oy = aisT[i3 + 1];
           const d  = Math.sqrt(ox * ox + oy * oy) + 0.001;
@@ -339,14 +343,6 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
 
       geometry.attributes.position.needsUpdate = true;
       geometry.attributes.color.needsUpdate    = true;
-
-      // Rotation — gentle auto-rotate matching particle_system.html autoRotate
-      const rSpeed = st.ph === "STREAM"      ? 0.010
-                   : st.ph === "IDLE"        ? 0.0020
-                   : st.ph === "DISPERSING"  ? 0.012
-                   : 0.0038;
-      rotY += rSpeed;
-      points.rotation.y = rotY;
 
       renderer.render(scene, camera);
     };
