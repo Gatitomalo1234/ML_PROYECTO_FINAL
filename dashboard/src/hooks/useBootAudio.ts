@@ -8,7 +8,6 @@ const LINE_FREQS = [440, 520, 480, 620, 560, 680, 880];
 export function useBootAudio(phase: number) {
   const ctxRef    = useRef<AudioContext | null>(null);
   const prevPhase = useRef(0);
-  const laserRef  = useRef<HTMLAudioElement | null>(null);
 
   const getCtx = (): AudioContext => {
     if (!ctxRef.current) ctxRef.current = new AudioContext();
@@ -16,39 +15,24 @@ export function useBootAudio(phase: number) {
     return ctxRef.current;
   };
 
-  // Resume AudioContext + retry laser on first user gesture (browser autoplay policy)
+  // Resume AudioContext on any user gesture (autoplay policy fallback)
   useEffect(() => {
     const resume = () => {
       if (ctxRef.current?.state === "suspended") void ctxRef.current.resume();
-      laserRef.current?.play().catch(() => {});
     };
     window.addEventListener("pointerdown", resume, { once: true });
-    window.addEventListener("scroll",      resume, { once: true });
     window.addEventListener("keydown",     resume, { once: true });
     return () => {
       window.removeEventListener("pointerdown", resume);
-      window.removeEventListener("scroll",      resume);
       window.removeEventListener("keydown",     resume);
     };
   }, []);
 
-  // Play laser-charging MP3 on boot start
   useEffect(() => {
-    const audio = new Audio("/audio/boot-laser.mp3");
-    audio.volume = 0.72;
-    laserRef.current = audio;
-    audio.play().catch(() => { /* blocked — will retry on first gesture */ });
-
-    return () => {
-      audio.pause();
-      audio.src = "";
-      laserRef.current = null;
-      ctxRef.current?.close().catch(() => {});
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => { ctxRef.current?.close().catch(() => {}); };
   }, []);
 
-  // Beep on each new text line; play system-online chord on final line
+  // Synthetic beep on each text line; system-online chord on last line
   useEffect(() => {
     if (phase === 0 || phase <= prevPhase.current) return;
     prevPhase.current = phase;
@@ -111,7 +95,6 @@ function playSystemOnline(ctx: AudioContext) {
     osc.stop(t + 0.75);
   });
 
-  // Sub bass thump for weight
   const bass     = ctx.createOscillator();
   const bassGain = ctx.createGain();
   bass.connect(bassGain);
