@@ -3,40 +3,34 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
-// ─── Constants ─────────────────────────────────────────────────────────────
-const N   = 16_000;
+// ─── Config ─────────────────────────────────────────────────────────────────
+const N   = 9_000;   // particles — fewer = visible individual dots, no blobs
 const TAU = Math.PI * 2;
 
-// Shooting-star direction (bottom-left → top-right diagonal)
-const _SL = Math.sqrt(1.6 * 1.6 + 0.7 * 0.7);
-const SDX  = 1.6 / _SL;   // normalized X component
-const SDY  = 0.7 / _SL;   // normalized Y component
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+const lerp  = (a: number, b: number, t: number) => a + (b - a) * t;
+const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
 
-// ─── Helpers ───────────────────────────────────────────────────────────────
-function lerp(a: number, b: number, t: number)              { return a + (b - a) * t; }
-function clamp(v: number, lo: number, hi: number)           { return Math.max(lo, Math.min(hi, v)); }
-function easeInOut(t: number)                               { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
-
-// ─── Glow sprite texture ───────────────────────────────────────────────────
+// ─── Glow sprite ─────────────────────────────────────────────────────────────
 function buildGlowTex(): THREE.CanvasTexture {
-  const S = 64;
-  const c = document.createElement("canvas");
-  c.width = S; c.height = S;
-  const ctx = c.getContext("2d")!;
-  const half = S / 2;
-  const g = ctx.createRadialGradient(half, half, 0, half, half, half);
+  const S = 64, h = S / 2;
+  const cv = document.createElement("canvas");
+  cv.width = S; cv.height = S;
+  const ctx = cv.getContext("2d")!;
+  const g = ctx.createRadialGradient(h, h, 0, h, h, h);
   g.addColorStop(0,    "rgba(255,255,255,1)");
-  g.addColorStop(0.12, "rgba(255,255,255,0.92)");
-  g.addColorStop(0.40, "rgba(255,255,255,0.28)");
-  g.addColorStop(0.75, "rgba(255,255,255,0.04)");
-  g.addColorStop(1,    "rgba(255,255,255,0)");
+  g.addColorStop(0.12, "rgba(255,255,255,0.90)");
+  g.addColorStop(0.38, "rgba(255,255,255,0.28)");
+  g.addColorStop(0.72, "rgba(255,255,255,0.04)");
+  g.addColorStop(1.0,  "rgba(255,255,255,0)");
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, S, S);
-  return new THREE.CanvasTexture(c);
+  return new THREE.CanvasTexture(cv);
 }
 
-// ─── Sample logo image into N 3-D target points ────────────────────────────
-async function sampleLogo(src: string, n: number): Promise<Float32Array> {
+// ─── Sample logo edges only (avoids solid-blob effect) ───────────────────────
+// Samples only pixels where bright meets dark → outlines instead of fills
+async function sampleLogoEdges(src: string, n: number): Promise<Float32Array> {
   const W = 512, H = 512;
   const cv = document.createElement("canvas");
   cv.width = W; cv.height = H;
@@ -45,24 +39,31 @@ async function sampleLogo(src: string, n: number): Promise<Float32Array> {
   await new Promise<void>((res, rej) => { img.onload = () => res(); img.onerror = rej; img.src = src; });
   ctx.drawImage(img, 0, 0, W, H);
   const px = ctx.getImageData(0, 0, W, H).data;
+
   const pts: [number, number][] = [];
-  for (let y = 0; y < H; y += 2) {
-    for (let x = 0; x < W; x += 2) {
-      if (px[(y * W + x) * 4] > 90) pts.push([x, y]);
+  for (let y = 2; y < H - 2; y += 2) {
+    for (let x = 2; x < W - 2; x += 2) {
+      if (px[(y * W + x) * 4] < 80) continue;
+      // Keep pixel only if at least one cardinal neighbor (3px away) is dark
+      const edge =
+        px[((y - 2) * W + x) * 4] < 55 || px[((y + 2) * W + x) * 4] < 55 ||
+        px[(y * W + x - 2) * 4] < 55 || px[(y * W + x + 2) * 4] < 55;
+      if (edge) pts.push([x, y]);
     }
   }
-  const scale = 5.2 / W;
-  const out   = new Float32Array(n * 3);
+
+  const scale = 4.6 / W;
+  const out = new Float32Array(n * 3);
   for (let i = 0; i < n; i++) {
-    const p    = pts[Math.floor(Math.random() * pts.length)];
-    out[i*3]   = (p[0] - W/2) * scale;
-    out[i*3+1] = -(p[1] - H/2) * scale;
-    out[i*3+2] = (Math.random() - 0.5) * 0.06;
+    const p = pts[Math.floor(Math.random() * pts.length)];
+    out[i * 3]     = (p[0] - W / 2) * scale;
+    out[i * 3 + 1] = -(p[1] - H / 2) * scale;
+    out[i * 3 + 2] = (Math.random() - 0.5) * 0.05;
   }
   return out;
 }
 
-// ─── GLSL shaders (per-vertex size + color) ────────────────────────────────
+// ─── GLSL: per-vertex size + color ───────────────────────────────────────────
 const VERT = /* glsl */`
   attribute float aSize;
   attribute vec3  aColor;
@@ -70,7 +71,7 @@ const VERT = /* glsl */`
   void main() {
     vColor = aColor;
     vec4 mv = modelViewMatrix * vec4(position, 1.0);
-    gl_PointSize = aSize * (400.0 / -mv.z);
+    gl_PointSize = aSize * (380.0 / -mv.z);
     gl_Position  = projectionMatrix * mv;
   }
 `;
@@ -84,9 +85,10 @@ const FRAG = /* glsl */`
   }
 `;
 
-// ─── Component ─────────────────────────────────────────────────────────────
+// ─── Component ───────────────────────────────────────────────────────────────
 export default function BootParticleIntro({ onStart }: { onStart: () => void }) {
   const mountRef   = useRef<HTMLDivElement>(null);
+  const nianRef    = useRef<HTMLDivElement>(null);
   const textRef    = useRef<HTMLSpanElement>(null);
   const onStartRef = useRef(onStart);
   useEffect(() => { onStartRef.current = onStart; }, [onStart]);
@@ -95,49 +97,39 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
     const mount = mountRef.current;
     if (!mount) return;
 
-    // ── Renderer ──────────────────────────────────────────────────────────
+    // ── Renderer ─────────────────────────────────────────────────────────
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x060a0e, 1);
-    renderer.domElement.style.filter = "brightness(1.18) contrast(1.05)";
     mount.appendChild(renderer.domElement);
 
     const scene  = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 200);
     camera.position.z = 5.5;
 
-    // ── Buffers ──────────────────────────────────────────────────────────
-    const pos     = new Float32Array(N * 3);
-    const vel     = new Float32Array(N * 3);
-    const col     = new Float32Array(N * 3);
-    const tCol    = new Float32Array(N * 3);
-    const sz      = new Float32Array(N);
-    const tSz     = new Float32Array(N);
-    const twk     = new Float32Array(N); // permanent random 0..1 per particle
+    // ── Particle buffers ──────────────────────────────────────────────────
+    const pos  = new Float32Array(N * 3);
+    const vel  = new Float32Array(N * 3);
+    const col  = new Float32Array(N * 3);
+    const tCol = new Float32Array(N * 3);
+    const sz   = new Float32Array(N);
+    const tSz  = new Float32Array(N);
+    const twk  = new Float32Array(N);  // stable random 0..1 per particle
+    const twk2 = new Float32Array(N);  // second independent random
 
     for (let i = 0; i < N; i++) {
-      const i3 = i * 3;
-      const r  = 9 + Math.random() * 5;
-      const th = Math.random() * TAU;
-      const ph = Math.acos(2 * Math.random() - 1);
-      pos[i3]   = r * Math.sin(ph) * Math.cos(th);
-      pos[i3+1] = r * Math.sin(ph) * Math.sin(th);
-      pos[i3+2] = (Math.random() - 0.5) * 4;
-      col[i3]   = tCol[i3]   = 0.02;
-      col[i3+1] = tCol[i3+1] = 0.04;
-      col[i3+2] = tCol[i3+2] = 0.06;
-      sz[i]  = tSz[i] = 0.2;
-      twk[i] = Math.random();
+      twk[i]  = Math.random();
+      twk2[i] = Math.random();
     }
 
-    // ── Geometry ─────────────────────────────────────────────────────────
+    // ── Geometry ──────────────────────────────────────────────────────────
     const geo = new THREE.BufferGeometry();
-    geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-    geo.setAttribute("aColor",   new THREE.BufferAttribute(col, 3));
-    geo.setAttribute("aSize",    new THREE.BufferAttribute(sz,  1));
+    geo.setAttribute("position", new THREE.BufferAttribute(pos,  3));
+    geo.setAttribute("aColor",   new THREE.BufferAttribute(col,  3));
+    geo.setAttribute("aSize",    new THREE.BufferAttribute(sz,   1));
 
-    const glowTex  = buildGlowTex();
+    const glowTex = buildGlowTex();
     const mat = new THREE.ShaderMaterial({
       uniforms:       { uMap: { value: glowTex } },
       vertexShader:   VERT,
@@ -150,29 +142,91 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
     scene.add(points);
 
     // ── Phase machine ─────────────────────────────────────────────────────
-    type Ph = "LOADING"|"NIAN_ASSEMBLE"|"NIAN_HOLD"|"SHOOT"|"AIS_ASSEMBLE"|"IDLE"|"DISPERSING";
-    const state = { ph: "LOADING" as Ph, start: 0 };
+    type Ph = "NIAN_SHOW"|"APPROACH"|"IMPACT"|"ASSEMBLE"|"IDLE"|"DISPERSING";
+    const st = { ph: "NIAN_SHOW" as Ph, t0: performance.now() };
+    const elapsed = () => (performance.now() - st.t0) / 1000;
 
-    let nianT: Float32Array | null = null;
-    let aisT:  Float32Array | null = null;
+    function goTo(p: Ph) { st.ph = p; st.t0 = performance.now(); }
 
-    function goTo(p: Ph) { state.ph = p; state.start = performance.now(); }
+    let aisTargets: Float32Array | null = null;
+    let impactFired = false;
 
-    // ── Load both logos in parallel ───────────────────────────────────────
-    Promise.all([
-      sampleLogo("/logo_empresa.png", N),
-      sampleLogo("/logo.png",         N),
-    ]).then(([nian, ais]) => {
-      nianT = nian;
-      aisT  = ais;
-      goTo("NIAN_ASSEMBLE");
-    }).catch(() => {
-      sampleLogo("/logo.png", N).then(ais => { aisT = ais; goTo("AIS_ASSEMBLE"); });
+    // ── Load AIS logo ─────────────────────────────────────────────────────
+    sampleLogoEdges("/logo.png", N).then(t => { aisTargets = t; });
+
+    // ── Init: scatter particles far and dark ──────────────────────────────
+    for (let i = 0; i < N; i++) {
+      const i3 = i * 3;
+      const r  = 18 + twk[i] * 8;
+      const th = twk[i] * TAU;
+      const ph = Math.acos(2 * twk2[i] - 1);
+      pos[i3]   = r * Math.sin(ph) * Math.cos(th);
+      pos[i3+1] = r * Math.sin(ph) * Math.sin(th);
+      pos[i3+2] = r * Math.cos(ph);
+      col[i3]   = tCol[i3]   = 0.02;
+      col[i3+1] = tCol[i3+1] = 0.04;
+      col[i3+2] = tCol[i3+2] = 0.06;
+      sz[i]  = tSz[i] = 0.1;
+    }
+
+    // ── Enter APPROACH: reset particles to tight Z=-22 cluster ────────────
+    function enterApproach() {
+      for (let i = 0; i < N; i++) {
+        const i3 = i * 3;
+        pos[i3]   = (twk[i]  - 0.5) * 1.8;
+        pos[i3+1] = (twk2[i] - 0.5) * 1.8;
+        pos[i3+2] = -22 + (twk[i] - 0.5) * 2.5;
+        vel[i3]   = (twk[i]  - 0.5) * 0.6;
+        vel[i3+1] = (twk2[i] - 0.5) * 0.6;
+        vel[i3+2] = 4 + twk[i] * 10;  // initial forward burst, varies per particle
+        tCol[i3]   = lerp(0.75, 1.0, twk[i]);  // bright white-blue
+        tCol[i3+1] = lerp(0.85, 1.0, twk2[i]);
+        tCol[i3+2] = 1.0;
+        tSz[i]  = 0.35 + twk[i] * 0.25;  // medium — perspective shrinks them far away
+      }
+      impactFired = false;
+      goTo("APPROACH");
+    }
+
+    // ── Enter IMPACT: radial burst + flash ────────────────────────────────
+    function enterImpact() {
+      impactFired = true;
+      // White flash
+      renderer.setClearColor(0xffffff, 1);
+      setTimeout(() => renderer.setClearColor(0x060a0e, 1), 110);
+
+      for (let i = 0; i < N; i++) {
+        const i3 = i * 3;
+        const angle = twk[i] * TAU;
+        const spd   = 5 + twk2[i] * 16;
+        vel[i3]   = Math.cos(angle) * spd;
+        vel[i3+1] = Math.sin(angle) * spd;
+        vel[i3+2] = (twk2[i] - 0.5) * 8;
+        tSz[i]    = 0.14 + twk[i] * 0.20;  // shrink → crisp small dots
+      }
+      goTo("IMPACT");
+    }
+
+    // ── NIAN logo timing ──────────────────────────────────────────────────
+    // Show NIAN immediately
+    requestAnimationFrame(() => {
+      if (nianRef.current) {
+        nianRef.current.style.transition = "opacity 0.8s ease";
+        nianRef.current.style.opacity    = "1";
+      }
     });
+    // After 2.2s fade NIAN out and start approach
+    const nianTimer = setTimeout(() => {
+      if (nianRef.current) {
+        nianRef.current.style.transition = "opacity 0.6s ease";
+        nianRef.current.style.opacity    = "0";
+      }
+      setTimeout(() => enterApproach(), 700);
+    }, 2200);
 
-    // ── Click → disperse ──────────────────────────────────────────────────
+    // ── Click ─────────────────────────────────────────────────────────────
     const onClick = () => {
-      if (state.ph !== "IDLE") return;
+      if (st.ph !== "IDLE") return;
       goTo("DISPERSING");
       if (textRef.current) textRef.current.style.opacity = "0";
       setTimeout(() => onStartRef.current(), 1200);
@@ -188,62 +242,33 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
     window.addEventListener("resize", onResize);
 
     // ── RAF ───────────────────────────────────────────────────────────────
-    let prev  = performance.now();
-    let rafId = 0;
-    let rotY  = 0;
-
-    const aPos  = geo.attributes.position as THREE.BufferAttribute;
-    const aCol  = geo.attributes.aColor   as THREE.BufferAttribute;
-    const aSz   = geo.attributes.aSize    as THREE.BufferAttribute;
+    let prev = performance.now(), rafId = 0, rotY = 0;
+    const aPos = geo.attributes.position as THREE.BufferAttribute;
+    const aCol = geo.attributes.aColor   as THREE.BufferAttribute;
+    const aSz  = geo.attributes.aSize    as THREE.BufferAttribute;
 
     const tick = () => {
       rafId = requestAnimationFrame(tick);
-      const now     = performance.now();
-      const dt      = Math.min((now - prev) / 1000, 0.05);
-      prev          = now;
-      const t       = now / 1000;
-      const elapsed = (now - state.start) / 1000;
-      const ph      = state.ph;
+      const now = performance.now();
+      const dt  = Math.min((now - prev) / 1000, 0.05);
+      prev = now;
+      const t = now / 1000;
+      const e = elapsed();
 
-      // ── Phase-level auto transitions ────────────────────────────────────
-      if (ph === "NIAN_ASSEMBLE" && nianT) {
-        let md = 0;
-        for (let i = 0; i < N; i += 80) {
-          const i3 = i*3;
-          md = Math.max(md, Math.abs(pos[i3]-nianT[i3]) + Math.abs(pos[i3+1]-nianT[i3+1]));
-        }
-        if (md < 0.10 || elapsed > 3.8) goTo("NIAN_HOLD");
-      }
-      else if (ph === "NIAN_HOLD"     && elapsed > 1.5) goTo("SHOOT");
-      else if (ph === "SHOOT"         && elapsed > 1.9) goTo("AIS_ASSEMBLE");
-      else if (ph === "AIS_ASSEMBLE"  && aisT) {
-        let md = 0;
-        for (let i = 0; i < N; i += 80) {
-          const i3 = i*3;
-          md = Math.max(md, Math.abs(pos[i3]-aisT[i3]) + Math.abs(pos[i3+1]-aisT[i3+1]));
-        }
-        if (md < 0.10 || elapsed > 3.5) {
-          goTo("IDLE");
-          if (textRef.current) {
-            textRef.current.style.transition = "opacity 1.4s ease";
-            textRef.current.style.opacity    = "1";
-          }
-        }
-      }
-
-      // ── DISPERSING (separate fast path) ─────────────────────────────────
-      if (ph === "DISPERSING" && aisT) {
-        renderer.domElement.style.opacity = String(clamp(1 - elapsed / 1.2, 0, 1));
+      // ── DISPERSING fast-path ─────────────────────────────────────────
+      if (st.ph === "DISPERSING") {
+        renderer.domElement.style.opacity = String(clamp(1 - e / 1.2, 0, 1));
         for (let i = 0; i < N; i++) {
-          const i3 = i*3;
-          const ox = aisT[i3], oy = aisT[i3+1];
+          const i3 = i * 3;
+          const ox = aisTargets ? aisTargets[i3] : 0;
+          const oy = aisTargets ? aisTargets[i3+1] : 0;
           const d  = Math.sqrt(ox*ox + oy*oy) + 0.001;
-          vel[i3]   += (ox/d) * 0.32;
-          vel[i3+1] += (oy/d) * 0.32 + 0.12;
+          vel[i3]   += (ox/d) * 0.35;
+          vel[i3+1] += (oy/d) * 0.35 + 0.12;
           vel[i3]   *= 0.91; vel[i3+1] *= 0.91; vel[i3+2] *= 0.91;
-          pos[i3]   += vel[i3]   * dt * 52;
-          pos[i3+1] += vel[i3+1] * dt * 52;
-          pos[i3+2] += vel[i3+2] * dt * 52;
+          pos[i3]   += vel[i3]   * dt * 50;
+          pos[i3+1] += vel[i3+1] * dt * 50;
+          pos[i3+2] += vel[i3+2] * dt * 50;
         }
         aPos.needsUpdate = true;
         rotY += 0.01;
@@ -252,114 +277,121 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
         return;
       }
 
-      // ── Main particle loop ───────────────────────────────────────────────
-      const cometT  = ph === "SHOOT" ? clamp(elapsed / 1.9, 0, 1) : 0;
-      const headX   = lerp(-14, 14, easeInOut(cometT));
-      const headY   = lerp(-2.2, 3.2, easeInOut(cometT));
+      // ── Phase transitions ────────────────────────────────────────────
+      if (st.ph === "APPROACH") {
+        // Trigger impact when most particles have crossed z > -0.5
+        if (!impactFired) {
+          let forward = 0;
+          for (let i = 0; i < N; i += 40) forward += pos[i*3+2] > -0.5 ? 1 : 0;
+          if (forward > N/40 * 0.6 || e > 2.0) enterImpact();
+        }
+      }
+      else if (st.ph === "IMPACT" && e > 0.55) {
+        goTo("ASSEMBLE");
+      }
+      else if (st.ph === "ASSEMBLE" && aisTargets) {
+        let maxDist = 0;
+        for (let i = 0; i < N; i += 60) {
+          const i3 = i * 3;
+          maxDist = Math.max(maxDist, Math.abs(pos[i3] - aisTargets[i3]) + Math.abs(pos[i3+1] - aisTargets[i3+1]));
+        }
+        if (maxDist < 0.12 || e > 3.5) {
+          goTo("IDLE");
+          if (textRef.current) {
+            textRef.current.style.transition = "opacity 1.4s ease";
+            textRef.current.style.opacity    = "1";
+          }
+        }
+      }
 
+      // ── Per-particle update ─────────────────────────────────────────
       for (let i = 0; i < N; i++) {
-        const i3  = i*3;
-        const twki = twk[i];
-        let tx = 0, ty = 0, tz = 0, ls = 0.04;
+        const i3   = i * 3;
+        const twki = twk[i], twk2i = twk2[i];
 
-        // ── Target & color by phase ──────────────────────────────────────
-        if (ph === "LOADING") {
-          tx = pos[i3] * 0.998; ty = pos[i3+1] * 0.998; tz = pos[i3+2] * 0.998;
-          ls = 1;
-          tCol[i3]=0.02; tCol[i3+1]=0.04; tCol[i3+2]=0.06;
-          tSz[i] = 0.2;
+        if (st.ph === "NIAN_SHOW") {
+          // Particles invisible in background during NIAN display
+          pos[i3]   *= 0.994; pos[i3+1] *= 0.994; pos[i3+2] *= 0.994;
+          tCol[i3]   = 0.02; tCol[i3+1] = 0.04; tCol[i3+2] = 0.06;
+          tSz[i]     = 0.1;
 
-        } else if (ph === "NIAN_ASSEMBLE" && nianT) {
-          tx = nianT[i3]; ty = nianT[i3+1]; tz = nianT[i3+2]; ls = 0.038;
-          const dist  = Math.abs(pos[i3]-tx) + Math.abs(pos[i3+1]-ty);
-          const bright = clamp(1 - dist * 0.22, 0, 1);
-          tCol[i3]   = 0.85 * bright;
-          tCol[i3+1] = 0.90 * bright;
-          tCol[i3+2] = 1.00 * bright;
-          tSz[i] = 0.55 + twki * 0.85;
+        } else if (st.ph === "APPROACH") {
+          // Accelerate toward camera (+Z), converge X/Y to center
+          vel[i3]   += (0 - pos[i3])   * 0.12 * dt * 60;  // X spring to center
+          vel[i3+1] += (0 - pos[i3+1]) * 0.12 * dt * 60;  // Y spring to center
+          vel[i3+2] += lerp(12, 28, clamp(e / 1.8, 0, 1)) * dt * 60; // accelerate +Z
+          vel[i3]   *= 0.88; vel[i3+1] *= 0.88; vel[i3+2] *= 0.96;
+          pos[i3]   += vel[i3]   * dt;
+          pos[i3+1] += vel[i3+1] * dt;
+          pos[i3+2] += vel[i3+2] * dt;
+          // Color: white core with cyan fringe
+          const fr = clamp(e / 1.2, 0, 1);
+          tCol[i3]   = lerp(1.0, 0.40, fr * twki * 0.6);
+          tCol[i3+1] = lerp(1.0, 0.88, fr * twki * 0.4);
+          tCol[i3+2] = 1.0;
+          tSz[i]  = 0.40 + twki * 0.28;
+          col[i3]   += (tCol[i3]   - col[i3])   * 0.14;
+          col[i3+1] += (tCol[i3+1] - col[i3+1]) * 0.14;
+          col[i3+2] += (tCol[i3+2] - col[i3+2]) * 0.14;
+          sz[i]     += (tSz[i]     - sz[i])      * 0.10;
+          continue;
 
-        } else if (ph === "NIAN_HOLD" && nianT) {
-          tx = nianT[i3]   + Math.sin(t * (0.7 + twki * 0.6) + twki * TAU) * 0.013;
-          ty = nianT[i3+1] + Math.cos(t * (0.7 + twki * 0.6) + twki * TAU) * 0.013;
-          tz = nianT[i3+2]; ls = 0.018;
-          if (Math.random() < 0.0028) {
-            // golden sparkle flash
-            tCol[i3]=1.0; tCol[i3+1]=0.86; tCol[i3+2]=0.28;
-            tSz[i] = 2.8 + Math.random();
-          } else {
-            tCol[i3]=0.88; tCol[i3+1]=0.93; tCol[i3+2]=1.0;
-            tSz[i] = 0.65 + twki * 0.95;
-          }
+        } else if (st.ph === "IMPACT") {
+          vel[i3]   *= 0.88; vel[i3+1] *= 0.88; vel[i3+2] *= 0.88;
+          pos[i3]   += vel[i3]   * dt * 52;
+          pos[i3+1] += vel[i3+1] * dt * 52;
+          pos[i3+2] += vel[i3+2] * dt * 52;
+          tCol[i3]   = lerp(1.0, 0.13, clamp(e * 1.8, 0, 1));
+          tCol[i3+1] = lerp(1.0, 0.77, clamp(e * 1.8, 0, 1));
+          tCol[i3+2] = lerp(1.0, 0.88, clamp(e * 1.8, 0, 1));
+          col[i3]   += (tCol[i3]   - col[i3])   * 0.14;
+          col[i3+1] += (tCol[i3+1] - col[i3+1]) * 0.14;
+          col[i3+2] += (tCol[i3+2] - col[i3+2]) * 0.14;
+          sz[i]     += (tSz[i]     - sz[i])      * 0.12;
+          continue;
 
-        } else if (ph === "SHOOT") {
-          const t_i    = i / N;
-          const trail  = t_i * 12;
-          const perp   = (twki - 0.5) * 2 * t_i * 1.8; // fixed per-particle spread
-          tx = headX - trail * SDX + perp * (-SDY);
-          ty = headY - trail * SDY + perp * SDX;
-          tz = (twki - 0.5) * t_i * 0.4;
-          ls = 0.30;
-          if (t_i < 0.06) {
-            tCol[i3]=1.0; tCol[i3+1]=1.0; tCol[i3+2]=1.0;
-            tSz[i] = 2.6 + twki * 0.8;
-          } else if (t_i < 0.22) {
-            const f = (t_i-0.06)/0.16;
-            tCol[i3]=lerp(1.0,0.30,f); tCol[i3+1]=lerp(1.0,0.92,f); tCol[i3+2]=lerp(1.0,1.0,f);
-            tSz[i]  = lerp(2.6, 1.6, f);
-          } else if (t_i < 0.52) {
-            const f = (t_i-0.22)/0.30;
-            tCol[i3]=lerp(0.30,0.07,f); tCol[i3+1]=lerp(0.92,0.20,f); tCol[i3+2]=lerp(1.0,0.55,f);
-            tSz[i]  = lerp(1.6, 0.7, f);
-          } else {
-            const f = clamp((t_i-0.52)/0.48, 0, 1);
-            tCol[i3]=lerp(0.07,0.02,f); tCol[i3+1]=lerp(0.20,0.04,f); tCol[i3+2]=lerp(0.55,0.06,f);
-            tSz[i]  = lerp(0.7, 0.18, f);
-          }
+        } else if (st.ph === "ASSEMBLE" && aisTargets) {
+          const tx = aisTargets[i3], ty = aisTargets[i3+1], tz = aisTargets[i3+2];
+          vel[i3]   *= 0.82; vel[i3+1] *= 0.82; vel[i3+2] *= 0.82;
+          pos[i3]   += (tx - pos[i3])   * 0.045 + vel[i3]   * dt;
+          pos[i3+1] += (ty - pos[i3+1]) * 0.045 + vel[i3+1] * dt;
+          pos[i3+2] += (tz - pos[i3+2]) * 0.045 + vel[i3+2] * dt;
+          const d = Math.abs(pos[i3]-tx) + Math.abs(pos[i3+1]-ty);
+          const p = clamp(1 - d * 0.28, 0, 1);
+          tCol[i3]   = 0.13 * p; tCol[i3+1] = 0.77 * p; tCol[i3+2] = 0.88 * p;
+          tSz[i] = 0.15 + twki * 0.22;
 
-        } else if (ph === "AIS_ASSEMBLE" && aisT) {
-          tx = aisT[i3]; ty = aisT[i3+1]; tz = aisT[i3+2]; ls = 0.042;
-          const dist  = Math.abs(pos[i3]-tx) + Math.abs(pos[i3+1]-ty);
-          const p     = clamp(1 - dist * 0.20, 0, 1);
-          tCol[i3]   = 0.13 * p;
-          tCol[i3+1] = 0.77 * p;
-          tCol[i3+2] = 0.88 * p;
-          tSz[i] = 0.5 + twki * 0.85;
-
-        } else if (ph === "IDLE" && aisT) {
-          const freq = 0.58 + twki * 0.82;
-          const amp  = 0.008 + twki * 0.007;
-          tx = aisT[i3]   + Math.sin(t * freq + twki * TAU) * amp;
-          ty = aisT[i3+1] + Math.cos(t * freq + twki * TAU) * amp;
-          tz = aisT[i3+2]; ls = 0.015;
+        } else if (st.ph === "IDLE" && aisTargets) {
+          const freq = 0.55 + twki * 0.85;
+          const amp  = 0.007 + twki * 0.007;
+          const tx = aisTargets[i3]   + Math.sin(t * freq + twki * TAU) * amp;
+          const ty = aisTargets[i3+1] + Math.cos(t * freq + twki * TAU) * amp;
+          const tz = aisTargets[i3+2];
           if (twki > 0.96) {
-            // slow-orbit particles
-            tx += Math.cos(t * 1.1 + twki * 9) * 0.030;
-            ty += Math.sin(t * 1.1 + twki * 9) * 0.030;
-          }
-          if (Math.random() < 0.0025) {
-            // white/gold sparkle flash
-            const gold = Math.random() < 0.5;
-            tCol[i3]  = 1.0;
-            tCol[i3+1] = gold ? 0.82 : 1.0;
-            tCol[i3+2] = gold ? 0.22 : 1.0;
-            tSz[i] = 3.0 + Math.random() * 0.8;
+            // micro-orbit
+            const ox = aisTargets[i3]   + Math.cos(t * 1.1 + twk2i * 9) * 0.028;
+            const oy = aisTargets[i3+1] + Math.sin(t * 1.1 + twk2i * 9) * 0.028;
+            pos[i3]   += (ox - pos[i3])   * 0.018;
+            pos[i3+1] += (oy - pos[i3+1]) * 0.018;
           } else {
-            tCol[i3]=0.13; tCol[i3+1]=0.77; tCol[i3+2]=0.88;
-            tSz[i] = 0.58 + twki * 0.72;
+            pos[i3]   += (tx - pos[i3])   * 0.016;
+            pos[i3+1] += (ty - pos[i3+1]) * 0.016;
+          }
+          pos[i3+2] += (tz - pos[i3+2]) * 0.016;
+          if (Math.random() < 0.0022) {
+            const gold = Math.random() < 0.5;
+            tCol[i3] = 1.0; tCol[i3+1] = gold ? 0.82 : 1.0; tCol[i3+2] = gold ? 0.20 : 1.0;
+            tSz[i] = 2.8 + Math.random() * 0.8;
+          } else {
+            tCol[i3]   = 0.13; tCol[i3+1] = 0.77; tCol[i3+2] = 0.88;
+            tSz[i]     = 0.18 + twki * 0.22;
           }
         }
 
-        // ── Physics ──────────────────────────────────────────────────────
-        vel[i3]   *= 0.88; vel[i3+1] *= 0.88; vel[i3+2] *= 0.88;
-        pos[i3]   += (tx - pos[i3])   * ls + vel[i3]   * dt;
-        pos[i3+1] += (ty - pos[i3+1]) * ls + vel[i3+1] * dt;
-        pos[i3+2] += (tz - pos[i3+2]) * ls + vel[i3+2] * dt;
-
-        // ── Smooth color & size ─────────────────────────────────────────
-        const cs = ph === "SHOOT" ? 0.14 : 0.065;
-        col[i3]   += (tCol[i3]   - col[i3])   * cs;
-        col[i3+1] += (tCol[i3+1] - col[i3+1]) * cs;
-        col[i3+2] += (tCol[i3+2] - col[i3+2]) * cs;
+        // ── Standard color + size lerp ─────────────────────────────────
+        col[i3]   += (tCol[i3]   - col[i3])   * 0.07;
+        col[i3+1] += (tCol[i3+1] - col[i3+1]) * 0.07;
+        col[i3+2] += (tCol[i3+2] - col[i3+2]) * 0.07;
         sz[i]     += (tSz[i]     - sz[i])      * 0.09;
       }
 
@@ -367,19 +399,19 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
       aCol.needsUpdate = true;
       aSz.needsUpdate  = true;
 
-      // ── Rotation ────────────────────────────────────────────────────────
-      const rSpeed = ph === "SHOOT" ? 0.009
-                   : ph === "IDLE"  ? 0.0022
+      const rSpeed = st.ph === "APPROACH" ? 0.004
+                   : st.ph === "IMPACT"   ? 0.014
+                   : st.ph === "IDLE"     ? 0.0018
                    : 0.003;
       rotY += rSpeed;
       points.rotation.y = rotY;
-
       renderer.render(scene, camera);
     };
     tick();
 
-    // ── Cleanup ───────────────────────────────────────────────────────────
+    // ── Cleanup ───────────────────────────────────────────────────────
     return () => {
+      clearTimeout(nianTimer);
       cancelAnimationFrame(rafId);
       mount.removeEventListener("click", onClick);
       window.removeEventListener("resize", onResize);
@@ -392,7 +424,38 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div ref={mountRef} className="absolute inset-0 z-50 cursor-pointer">
+    <div
+      ref={mountRef}
+      className="absolute inset-0 z-50 cursor-pointer"
+      style={{ background: "#060a0e" }}  // prevents background bleed before canvas mounts
+    >
+      {/* NIAN Industries logo — DOM image, clean & sharp, no particle blob */}
+      <div
+        ref={nianRef}
+        style={{
+          position:       "absolute",
+          inset:          0,
+          display:        "flex",
+          alignItems:     "center",
+          justifyContent: "center",
+          opacity:        0,
+          pointerEvents:  "none",
+        }}
+      >
+        <img
+          src="/logo_empresa.png"
+          alt="NIAN Industries"
+          style={{
+            width:      "300px",
+            height:     "300px",
+            objectFit:  "contain",
+            filter:     "brightness(0.92) drop-shadow(0 0 18px rgba(200,220,255,0.35))",
+            userSelect: "none",
+          }}
+        />
+      </div>
+
+      {/* Click prompt */}
       <span
         ref={textRef}
         style={{
@@ -403,7 +466,7 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
           fontFamily:    "'Space Mono', monospace",
           fontSize:      "11px",
           letterSpacing: "0.44em",
-          color:         "rgba(34, 197, 224, 0.70)",
+          color:         "rgba(34, 197, 224, 0.72)",
           pointerEvents: "none",
           whiteSpace:    "nowrap",
           opacity:       "0",
