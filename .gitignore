@@ -50,3 +50,7 @@ models/*
 
 # Dashboard cache
 .streamlit/
+
+# FleetView / Claude Code internals
+.agents/
+skills-lock.json

@@ -1,0 +1,10 @@
+[
+  { "date": "2026-05-01", "region": "IR", "flights_airborne": 19120, "total_fatalities": 2 },
+  { "date": "2026-05-02", "region": "IR", "flights_airborne": 19010, "total_fatalities": 0 },
+  { "date": "2026-05-03", "region": "IR", "flights_airborne": 18980, "total_fatalities": 1 },
+  { "date": "2026-05-04", "region": "IR", "flights_airborne": 18710, "total_fatalities": 4 },
+  { "date": "2026-05-05", "region": "IR", "flights_airborne": 18550, "total_fatalities": 7 },
+  { "date": "2026-05-06", "region": "IR", "flights_airborne": 18470, "total_fatalities": 3 },
+  { "date": "2026-05-07", "region": "IR", "flights_airborne": 18290, "total_fatalities": 9 }
+]
+

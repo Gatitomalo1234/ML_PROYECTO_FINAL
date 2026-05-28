@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-graphite-950 text-white font-ui antialiased;
+}
+
+::selection {
+  background: rgba(88, 184, 200, 0.25);
+}
+
+/* Cinematic overlays (subtle, non-gimmicky) */
+.overlay-scanlines {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.02), transparent 18%);
+  background-size: 100% 3px;
+  opacity: 0.16;
+  mix-blend-mode: overlay;
+}
+
+.overlay-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: 0.12;
+  mix-blend-mode: screen;
+}
