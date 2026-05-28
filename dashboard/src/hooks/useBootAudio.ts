@@ -8,22 +8,19 @@ const LINE_FREQS = [440, 520, 480, 620, 560, 680, 880];
 export function useBootAudio(phase: number) {
   const ctxRef    = useRef<AudioContext | null>(null);
   const prevPhase = useRef(0);
-  const ambientRef = useRef<{ stop: () => void } | null>(null);
+  const laserRef  = useRef<HTMLAudioElement | null>(null);
 
   const getCtx = (): AudioContext => {
-    if (!ctxRef.current) {
-      ctxRef.current = new AudioContext();
-    }
-    if (ctxRef.current.state === "suspended") {
-      void ctxRef.current.resume();
-    }
+    if (!ctxRef.current) ctxRef.current = new AudioContext();
+    if (ctxRef.current.state === "suspended") void ctxRef.current.resume();
     return ctxRef.current;
   };
 
-  // Resume on any user gesture — handles browser autoplay policy
+  // Resume AudioContext + retry laser on first user gesture (browser autoplay policy)
   useEffect(() => {
     const resume = () => {
       if (ctxRef.current?.state === "suspended") void ctxRef.current.resume();
+      laserRef.current?.play().catch(() => {});
     };
     window.addEventListener("pointerdown", resume, { once: true });
     window.addEventListener("scroll",      resume, { once: true });
@@ -35,19 +32,23 @@ export function useBootAudio(phase: number) {
     };
   }, []);
 
-  // Start ambient low rumble on mount
+  // Play laser-charging MP3 on boot start
   useEffect(() => {
-    try {
-      ambientRef.current = startAmbient(getCtx());
-    } catch { /* blocked — silent */ }
+    const audio = new Audio("/audio/boot-laser.mp3");
+    audio.volume = 0.72;
+    laserRef.current = audio;
+    audio.play().catch(() => { /* blocked — will retry on first gesture */ });
+
     return () => {
-      ambientRef.current?.stop();
+      audio.pause();
+      audio.src = "";
+      laserRef.current = null;
       ctxRef.current?.close().catch(() => {});
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Beep on each new text line
+  // Beep on each new text line; play system-online chord on final line
   useEffect(() => {
     if (phase === 0 || phase <= prevPhase.current) return;
     prevPhase.current = phase;
@@ -55,7 +56,6 @@ export function useBootAudio(phase: number) {
       const ctx = getCtx();
       if (phase === LINE_FREQS.length) {
         playSystemOnline(ctx);
-        ambientRef.current?.stop(); // fade out ambient on "GLOBAL SYSTEM ONLINE"
       } else {
         playLineBeep(ctx, phase - 1);
       }
@@ -124,39 +124,4 @@ function playSystemOnline(ctx: AudioContext) {
   bassGain.gain.exponentialRampToValueAtTime(0.001, bt + 0.45);
   bass.start(bt);
   bass.stop(bt + 0.5);
-}
-
-function startAmbient(ctx: AudioContext): { stop: () => void } {
-  // Filtered white noise — deep digital rumble
-  const rate   = ctx.sampleRate;
-  const buf    = ctx.createBuffer(1, rate * 3, rate);
-  const data   = buf.getChannelData(0);
-  for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
-
-  const src    = ctx.createBufferSource();
-  src.buffer   = buf;
-  src.loop     = true;
-
-  const lp     = ctx.createBiquadFilter();
-  lp.type      = "lowpass";
-  lp.frequency.value = 110;
-
-  const gain   = ctx.createGain();
-  gain.gain.setValueAtTime(0, ctx.currentTime);
-  gain.gain.linearRampToValueAtTime(0.014, ctx.currentTime + 1.2);
-
-  src.connect(lp);
-  lp.connect(gain);
-  gain.connect(ctx.destination);
-  src.start();
-
-  return {
-    stop() {
-      try {
-        gain.gain.setValueAtTime(gain.gain.value, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1.2);
-        setTimeout(() => src.stop(), 1300);
-      } catch { /* already stopped */ }
-    },
-  };
 }

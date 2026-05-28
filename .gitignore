@@ -51,6 +51,9 @@ models/*
 # Dashboard cache
 .streamlit/
 
+# Audio source files (assets live in dashboard/public/audio/)
+*.mp3
+
 # FleetView / Claude Code internals
 .agents/
 skills-lock.json
