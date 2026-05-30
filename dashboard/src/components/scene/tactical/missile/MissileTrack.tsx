@@ -13,7 +13,7 @@ const DEST_LON   = 53.44;
 
 const SURFACE_R = 1.016;
 const TRAIL_MAX = 40;
-const SPEED     = 1 / 12;
+const SPEED     = 1 / 18.216; // matches missile-lock.mp3 duration exactly
 
 const _tangent = new THREE.Vector3();
 const _yAxis   = new THREE.Vector3(0, 1, 0);
