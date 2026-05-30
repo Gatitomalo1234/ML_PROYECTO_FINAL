@@ -177,30 +177,31 @@ export default function EarthTextured({ reveal, exposure, sunDirection, textureS
           vec3 day = texture2D(uDay, vUv).rgb;
           vec3 night = texture2D(uNight, vUv).rgb;
 
-          // Night lights only on shadow side; keep restrained.
-          float nightMask = smoothstep(0.12, -0.25, ndl);
-          vec3 nightCol = night * nightMask * 0.85;
+          // Night lights — visible on full shadow side, brighter city glow.
+          float nightMask = smoothstep(0.08, -0.30, ndl);
+          vec3 nightCol = night * nightMask * 1.05;
 
           // Bump/spec cues
           vec3 nb = perturbNormal(n, vUv);
           vec3 v = normalize(cameraPosition - vPosW);
           vec3 h = normalize(v + sun);
 
-          float specMask = texture2D(uSpec, vUv).r; // oceans brighter
-          float spec = pow(max(dot(nb, h), 0.0), 90.0) * (0.06 + 0.18 * specMask) * term;
+          // Sharper ocean specular — water catches more light, land stays matte.
+          float specMask = texture2D(uSpec, vUv).r;
+          float spec = pow(max(dot(nb, h), 0.0), 72.0) * (0.08 + 0.32 * specMask) * term;
 
-          // Forward-scatter rim cue (atmosphere hint on day side)
-          float rim = pow(1.0 - max(dot(n, v), 0.0), 2.8);
-          vec3 rimCol = vec3(0.10, 0.42, 0.62) * rim * (0.10 + 0.24 * term);
+          // Rim (atmosphere forward scatter) — slightly more visible for depth.
+          float rim = pow(1.0 - max(dot(n, v), 0.0), 2.4);
+          vec3 rimCol = vec3(0.12, 0.46, 0.72) * rim * (0.12 + 0.28 * term);
 
-          // Clouds: derive alpha from luminance; animate slowly.
+          // Clouds: lower threshold + higher opacity for more visible white clouds.
           vec2 cuv = vUv;
           cuv.x += uTime * 0.004;
           float cLum = dot(texture2D(uClouds, cuv).rgb, vec3(0.299, 0.587, 0.114));
-          float cA = smoothstep(0.52, 0.86, cLum) * 0.18 * uReveal;
-          vec3 cCol = vec3(0.85, 0.90, 0.96) * (0.45 + 0.55 * term);
+          float cA = smoothstep(0.40, 0.76, cLum) * 0.30 * uReveal;
+          vec3 cCol = vec3(0.88, 0.92, 0.98) * (0.50 + 0.60 * term);
 
-          vec3 base = day * (0.30 + 1.15 * term);
+          vec3 base = day * (0.26 + 1.22 * term);
           vec3 col = base + nightCol + spec + rimCol;
           col = mix(col, cCol, cA);
           col *= uExposure;

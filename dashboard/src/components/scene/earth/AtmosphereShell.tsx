@@ -119,10 +119,11 @@ export default function AtmosphereShell() {
 
     const hidden = mode === "BOOT" || mode === "TYPOGRAPHY";
     const target = hidden ? 0.0 : ss(0.25, 0.42, cinematicT);
+    const alphaLerp = 1 - Math.pow(0.004, dt); // frame-rate independent
     matRef.current.uniforms.uAlpha.value = THREE.MathUtils.lerp(
       matRef.current.uniforms.uAlpha.value,
       target,
-      0.08,
+      alphaLerp,
     );
   });
 
