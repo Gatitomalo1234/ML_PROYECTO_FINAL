@@ -27,13 +27,13 @@ export default function MissileAlert() {
     return () => clearTimeout(id);
   }, [done, setMode, setMissileActive, setAllowUserOrbit]);
 
-  const secsLeft = Math.max(0, Math.ceil((1 - missileT) * 3.5));
+  const secsLeft = Math.max(0, Math.ceil((1 - missileT) * 12));
 
   return (
     <div
       className="pointer-events-none absolute inset-0 z-30"
       style={{
-        background: impacted ? "rgba(211,75,71,0.12)" : "rgba(211,75,71,0.05)",
+        background: impacted ? "rgba(211,75,71,0.07)" : "rgba(211,75,71,0.03)",
         transition: "background 0.4s",
       }}
     >
@@ -100,10 +100,10 @@ export default function MissileAlert() {
         {impacted && (
           <motion.div
             className="absolute inset-0 bg-critical-500"
-            initial={{ opacity: 0.5 }}
+            initial={{ opacity: 0.18 }}
             animate={{ opacity: 0 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
           />
         )}
       </AnimatePresence>
