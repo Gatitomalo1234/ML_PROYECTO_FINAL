@@ -20,14 +20,23 @@ const _yAxis   = new THREE.Vector3(0, 1, 0);
 
 export default function MissileTrack() {
   const missileActive  = useExperienceStore((s) => s.missileActive);
-  const missileT       = useExperienceStore((s) => s.missileT);
   const setMissileT    = useExperienceStore((s) => s.setMissileT);
   const triggerMissile = useExperienceStore((s) => s.triggerMissile);
   const mode           = useExperienceStore((s) => s.mode);
 
+  // Local ref tracks missile progress every frame — decoupled from React rendering.
+  // Store is only updated at key thresholds or every ~0.02 increment (~4×/s) to avoid
+  // "setState during render" React warning from calling setMissileT 60×/s in useFrame.
+  const localT       = useRef(0);
+  const lastStoredT  = useRef(0);
+
   const impactTimer  = useRef(0);
   const impacted     = useRef(false);
   const hasTriggered = useRef(false); // fires only once per session
+
+  useEffect(() => {
+    if (!missileActive) { localT.current = 0; lastStoredT.current = 0; }
+  }, [missileActive]);
 
   useEffect(() => {
     if (mode !== "CONFLICT_LOCK" || hasTriggered.current) return;
@@ -201,8 +210,16 @@ export default function MissileTrack() {
   useFrame((_, dt) => {
     if (!missileActive) return;
 
-    const newT = Math.min(missileT + dt * SPEED, 1.0);
-    if (newT !== missileT) setMissileT(newT);
+    const newT = Math.min(localT.current + dt * SPEED, 1.0);
+    localT.current = newT;
+
+    // Sync to Zustand store only at key thresholds or every ~0.02 increment
+    const crossedImpact = newT >= 0.95 && lastStoredT.current < 0.95;
+    const reachedEnd    = newT >= 1.0  && lastStoredT.current < 1.0;
+    if (crossedImpact || reachedEnd || newT - lastStoredT.current >= 0.02) {
+      setMissileT(newT);
+      lastStoredT.current = newT;
+    }
 
     const idx  = Math.min(Math.floor(newT * (path.length - 1)), path.length - 1);
     const next = path[Math.min(idx + 1, path.length - 1)];

@@ -28,16 +28,6 @@ export default function UIOverlay() {
       {/* COMMAND_CENTER: full-screen grid layout — no globe behind it */}
       {isCommand && (
         <>
-          {/* Header strip in the reserved 72px space */}
-          <div className="pointer-events-none absolute inset-x-6 top-6 flex items-center">
-            <div className="font-mono text-[9px] tracking-[0.44em] text-white/40">
-              AEROSPACE INTELLIGENCE SYSTEM
-            </div>
-            <div className="ml-4 font-mono text-[8px] tracking-[0.22em] text-white/20">
-              AIS · v4.7.1 · COMMAND CENTER
-            </div>
-          </div>
-
           <div className="pointer-events-auto absolute inset-6 top-[72px] flex flex-col gap-3">
             <div className="flex min-h-0 flex-1 gap-3">
               <motion.div className="w-64 shrink-0"
@@ -65,6 +55,7 @@ export default function UIOverlay() {
         </>
       )}
 
+
       {missileActive && <MissileAlert />}
 
       <SystemTitle />
@@ -89,13 +80,21 @@ function CanvasMask() {
 
 function SystemTitle() {
   const mode = useExperienceStore((s) => s.mode);
-  if (mode === "BOOT" || mode === "COMMAND_CENTER") return null;
+  if (mode === "BOOT") return null;
   return (
-    <div className="pointer-events-none absolute left-6 top-6">
-      <div className="font-mono text-[9px] tracking-[0.44em] text-white/40">
+    <div
+      className="pointer-events-none absolute inset-x-0 top-0 flex items-center px-6"
+      style={{
+        height: 52,
+        borderBottom: "1px solid rgba(255,255,255,0.06)",
+        background: "rgba(5,7,10,0.55)",
+        backdropFilter: "blur(8px)",
+      }}
+    >
+      <div className="font-mono text-[10px] tracking-[0.40em] text-white/60">
         AEROSPACE INTELLIGENCE SYSTEM
       </div>
-      <div className="mt-0.5 font-mono text-[8px] tracking-[0.22em] text-white/20">
+      <div className="ml-4 font-mono text-[8px] tracking-[0.22em] text-white/28">
         AIS · v4.7.1 · CLASIFICADO
       </div>
     </div>
