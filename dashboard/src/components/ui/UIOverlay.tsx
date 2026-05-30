@@ -51,9 +51,6 @@ export default function UIOverlay() {
 
       {missileActive && <MissileAlert />}
 
-      {/* Persistent header — shows in every mode except BOOT */}
-      <SystemHeader />
-
       {/* Big centered title — only during the initial cinematic phases */}
       <CinematicTitle />
 
@@ -73,30 +70,6 @@ function CanvasMask() {
       className="pointer-events-none absolute inset-0 bg-graphite-950"
       style={{ opacity: mode === "COMMAND_CENTER" ? 0.88 : 0, transition: "opacity 0.1s" }}
     />
-  );
-}
-
-// ─── Persistent 52px header bar ───────────────────────────────────────────────
-function SystemHeader() {
-  const mode = useExperienceStore((s) => s.mode);
-  if (mode === "BOOT") return null;
-  return (
-    <div
-      className="pointer-events-none absolute inset-x-0 top-0 flex items-center px-6"
-      style={{
-        height: 52,
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
-        background: "rgba(5,7,10,0.50)",
-        backdropFilter: "blur(8px)",
-      }}
-    >
-      <div className="font-mono text-[9px] tracking-[0.38em] text-white/45">
-        AEROSPACE INTELLIGENCE SYSTEM
-      </div>
-      <div className="ml-3 font-mono text-[8px] tracking-[0.20em] text-white/22">
-        AIS · v4.7.1 · CLASIFICADO
-      </div>
-    </div>
   );
 }
 

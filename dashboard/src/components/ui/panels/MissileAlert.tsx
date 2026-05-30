@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useExperienceStore } from "@/state/experienceStore";
-import { useMissileAudio } from "@/hooks/useMissileAudio";
 
 export default function MissileAlert() {
   const missileT         = useExperienceStore((s) => s.missileT);
@@ -13,8 +12,6 @@ export default function MissileAlert() {
   const impacted         = missileT >= 0.95;
   const done             = missileT >= 1.0;
   const hasTransitioned  = useRef(false);
-
-  useMissileAudio(missileT);
 
   useEffect(() => {
     if (!done || hasTransitioned.current) return;
@@ -27,7 +24,7 @@ export default function MissileAlert() {
     return () => clearTimeout(id);
   }, [done, setMode, setMissileActive, setAllowUserOrbit]);
 
-  const secsLeft = Math.max(0, Math.ceil((1 - missileT) * 12));
+  const secsLeft = Math.max(0, Math.ceil((1 - missileT) * 18));
 
   return (
     <div

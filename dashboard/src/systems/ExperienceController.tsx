@@ -7,6 +7,7 @@ import { loadDashboardExports } from "@/systems/data/loadDashboardExports";
 import { useScrollProgress } from "@/hooks/useScrollProgress";
 import { useMouseParallax } from "@/hooks/useMouseParallax";
 import { useAmbientAudio } from "@/hooks/useAmbientAudio";
+import { useMissileAudio } from "@/hooks/useMissileAudio";
 import type { ExperienceMode } from "@/state/experienceTypes";
 
 export default function ExperienceController() {
@@ -23,9 +24,12 @@ export default function ExperienceController() {
   const missileActive = useExperienceStore((s) => s.missileActive);
   const mode          = useExperienceStore((s) => s.mode);
 
+  const missileT = useExperienceStore((s) => s.missileT);
+
   const scroll = useScrollProgress(initialized);
-  const mouse = useMouseParallax(true);
+  const mouse  = useMouseParallax(true);
   useAmbientAudio(mode);
+  useMissileAudio(missileT); // lives here so audio persists after MissileAlert unmounts
 
   useEffect(() => {
     setMouse(mouse);
