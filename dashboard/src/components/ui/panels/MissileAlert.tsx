@@ -20,7 +20,7 @@ export default function MissileAlert() {
       setMode("COMMAND_CENTER");
       setAllowUserOrbit(true);
       setTimeout(() => setMissileActive(false), 400);
-    }, 1800);
+    }, 5500);
     return () => clearTimeout(id);
   }, [done, setMode, setMissileActive, setAllowUserOrbit]);
 
