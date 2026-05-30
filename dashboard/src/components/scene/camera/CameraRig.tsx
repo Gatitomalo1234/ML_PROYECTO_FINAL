@@ -66,16 +66,23 @@ export default function CameraRig() {
     const globalOrbit  = ss(0.06, 0.34, t);  // slow strategic arc
     const overlayBuild = ss(0.34, 0.56, t);  // air-routes appear, HUD builds
     const stratHold    = ss(0.56, 0.68, t);  // hold on strategic overview
-    const flyApproach  = ss(0.68, 0.84, t);  // FLY_TO_CONFLICT — aggressive dive
-    const conflictLock = ss(0.84, 0.93, t);  // CONFLICT_LOCK — arrived, tension
     const cmdReveal    = ss(0.93, 0.98, t);  // COMMAND_CENTER — panels reveal
+
+    // Once the mode is CONFLICT_LOCK (or beyond), force the Gulf-theater composition
+    // to its FINAL value regardless of exact cinematicT. The missile auto-fires the
+    // instant mode flips to CONFLICT_LOCK (t≈0.84), so the camera must already be
+    // fully composed on Hormuz — not still mid-dive pointing at the wrong longitude.
+    // The position/quaternion lerps below still make the camera glide in smoothly.
+    const locked = mode === "CONFLICT_LOCK" || mode === "COMMAND_CENTER";
+    const flyApproach  = locked ? 1 : ss(0.68, 0.84, t);  // FLY_TO_CONFLICT — aggressive dive
+    const conflictLock = locked ? 1 : ss(0.84, 0.93, t);  // CONFLICT_LOCK — arrived, tension
 
     // ─── Radius ───────────────────────────────────────────────────────────────
     // Boot/global: 10.6 → 7.2  |  FLY_TO_CONFLICT: 7.2 → 2.0
     // CONFLICT_LOCK+: position is blended toward gulfCamPos (radius 1.45)
     const globalR = THREE.MathUtils.lerp(10.6, 7.2, globalOrbit);
     const flyR    = THREE.MathUtils.lerp(7.2, 2.0, flyApproach);
-    const radius  = t < 0.68 ? globalR : flyR;
+    const radius  = (locked || t >= 0.68) ? flyR : globalR;
 
     // ─── Yaw / Pitch ──────────────────────────────────────────────────────────
     // Drives position through FLY_TO_CONFLICT; CONFLICT_LOCK overrides via lerp.
@@ -109,8 +116,8 @@ export default function CameraRig() {
     // Boot → global: look at Earth center
     // FLY_TO_CONFLICT: shift toward conflict centroid (Israel/Iran midpoint)
     // CONFLICT_LOCK + COMMAND_CENTER: lock on Hormuz
-    const toConflict = ss(0.65, 0.80, t); // blend center → conflict centroid
-    const toHormuz   = ss(0.80, 0.90, t); // blend conflict centroid → Hormuz
+    const toConflict = locked ? 1 : ss(0.65, 0.80, t); // blend center → conflict centroid
+    const toHormuz   = locked ? 1 : ss(0.80, 0.90, t); // blend conflict centroid → Hormuz
 
     _targetPos
       .copy(conflictVec)
