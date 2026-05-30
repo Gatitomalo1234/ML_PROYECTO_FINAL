@@ -66,7 +66,7 @@ export default function EarthSystem() {
   const conflictGlow = THREE.MathUtils.clamp((cinematicT - 0.84) / 0.09, 0, 1);
   const exposure = (() => {
     const preRevealDark = mode === "BOOT" ? 0.0 : 1.0;
-    const base     = THREE.MathUtils.lerp(0.18, 1.02, reveal);
+    const base     = THREE.MathUtils.lerp(0.55, 1.02, reveal);
     const targeting = smoothstep(0.82, 0.98, cinematicT);
     const deepen   = 1.0 - targeting * 0.07;
     return preRevealDark * base * deepen;

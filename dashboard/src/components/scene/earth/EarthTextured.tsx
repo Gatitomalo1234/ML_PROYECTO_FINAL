@@ -216,7 +216,7 @@ export default function EarthTextured({ reveal, exposure, sunDirection, textureS
             col += vec3(0.28, 0.48, 0.88) * pow(dIsrael, 2.2) * uConflictGlow * 0.34;
           }
 
-          float alpha = clamp(0.04 + uReveal * 0.96, 0.0, 1.0);
+          float alpha = clamp(0.65 + uReveal * 0.35, 0.0, 1.0);
           gl_FragColor = vec4(col, alpha);
         }
       `,
