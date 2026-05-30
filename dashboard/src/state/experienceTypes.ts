@@ -6,10 +6,7 @@ export type ExperienceMode =
   | "STRATEGIC_ORBIT"
   | "FLY_TO_CONFLICT"
   | "CONFLICT_LOCK"
-  | "COMMAND_CENTER"
-  // legacy — kept for backward compat, no longer used in scroll map
-  | "HORMUZ_TARGETING"
-  | "INTERACTIVE_PLAYBACK";
+  | "COMMAND_CENTER";
 
 export type ThreatLevel = "NOMINAL" | "CAUTION" | "CRITICAL";
 

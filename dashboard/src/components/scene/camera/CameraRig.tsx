@@ -124,13 +124,13 @@ export default function CameraRig() {
 
     // ─── Camera shake on missile impact ──────────────────────────────────────
     if (missileT >= 0.95 && prevMissileT.current < 0.95) {
-      shakeTimer.current = 0.65; // 0.65s shake duration
+      shakeTimer.current = 1.4; // 1.4s shake duration
     }
     prevMissileT.current = missileT;
 
     if (shakeTimer.current > 0) {
       shakeTimer.current -= dt;
-      const intensity = (shakeTimer.current / 0.65) * 0.012;
+      const intensity = (shakeTimer.current / 1.4) * 0.04;
       _desiredPos.x += (Math.random() - 0.5) * intensity;
       _desiredPos.y += (Math.random() - 0.5) * intensity;
       _desiredPos.z += (Math.random() - 0.5) * intensity;
@@ -170,7 +170,7 @@ export default function CameraRig() {
     _finalQuat.copy(_rollQuat).multiply(_baseQuat);
     rig.current.quaternion.slerp(_finalQuat, 1 - Math.pow(0.00008, dt));
 
-    void bootReveal; void cmdReveal; // used indirectly via cinematicT segments
+    void bootReveal; void cmdReveal;
   });
 
   return (

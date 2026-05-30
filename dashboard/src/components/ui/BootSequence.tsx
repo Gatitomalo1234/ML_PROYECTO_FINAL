@@ -75,16 +75,16 @@ export default function BootSequence() {
     return () => clearTimeout(id);
   }, [started]);
 
-  // Dismiss when both initialized and minimum time have passed.
+  // Dismiss when: min time elapsed + progress bar at 100% + scene initialized.
   // Fallback: force close after 8 s in case ExperienceController never fires.
   useEffect(() => {
-    if (!canClose) return;
+    if (!canClose || progress < 100) return;
     const fallback = setTimeout(() => setVisible(false), 8000);
     if (!initialized) return () => clearTimeout(fallback);
     clearTimeout(fallback);
     const id = setTimeout(() => setVisible(false), 700);
     return () => { clearTimeout(id); clearTimeout(fallback); };
-  }, [initialized, canClose]);
+  }, [initialized, canClose, progress]);
 
   // Sequential text reveals (only after click)
   useEffect(() => {
@@ -99,11 +99,12 @@ export default function BootSequence() {
   useEffect(() => {
     if (!started) return;
     const start = performance.now();
-    const duration = 5500;
+    const duration = 4500;
     let raf: number;
     const tick = (now: number) => {
-      setProgress(Math.min(100, ((now - start) / duration) * 100));
-      if (now - start < duration) raf = requestAnimationFrame(tick);
+      const p = Math.min(100, ((now - start) / duration) * 100);
+      setProgress(p);
+      if (p < 100) raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
@@ -139,7 +140,7 @@ export default function BootSequence() {
       {visible && (
         <motion.div
           key="boot"
-          className="fixed inset-0 z-[100] overflow-hidden select-none"
+          className="fixed inset-0 z-[100] overflow-hidden select-none pointer-events-auto"
           style={{ background: "#02060b" }}
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
