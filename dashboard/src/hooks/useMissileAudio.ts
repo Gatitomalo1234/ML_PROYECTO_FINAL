@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 export function useMissileAudio(missileT: number) {
   const alarmRef     = useRef<HTMLAudioElement | null>(null);
   const explosionRef = useRef<HTMLAudioElement | null>(null);
-  const impactedRef  = useRef(false);
+  const firedRef     = useRef(false);
 
   useEffect(() => {
     const alarm     = new Audio("/audio/missile-lock.mp3");
@@ -16,19 +16,12 @@ export function useMissileAudio(missileT: number) {
     alarmRef.current     = alarm;
     explosionRef.current = explosion;
 
-    // Explosion fires naturally when alarm finishes — keeps audio/visual in sync
-    alarm.addEventListener("ended", () => {
-      if (impactedRef.current) explosion.play().catch(() => {});
-    });
-
     return () => {
-      alarm.pause();
-      alarm.src     = "";
-      explosion.pause();
-      explosion.src = "";
+      alarm.pause();     alarm.src     = "";
+      explosion.pause(); explosion.src = "";
       alarmRef.current     = null;
       explosionRef.current = null;
-      impactedRef.current  = false;
+      firedRef.current     = false;
     };
   }, []);
 
@@ -37,16 +30,16 @@ export function useMissileAudio(missileT: number) {
     const explosion = explosionRef.current;
     if (!alarm || !explosion) return;
 
-    // Start alarm the moment missile launches — plays once for its full duration
+    // Alarm starts the moment missile launches
     if (missileT > 0 && alarm.paused && alarm.currentTime === 0) {
       alarm.play().catch(() => {});
     }
 
-    // Mark impact so onended knows to fire explosion when alarm finishes
-    if (missileT >= 0.95 && !impactedRef.current) {
-      impactedRef.current = true;
-      // Edge case: alarm already ended before impact marker
-      if (alarm.ended) explosion.play().catch(() => {});
+    // Countdown hits 0 (missileT = 1.0): cut alarm immediately, fire explosion
+    if (missileT >= 1.0 && !firedRef.current) {
+      firedRef.current = true;
+      alarm.pause();
+      explosion.play().catch(() => {});
     }
   }, [missileT]);
 }
