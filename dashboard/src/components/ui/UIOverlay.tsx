@@ -15,8 +15,7 @@ export default function UIOverlay() {
   const scroll       = useExperienceStore((s) => s.scrollProgress);
   const missileActive = useExperienceStore((s) => s.missileActive);
 
-  const isCommand  = mode === "COMMAND_CENTER";
-  const showRails  = mode === "CONFLICT_LOCK"; // COMMAND_CENTER uses its own grid layout
+  const isCommand = mode === "COMMAND_CENTER";
 
   return (
     <div className="pointer-events-none fixed inset-0 z-20">
@@ -26,49 +25,49 @@ export default function UIOverlay() {
       {/* Masks the 3D canvas the instant COMMAND_CENTER is entered */}
       <CanvasMask />
 
-
-      {/* CONFLICT_LOCK: floating rails over the globe */}
-      {showRails && (
-        <div className="pointer-events-auto absolute bottom-6 left-6 top-20 w-64">
-          <LeftRail />
-        </div>
-      )}
-      {showRails && (
-        <div className="pointer-events-auto absolute bottom-6 right-6 top-20 w-64">
-          <RightRail />
-        </div>
-      )}
-
       {/* COMMAND_CENTER: full-screen grid layout — no globe behind it */}
       {isCommand && (
-        <div className="pointer-events-auto absolute inset-6 top-[72px] flex flex-col gap-3">
-          <div className="flex min-h-0 flex-1 gap-3">
-            <motion.div className="w-64 shrink-0"
-              initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.55, delay: 0.10, ease: "easeOut" }}>
-              <LeftRail />
-            </motion.div>
-            <motion.div className="min-w-0 flex-1"
-              initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.28, ease: "easeOut" }}>
-              <CenterPanel />
-            </motion.div>
-            <motion.div className="w-64 shrink-0"
-              initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.55, delay: 0.46, ease: "easeOut" }}>
-              <RightRail />
+        <>
+          {/* Header strip in the reserved 72px space */}
+          <div className="pointer-events-none absolute inset-x-6 top-6 flex items-center">
+            <div className="font-mono text-[9px] tracking-[0.44em] text-white/40">
+              AEROSPACE INTELLIGENCE SYSTEM
+            </div>
+            <div className="ml-4 font-mono text-[8px] tracking-[0.22em] text-white/20">
+              AIS · v4.7.1 · COMMAND CENTER
+            </div>
+          </div>
+
+          <div className="pointer-events-auto absolute inset-6 top-[72px] flex flex-col gap-3">
+            <div className="flex min-h-0 flex-1 gap-3">
+              <motion.div className="w-64 shrink-0"
+                initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.55, delay: 0.10, ease: "easeOut" }}>
+                <LeftRail />
+              </motion.div>
+              <motion.div className="min-w-0 flex-1"
+                initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.28, ease: "easeOut" }}>
+                <CenterPanel />
+              </motion.div>
+              <motion.div className="w-64 shrink-0"
+                initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.55, delay: 0.46, ease: "easeOut" }}>
+                <RightRail />
+              </motion.div>
+            </div>
+            <motion.div className="shrink-0"
+              initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.62, ease: "easeOut" }}>
+              <BottomRail />
             </motion.div>
           </div>
-          <motion.div className="shrink-0"
-            initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.62, ease: "easeOut" }}>
-            <BottomRail />
-          </motion.div>
-        </div>
+        </>
       )}
 
       {missileActive && <MissileAlert />}
 
+      <SystemTitle />
       <FlashEffect />
       <DataStatusBadge />
       <BootText />
@@ -88,6 +87,21 @@ function CanvasMask() {
   );
 }
 
+function SystemTitle() {
+  const mode = useExperienceStore((s) => s.mode);
+  if (mode === "BOOT" || mode === "COMMAND_CENTER") return null;
+  return (
+    <div className="pointer-events-none absolute left-6 top-6">
+      <div className="font-mono text-[9px] tracking-[0.44em] text-white/40">
+        AEROSPACE INTELLIGENCE SYSTEM
+      </div>
+      <div className="mt-0.5 font-mono text-[8px] tracking-[0.22em] text-white/20">
+        AIS · v4.7.1 · CLASIFICADO
+      </div>
+    </div>
+  );
+}
+
 function BootText() {
   const mode = useExperienceStore((s) => s.mode);
   if (mode !== "BOOT") return null;
@@ -98,7 +112,6 @@ function BootText() {
     </div>
   );
 }
-
 
 function ScrollHint({ show }: { show: boolean }) {
   if (!show) return null;
@@ -123,7 +136,6 @@ function DataStatusBadge() {
   );
 }
 
-
 function FlashEffect() {
   const mode = useExperienceStore((s) => s.mode);
   const [flashing, setFlashing] = useState(false);
@@ -143,8 +155,8 @@ function FlashEffect() {
       className="pointer-events-none absolute inset-0"
       style={{ zIndex: 50, backgroundColor: "white" }}
       initial={{ opacity: 0 }}
-      animate={{ opacity: [0, 0.92, 0] }}
-      transition={{ duration: 0.72, times: [0, 0.18, 1], ease: "easeOut" }}
+      animate={{ opacity: [0, 0.35, 0] }}
+      transition={{ duration: 1.1, times: [0, 0.20, 1], ease: "easeOut" }}
       onAnimationComplete={() => setFlashing(false)}
     />
   );

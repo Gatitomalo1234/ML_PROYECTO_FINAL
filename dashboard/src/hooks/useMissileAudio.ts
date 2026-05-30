@@ -16,6 +16,11 @@ export function useMissileAudio(missileT: number) {
     alarmRef.current     = alarm;
     explosionRef.current = explosion;
 
+    // Explosion fires naturally when alarm finishes — keeps audio/visual in sync
+    alarm.addEventListener("ended", () => {
+      if (impactedRef.current) explosion.play().catch(() => {});
+    });
+
     return () => {
       alarm.pause();
       alarm.src     = "";
@@ -32,19 +37,16 @@ export function useMissileAudio(missileT: number) {
     const explosion = explosionRef.current;
     if (!alarm || !explosion) return;
 
-    const launched = missileT > 0;
-    const impacted = missileT >= 0.95;
-
-    // Start alarm the moment missile launches — plays once, no loop
-    if (launched && alarm.paused && alarm.currentTime === 0) {
+    // Start alarm the moment missile launches — plays once for its full duration
+    if (missileT > 0 && alarm.paused && alarm.currentTime === 0) {
       alarm.play().catch(() => {});
     }
 
-    // On visual impact: cut alarm immediately and fire explosion in sync
-    if (impacted && !impactedRef.current) {
+    // Mark impact so onended knows to fire explosion when alarm finishes
+    if (missileT >= 0.95 && !impactedRef.current) {
       impactedRef.current = true;
-      alarm.pause();
-      explosion.play().catch(() => {});
+      // Edge case: alarm already ended before impact marker
+      if (alarm.ended) explosion.play().catch(() => {});
     }
   }, [missileT]);
 }
