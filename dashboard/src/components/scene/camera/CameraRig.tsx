@@ -13,7 +13,7 @@ const HORMUZ          = { lat: 26.77, lon: 53.44 };
 const CONFLICT_CENTER = { lat: 30.0,  lon: 44.0  }; // centroid Israel/Iran
 // Camera position for the Gulf theater — close enough to show the Gulf region in detail.
 // Radius 2.0 ≈ altitude ~6 400 km: fills frame with Middle East, Iran, Hormuz, Arabia.
-const GULF_CAM = { lat: 28.0, lon: 50.0, radius: 2.0 }; // Gulf theater — regional close-up
+const GULF_CAM = { lat: 24.0, lon: 36.0, radius: 2.15 }; // Gulf theater — camera west of Gulf so Hormuz sits right-of-center
 
 // Reusable objects — allocated once, mutated every frame to avoid GC pressure.
 const _desiredPos  = new THREE.Vector3();
