@@ -68,7 +68,7 @@ function CanvasMask() {
   return (
     <div
       className="pointer-events-none absolute inset-0 bg-graphite-950"
-      style={{ opacity: mode === "COMMAND_CENTER" ? 0.88 : 0, transition: "opacity 0.1s" }}
+      style={{ opacity: mode === "COMMAND_CENTER" ? 0.88 : 0, transition: "opacity 2.2s ease-in" }}
     />
   );
 }
