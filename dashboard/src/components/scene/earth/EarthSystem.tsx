@@ -43,24 +43,21 @@ export default function EarthSystem() {
 
     if (lockMode) {
       if (gulfTarget.current === null) {
-        // Normalize current rotation to within π of TARGET so the lerp takes the
-        // SHORT path (never spins through the wrong continents). Adding/removing
-        // 2π is a visual no-op on the sphere.
+        // On lock entry, normalize the accumulated free-rotation angle to within π
+        // of TARGET so the settle takes the SHORT path (never spins through the
+        // wrong continents). Adding/removing 2π is a visual no-op on the sphere.
         let cur = group.current.rotation.y;
         while (cur - TARGET >  Math.PI) cur -= PI2;
         while (TARGET - cur  >  Math.PI) cur += PI2;
         group.current.rotation.y = cur;
         gulfTarget.current = TARGET;
       }
-      if (mode === "FLY_TO_CONFLICT") {
-        // During the dive, rotate quickly toward the Gulf orientation (smooth, ~0.4s).
-        group.current.rotation.y = THREE.MathUtils.lerp(
-          group.current.rotation.y, TARGET, 1 - Math.pow(0.00003, dt),
-        );
-      } else {
-        // CONFLICT_LOCK / COMMAND_CENTER: hold exactly on target — guaranteed correct.
-        group.current.rotation.y = TARGET;
-      }
+      // Smoothly settle to the Gulf orientation (~0.4s) — never a hard snap, so it
+      // can't pop even if the user scrolls fast. The missile fires 4s after lock,
+      // so the settle always completes well before impact.
+      group.current.rotation.y = THREE.MathUtils.lerp(
+        group.current.rotation.y, TARGET, 1 - Math.pow(0.00008, dt),
+      );
     } else {
       gulfTarget.current = null;
       group.current.rotation.y += dt * 0.035;
