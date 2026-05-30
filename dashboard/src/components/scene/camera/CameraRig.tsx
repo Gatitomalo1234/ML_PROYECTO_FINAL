@@ -42,17 +42,24 @@ export default function CameraRig() {
   const conflictVec = useMemo(() => latLonToUnitVec3(CONFLICT_CENTER.lat, CONFLICT_CENTER.lon), []);
   const gulfCamVec  = useMemo(() => latLonToUnitVec3(GULF_CAM.lat,        GULF_CAM.lon),        []);
 
-  // Smoothed roll value — avoids Euler gimbal artifact.
   const smoothedRoll  = useRef(0);
-  // Camera shake state — triggered on missile impact
   const shakeTimer    = useRef(0);
   const prevMissileT  = useRef(0);
+  // Smoothed T input — camera always follows the cinematic arc even on fast scroll.
+  // Without this, rapid scroll causes the position lerp to cut straight through 3D
+  // space instead of following the intended yaw/pitch/radius arc.
+  const smoothT       = useRef(cinematicT);
 
   useFrame((_, dt) => {
     if (!rig.current || !pivot.current || !camera.current) return;
     if (allowUserOrbit) return; // OrbitControls takes over in COMMAND_CENTER
 
-    const t = cinematicT;
+    // Ease toward the current store value — ~120ms lag prevents jarring arc cuts.
+    smoothT.current = THREE.MathUtils.lerp(
+      smoothT.current, cinematicT,
+      1 - Math.pow(0.0006, dt),
+    );
+    const t = smoothT.current;
 
     // ─── Segment helpers ──────────────────────────────────────────────────────
     const bootReveal   = ss(0.00, 0.10, t);  // Earth emerges from darkness
@@ -137,9 +144,10 @@ export default function CameraRig() {
     }
 
     // ─── Lerp position and target ──────────────────────────────────────────────
-    // Frame-rate independent exponential decay (dt is in seconds from R3F).
-    const posAlpha    = 1 - Math.pow(0.00008, dt);
-    const targetAlpha = 1 - Math.pow(0.0001,  dt);
+    // T is already smoothed above, so we can use a tighter position lerp here
+    // for a more responsive feel without causing arc-cut artifacts.
+    const posAlpha    = 1 - Math.pow(0.0002, dt);
+    const targetAlpha = 1 - Math.pow(0.0003, dt);
     rig.current.position.lerp(_desiredPos, posAlpha);
     pivot.current.position.lerp(_targetPos, targetAlpha);
 
@@ -168,7 +176,7 @@ export default function CameraRig() {
 
     // Compose: apply roll in view space, then slerp the rig quaternion.
     _finalQuat.copy(_rollQuat).multiply(_baseQuat);
-    rig.current.quaternion.slerp(_finalQuat, 1 - Math.pow(0.00008, dt));
+    rig.current.quaternion.slerp(_finalQuat, 1 - Math.pow(0.0002, dt));
 
     void bootReveal; void cmdReveal;
   });

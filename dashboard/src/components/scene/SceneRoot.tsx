@@ -36,9 +36,9 @@ export default function SceneRoot({ mode }: { mode: ExperienceMode }) {
 
       {quality.postFX ? (
         <EffectComposer multisampling={2}>
-          <Bloom intensity={0.28} luminanceThreshold={0.58} luminanceSmoothing={0.22} />
-          <Vignette eskil={false} offset={0.18} darkness={0.7} />
-          <Noise premultiply blendFunction={BlendFunction.SOFT_LIGHT} opacity={0.18} />
+          <Bloom intensity={0.38} luminanceThreshold={0.52} luminanceSmoothing={0.18} />
+          <Vignette eskil={false} offset={0.16} darkness={0.62} />
+          <Noise premultiply blendFunction={BlendFunction.SOFT_LIGHT} opacity={0.14} />
         </EffectComposer>
       ) : null}
     </>
