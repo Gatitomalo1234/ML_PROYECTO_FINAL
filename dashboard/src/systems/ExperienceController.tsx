@@ -51,9 +51,11 @@ export default function ExperienceController() {
 
   // Scroll-driven: only active after initialization + any bridge tween completes.
   // Frozen while missile is active — cinematicT stays locked at CONFLICT_LOCK.
+  // Also guards COMMAND_CENTER: once the missile sequence sets it, scroll cannot revert it.
   useEffect(() => {
     setScroll(scroll);
     if (!initialized || missileActive) return;
+    if (useExperienceStore.getState().mode === "COMMAND_CENTER") return;
     const { mode, t, orbit } = mapScrollToState(scroll);
     setMode(mode);
     setCinematicT(t);
