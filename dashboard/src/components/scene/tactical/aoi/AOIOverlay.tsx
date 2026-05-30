@@ -3,7 +3,6 @@
 import * as THREE from "three";
 import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Html } from "@react-three/drei";
 import { latLonToUnitVec3 } from "@/lib/geo";
 
 const HORMUZ_LAT = 26.77;
@@ -101,28 +100,6 @@ export default function AOIOverlay({ visible }: Props) {
         </mesh>
       ))}
 
-      {/* 3D Label */}
-      <Html
-        center
-        distanceFactor={6}
-        position={[RING_RADII[3] * 1.35, 0, 0]}
-        style={{ pointerEvents: "none", userSelect: "none" }}
-      >
-        <div
-          style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: "9px",
-            letterSpacing: "0.22em",
-            color: "#d6a24a",
-            whiteSpace: "nowrap",
-            opacity: 0.9,
-            lineHeight: 1.55,
-          }}
-        >
-          <div style={{ fontWeight: 600 }}>HORMUZ AOI</div>
-          <div style={{ opacity: 0.65, fontSize: "8px" }}>26.77°N · 53.44°E</div>
-        </div>
-      </Html>
     </group>
   );
 }

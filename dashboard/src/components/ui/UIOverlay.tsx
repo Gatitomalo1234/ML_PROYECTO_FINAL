@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useExperienceStore } from "@/state/experienceStore";
-import CinematicTitles from "@/components/ui/panels/CinematicTitles";
 import LeftRail from "@/components/ui/panels/LeftRail";
 import RightRail from "@/components/ui/panels/RightRail";
 import BottomRail from "@/components/ui/panels/BottomRail";
@@ -27,7 +26,6 @@ export default function UIOverlay() {
       {/* Masks the 3D canvas the instant COMMAND_CENTER is entered */}
       <CanvasMask />
 
-      <CinematicTitles />
 
       {/* CONFLICT_LOCK: floating rails over the globe */}
       {showRails && (

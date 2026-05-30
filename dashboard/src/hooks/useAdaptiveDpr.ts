@@ -13,7 +13,6 @@ const BOOT_FREEZE_MS = 5000;   // no DPR changes during the first 5 seconds
 export function useAdaptiveDpr() {
   const [targetDpr, setTargetDpr] = useState(1.25);
   const setQuality = useExperienceStore((s) => s.setQuality);
-  const debug = useExperienceStore((s) => s.debug);
 
   // Slower EMA: 0.97/0.03 instead of 0.9/0.1. Much less reactive to single-frame spikes.
   const ema = useRef(16.7);
@@ -58,8 +57,8 @@ export function useAdaptiveDpr() {
 
         setTargetDpr((prev) => {
           const next = shouldDegrade
-            ? Math.max(1.0, prev - 0.05)
-            : Math.min(1.5, prev + 0.02);
+            ? Math.max(1.25, prev - 0.05)
+            : Math.min(2.0,  prev + 0.02);
 
           if (Math.abs(next - prev) > 0.001) {
             setQuality({ targetDpr: next, postFX: next >= 1.1 });
@@ -72,7 +71,7 @@ export function useAdaptiveDpr() {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [setQuality, debug]);
+  }, [setQuality]);
 
   return { targetDpr };
 }

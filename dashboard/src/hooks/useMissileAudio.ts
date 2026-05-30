@@ -3,46 +3,48 @@
 import { useEffect, useRef } from "react";
 
 export function useMissileAudio(missileT: number) {
-  const alarmRef          = useRef<HTMLAudioElement | null>(null);
-  const explosionFiredRef = useRef(false);
+  const alarmRef     = useRef<HTMLAudioElement | null>(null);
+  const explosionRef = useRef<HTMLAudioElement | null>(null);
+  const impactedRef  = useRef(false);
 
-  // Create alarm audio instance on mount
   useEffect(() => {
-    const alarm = new Audio("/audio/missile-lock.mp3");
-    alarm.loop   = true;
-    alarm.volume = 0.70;
-    alarmRef.current = alarm;
+    const alarm     = new Audio("/audio/missile-lock.mp3");
+    const explosion = new Audio("/audio/explosion.mp3");
+    alarm.volume     = 0.70;
+    explosion.volume = 0.92;
+
+    alarmRef.current     = alarm;
+    explosionRef.current = explosion;
 
     return () => {
       alarm.pause();
-      alarm.src = "";
-      alarmRef.current          = null;
-      explosionFiredRef.current = false;
+      alarm.src     = "";
+      explosion.pause();
+      explosion.src = "";
+      alarmRef.current     = null;
+      explosionRef.current = null;
+      impactedRef.current  = false;
     };
   }, []);
 
-  // React to missile progress
   useEffect(() => {
-    const alarm = alarmRef.current;
-    if (!alarm) return;
+    const alarm     = alarmRef.current;
+    const explosion = explosionRef.current;
+    if (!alarm || !explosion) return;
 
-    const active   = missileT > 0 && missileT < 0.95;
+    const launched = missileT > 0;
     const impacted = missileT >= 0.95;
 
-    // Alarm plays while missile is in flight
-    if (active && alarm.paused) {
+    // Start alarm the moment missile launches — plays once, no loop
+    if (launched && alarm.paused && alarm.currentTime === 0) {
       alarm.play().catch(() => {});
-    } else if (!active && !alarm.paused) {
-      alarm.pause();
-      alarm.currentTime = 0;
     }
 
-    // Explosion fires once at impact
-    if (impacted && !explosionFiredRef.current) {
-      explosionFiredRef.current = true;
-      const boom = new Audio("/audio/explosion.mp3");
-      boom.volume = 0.92;
-      boom.play().catch(() => {});
+    // On visual impact: cut alarm immediately and fire explosion in sync
+    if (impacted && !impactedRef.current) {
+      impactedRef.current = true;
+      alarm.pause();
+      explosion.play().catch(() => {});
     }
   }, [missileT]);
 }

@@ -43,11 +43,11 @@ export default function ExperienceController() {
       });
   }, [hydrate, setDataStatus, setDataError]);
 
-  // Block body scroll during missile sequence so the user can't scroll away mid-attack
+  // Block all native scroll — navigation is wheel-driven, not scroll-position-driven
   useEffect(() => {
-    document.body.style.overflow = missileActive ? "hidden" : "";
+    document.body.style.overflow = "hidden";
     return () => { document.body.style.overflow = ""; };
-  }, [missileActive]);
+  }, []);
 
   // Scroll-driven: only active after initialization + any bridge tween completes.
   // Frozen while missile is active — cinematicT stays locked at CONFLICT_LOCK.

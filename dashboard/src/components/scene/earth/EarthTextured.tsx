@@ -3,7 +3,7 @@
 import { useTexture } from "@react-three/drei";
 import * as THREE from "three";
 import { useMemo, useRef } from "react";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { latLonToUnitVec3 } from "@/lib/geo";
 
 const IMPACT_DIR = latLonToUnitVec3(26.77, 53.44).normalize();
@@ -19,6 +19,7 @@ type Props = {
 
 export default function EarthTextured({ reveal, exposure, sunDirection, textureSet, impactAge, conflictGlow }: Props) {
   const matRef = useRef<THREE.ShaderMaterial>(null);
+  const { gl } = useThree();
   const paths = useMemo(() => {
     // For now we support the files you already dropped in `public/textures/earth/`.
     // Keep this non-null for type-safety.
@@ -56,10 +57,13 @@ export default function EarthTextured({ reveal, exposure, sunDirection, textureS
     bumpMap.colorSpace = THREE.NoColorSpace;
     specMap.colorSpace = THREE.NoColorSpace;
 
+    const maxAniso = gl.capabilities.getMaxAnisotropy();
     for (const t of [dayMap, nightMap, cloudsMap, bumpMap, specMap]) {
-      t.anisotropy = 8;
-      t.wrapS = THREE.RepeatWrapping;
-      t.wrapT = THREE.ClampToEdgeWrapping;
+      t.anisotropy  = maxAniso;
+      t.minFilter   = THREE.LinearMipmapLinearFilter;
+      t.wrapS       = THREE.RepeatWrapping;
+      t.wrapT       = THREE.ClampToEdgeWrapping;
+      t.needsUpdate = true;
     }
   }, [dayMap, nightMap, cloudsMap, bumpMap, specMap]);
 

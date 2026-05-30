@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 // ─── Exact structure from particle_system.html ───────────────────────────────
-const PARTICLE_COUNT = 18_000;
+const PARTICLE_COUNT = 22_000;
 const LERP_SPEED     = 0.04;
 const FRICTION       = 0.92;
 const TAU            = Math.PI * 2;
@@ -47,9 +47,9 @@ async function sampleLogo(src: string, n: number): Promise<Float32Array> {
   const px = ctx.getImageData(0, 0, W, H).data;
 
   const pts: [number, number][] = [];
-  for (let y = 0; y < H; y += 2) {
-    for (let x = 0; x < W; x += 2) {
-      if (px[(y * W + x) * 4] > 80) pts.push([x, y]);
+  for (let y = 0; y < H; y += 1) {
+    for (let x = 0; x < W; x += 1) {
+      if (px[(y * W + x) * 4] > 30) pts.push([x, y]);
     }
   }
 
@@ -67,9 +67,10 @@ async function sampleLogo(src: string, n: number): Promise<Float32Array> {
 
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function BootParticleIntro({ onStart }: { onStart: () => void }) {
-  const mountRef   = useRef<HTMLDivElement>(null);
-  const textRef    = useRef<HTMLSpanElement>(null);
-  const onStartRef = useRef(onStart);
+  const mountRef    = useRef<HTMLDivElement>(null);
+  const textRef     = useRef<HTMLSpanElement>(null);
+  const onStartRef  = useRef(onStart);
+  const clickRef    = useRef<() => void>(() => {});
   useEffect(() => { onStartRef.current = onStart; }, [onStart]);
 
   useEffect(() => {
@@ -84,6 +85,10 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
     renderer.toneMapping         = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.2;
     mount.appendChild(renderer.domElement);
+    renderer.domElement.style.pointerEvents = "none";
+    renderer.domElement.style.opacity    = "0";
+    renderer.domElement.style.transition = "opacity 2s ease";
+    requestAnimationFrame(() => { renderer.domElement.style.opacity = "1"; });
 
     const scene  = new THREE.Scene();
     // FOV=75, Z=5 — exactly as in particle_system.html
@@ -101,7 +106,7 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
 
     // ── Material — exact copy of particle_system.html ───────────────────
     const material = new THREE.PointsMaterial({
-      size:         0.065,
+      size:         0.048,
       map:          createCircleTexture(),
       vertexColors: true,
       transparent:  true,
@@ -118,15 +123,16 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
     const points = new THREE.Points(geometry, material);
     scene.add(points);
 
-    // ── Init: particles scattered on the LEFT side (off-screen) ─────────
+    // ── Init: particles scattered in a ring around the scene — fly in from all sides
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       twk[i]  = Math.random();
       twk2[i] = Math.random();
-      const i3 = i * 3;
-      // Start in a cloud left of screen: x ~ [-14, -9]
-      positions[i3]     = -12 - twk[i] * 4;
-      positions[i3 + 1] = (twk2[i] - 0.5) * 9;
-      positions[i3 + 2] = (twk[i]  - 0.5) * 4;
+      const i3    = i * 3;
+      const angle = twk[i] * TAU;           // random direction 0–360°
+      const r     = 9 + twk2[i] * 5;       // radius 9–14 (well off-screen)
+      positions[i3]     = Math.cos(angle) * r;
+      positions[i3 + 1] = Math.sin(angle) * r;
+      positions[i3 + 2] = (twk[i] - 0.5) * 2;
       velocities[i3]    = 0; velocities[i3 + 1] = 0; velocities[i3 + 2] = 0;
       targets[i3]        = positions[i3];
       targets[i3 + 1]    = positions[i3 + 1];
@@ -144,6 +150,7 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
 
     let nianT: Float32Array | null = null;
     let aisT:  Float32Array | null = null;
+    let ctaShown = false;
 
     // ── Load logos ───────────────────────────────────────────────────────
     Promise.all([
@@ -165,7 +172,7 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
       goTo("NIAN_ASSEMBLE");
     });
 
-    // ── Click — works from NIAN_HOLD onwards so user is never stuck ──────
+    // ── Click — wired via ref so React onClick on the div is the actual listener ──
     const onClick = () => {
       const ph = st.ph;
       if (ph === "LOADING" || ph === "NIAN_ASSEMBLE" || ph === "DISPERSING") return;
@@ -173,12 +180,13 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
       if (textRef.current) textRef.current.style.opacity = "0";
       setTimeout(() => onStartRef.current(), 1200);
     };
-    mount.addEventListener("click", onClick);
-    window.addEventListener("resize", () => {
+    clickRef.current = onClick;
+    const handleResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
-    });
+    };
+    window.addEventListener("resize", handleResize);
 
     // ── RAF — structure identical to particle_system.html animate() ──────
     let prev = performance.now(), rafId = 0;
@@ -204,7 +212,7 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
         }
         if (maxD < 0.12 || e > 4.0) goTo("NIAN_HOLD");
       }
-      else if (st.ph === "NIAN_HOLD" && e > 2.0) {
+      else if (st.ph === "NIAN_HOLD" && e > 4.0) {
         goTo("STREAM");
       }
       else if (st.ph === "STREAM" && e > 2.5) {
@@ -230,10 +238,15 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
         }
         if (maxD < 0.12 || e > 4.0) {
           goTo("IDLE");
-          if (textRef.current) {
-            textRef.current.style.transition = "opacity 1.6s ease";
-            textRef.current.style.opacity    = "1";
-          }
+        }
+      }
+
+      // ── CTA reveal — 5 s after AIS logo fully assembled ─────────────────
+      if (st.ph === "IDLE" && !ctaShown && e > 5.0) {
+        ctaShown = true;
+        if (textRef.current) {
+          textRef.current.style.transition = "opacity 1.6s ease";
+          textRef.current.style.opacity    = "1";
         }
       }
 
@@ -350,9 +363,12 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
       geometry.attributes.position.needsUpdate = true;
       geometry.attributes.color.needsUpdate    = true;
 
-      // Gentle pendular Z-rotation — logo floats like a badge, never goes edge-on
-      if (st.ph !== "STREAM" && st.ph !== "DISPERSING") {
-        points.rotation.z = Math.sin(t * 0.14) * 0.022;
+      // Coin-wobble on Y — pendular sine never accumulates past ±17°, never goes edge-on.
+      // Decays smoothly to 0 during STREAM and DISPERSING so the wave reads clean.
+      if (st.ph === "STREAM" || st.ph === "DISPERSING") {
+        points.rotation.y *= 0.94;
+      } else {
+        points.rotation.y = Math.sin(t * 0.5) * 0.30;
       }
 
       renderer.render(scene, camera);
@@ -362,7 +378,8 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
     // ── Cleanup ───────────────────────────────────────────────────────────
     return () => {
       cancelAnimationFrame(rafId);
-      mount.removeEventListener("click", onClick);
+      clickRef.current = () => {};
+      window.removeEventListener("resize", handleResize);
       if (mount.contains(renderer.domElement)) mount.removeChild(renderer.domElement);
       renderer.dispose();
       geometry.dispose();
@@ -375,6 +392,7 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
       ref={mountRef}
       className="absolute inset-0 z-50 cursor-pointer"
       style={{ background: "#060a0e" }}
+      onClick={() => clickRef.current()}
     >
       <style>{`
         @keyframes bpi-pulse {
@@ -396,12 +414,10 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
           whiteSpace:    "nowrap",
           opacity:       "0",
           transition:    "opacity 0s",
-          animation:     "bpi-pulse 2.6s ease-in-out infinite",
-          animationPlayState: "paused",
         }}
         onTransitionEnd={(ev) => {
           if ((ev.target as HTMLElement).style.opacity === "1")
-            (ev.target as HTMLElement).style.animationPlayState = "running";
+            (ev.target as HTMLElement).style.animation = "bpi-pulse 2.6s ease-in-out infinite";
         }}
       >
         CLICK PARA INICIALIZAR
