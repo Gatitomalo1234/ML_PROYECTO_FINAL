@@ -75,8 +75,8 @@ export default function EarthTextured({ reveal, exposure, sunDirection, textureS
       uBump:      { value: bumpMap },
       uSpec:      { value: specMap },
       uSunDir:    { value: sunDirection.clone().normalize() },
-      uReveal:    { value: reveal },
-      uExposure:  { value: exposure },
+      uReveal:    { value: 0 },
+      uExposure:  { value: 0 },
       uTime:      { value: 0 },
       uImpactDir:    { value: IMPACT_DIR.clone() },
       uImpactAge:    { value: -1.0 },
@@ -216,14 +216,14 @@ export default function EarthTextured({ reveal, exposure, sunDirection, textureS
             col += vec3(0.28, 0.48, 0.88) * pow(dIsrael, 2.2) * uConflictGlow * 0.34;
           }
 
-          float alpha = clamp(0.65 + uReveal * 0.35, 0.0, 1.0);
+          float alpha = clamp(0.04 + uReveal * 0.96, 0.0, 1.0);
           gl_FragColor = vec4(col, alpha);
         }
       `,
       transparent: true,
       depthWrite: true
     });
-  }, [dayMap, nightMap, cloudsMap, bumpMap, specMap, sunDirection, reveal, exposure]);
+  }, [dayMap, nightMap, cloudsMap, bumpMap, specMap, sunDirection]);
 
   // Update per-frame uniforms directly (avoids material reconstruction).
   material.uniforms.uReveal.value        = reveal;
