@@ -1,4 +1,4 @@
-import type { AlertItem } from "@/state/experienceTypes";
+import type { AlertItem, ConflictEvent } from "@/state/experienceTypes";
 
 export function defaultMetrics() {
   return {
@@ -16,6 +16,10 @@ export function defaultAlerts(): AlertItem[] {
     { id: "a4", ts: "12:44:33Z", kind: "GEO", title: "High-salience media tone shift · regional coverage" },
     { id: "a5", ts: "11:19:01Z", kind: "AIRSPACE", title: "Route reroute pattern · northern bypass trend" }
   ];
+}
+
+export function defaultConflictEvents(): ConflictEvent[] {
+  return [];
 }
 
 export function buildMockSeries() {

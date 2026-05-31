@@ -23,19 +23,19 @@ export default function UIOverlay() {
 
       {/* COMMAND_CENTER: panels start below the 52px header */}
       {isCommand && (
-        <div className="pointer-events-auto absolute inset-6 top-[72px] flex flex-col gap-3">
+        <div className="pointer-events-auto absolute inset-5 top-[68px] flex flex-col gap-3">
           <div className="flex min-h-0 flex-1 gap-3">
-            <motion.div className="w-64 shrink-0"
+            <motion.div className="w-52 shrink-0"
               initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.55, delay: 0.10, ease: "easeOut" }}>
               <LeftRail />
             </motion.div>
-            <motion.div className="min-w-0 flex-1"
+            <motion.div className="min-w-0 flex-[1.8]"
               initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.28, ease: "easeOut" }}>
               <CenterPanel />
             </motion.div>
-            <motion.div className="w-64 shrink-0"
+            <motion.div className="w-72 shrink-0"
               initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.55, delay: 0.46, ease: "easeOut" }}>
               <RightRail />

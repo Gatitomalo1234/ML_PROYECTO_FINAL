@@ -1,6 +1,6 @@
 "use client";
 
-import ChartFrame from "@/components/analysis/ChartFrame";
+import InsightWidget from "@/components/analysis/InsightWidget";
 import { logregCoefficients } from "@/components/analysis/analysisData";
 
 export default function CoefficientChart() {
@@ -8,13 +8,17 @@ export default function CoefficientChart() {
   const max = Math.max(...rows.map((r) => Math.abs(r.coefficient)), 1);
 
   return (
-    <ChartFrame title="COEFICIENTES LOGISTICOS" kicker="impacto log-odds">
-      <div className="space-y-1.5">
+    <InsightWidget 
+      title="IMPACTO DE VARIABLES (REG. LOGÍSTICA)" 
+      description="Magnitud y dirección de los coeficientes logísticos. Indica qué factores elevan o reducen la probabilidad de letalidad."
+      insight="Ataques aéreos y misiles en blancos civiles aumentan fuertemente la letalidad. Actividades cibernéticas y marítimas tienden a no generar víctimas fatales directas."
+    >
+      <div className="space-y-2 h-[220px] overflow-y-auto pr-1 [scrollbar-width:thin]">
         {rows.map((r) => {
           const positive = r.coefficient >= 0;
           return (
             <div key={r.feature} className="grid grid-cols-[112px_1fr_38px] items-center gap-2">
-              <div className="truncate text-[9px] text-white/45" title={r.feature}>{r.feature}</div>
+              <div className="truncate text-[9px] text-white/55" title={r.feature}>{r.feature}</div>
               <div className="relative h-2 rounded bg-white/8">
                 <div className="absolute left-1/2 top-0 h-full w-px bg-white/16" />
                 <div
@@ -32,7 +36,7 @@ export default function CoefficientChart() {
           );
         })}
       </div>
-    </ChartFrame>
+    </InsightWidget>
   );
 }
 

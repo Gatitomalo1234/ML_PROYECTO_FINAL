@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+import time
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -426,12 +427,21 @@ def gdeltcloud_headers():
 
 
 def request_gdeltcloud(endpoint, params):
-    response = requests.get(
-        f"{GDELT_CLOUD_BASE_URL}/{endpoint}",
-        params=params,
-        headers=gdeltcloud_headers(),
-        timeout=120,
-    )
+    response = None
+    for attempt in range(4):
+        response = requests.get(
+            f"{GDELT_CLOUD_BASE_URL}/{endpoint}",
+            params=params,
+            headers=gdeltcloud_headers(),
+            timeout=120,
+        )
+        if response.status_code != 429:
+            break
+        wait_seconds = int(response.headers.get("Retry-After", 30 * (attempt + 1)))
+        print(f"[wait] GDELT Cloud rate limit. Reintentando en {wait_seconds}s...")
+        time.sleep(wait_seconds)
+    if response is None:
+        raise RuntimeError("No se pudo crear la respuesta de GDELT Cloud")
     response.raise_for_status()
     payload = response.json()
     if isinstance(payload, dict) and payload.get("success") is False:
