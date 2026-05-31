@@ -40,8 +40,8 @@ const CITIES: { key: keyof typeof PT; label: string; color: string; anchor: "sta
 export default function CenterPanel() {
   const { metrics, alerts, modelComparison, threatLevel, chartSeries } = useExperienceStore();
 
-  const bestF1     = modelComparison.reduce((best, m) => m.f1 > best ? m.f1 : best, 0);
-  const confidence = Math.round(bestF1 * 100);
+  const bestModel  = modelComparison.reduce((a, b) => (b.f1 > a.f1 ? b : a), modelComparison[0]);
+  const confidence = Math.round((bestModel?.rocAuc ?? bestModel?.f1 ?? 0) * 100);
   const casualties = Math.round((chartSeries.fatalities.at(-1) ?? 0));
 
   const riskColor =
@@ -204,28 +204,28 @@ export default function CenterPanel() {
       {/* Metrics strip */}
       <div className="grid shrink-0 grid-cols-4 divide-x divide-white/8 border-t border-white/8">
         <MetricBox
-          label="BAJAS PREVISTAS"
-          value={casualties > 0 ? casualties.toLocaleString() : "—"}
-          sub="30 días"
+          label="EVENTOS LETALES"
+          value={casualties > 0 ? casualties.toLocaleString() : "--"}
+          sub="mayo test"
           valueClass="text-critical-500"
         />
         <MetricBox
-          label="NIVEL DE RIESGO"
-          value={threatLevel}
-          sub="estado actual"
-          valueClass={riskColor}
+          label="MODELO PRINCIPAL"
+          value="LOGREG"
+          sub="L1 core"
+          valueClass="text-system-500"
           small
         />
         <MetricBox
-          label="CONFIANZA MOD."
+          label="ROC-AUC"
           value={`${confidence}%`}
-          sub="mejor modelo"
-          valueClass="text-system-500"
+          sub="ranking"
+          valueClass={riskColor}
         />
         <MetricBox
-          label="INCIDENTES"
-          value={alerts.length.toString()}
-          sub="activos"
+          label="RECALL"
+          value={`${Math.round((bestModel?.recall ?? 0) * 100)}%`}
+          sub="letalidad"
           valueClass="text-caution-500"
         />
       </div>
