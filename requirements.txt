@@ -16,6 +16,7 @@ python-dateutil   # Manejo avanzado de fechas
 scikit-learn      # Modelos KNN, Naive Bayes, etc.
 nltk              # NLP básico (tokenización, stop words)
 textblob          # Análisis de sentimiento rápido
+sentence-transformers  # Embeddings semánticos para el Modelo 3
 
 # --- Bases de Datos ---
 pymongo[srv]      # Cliente para MongoDB (Data Lake)

@@ -1,142 +1,353 @@
-# ¿Qué nos falta? — Estado del Proyecto al 30 de Mayo 2026
+# Que nos falta - Plan de accion del proyecto
+
+Estado revisado: 2026-05-30
+
+Este documento aterriza el trabajo pendiente del proyecto ML1. La prioridad inmediata es dejar de depender de datos simulados y construir una base real en `data/raw/` para poder pasar a feature engineering, modelos y dashboard.
 
 ---
 
-## ✅ Lo que SÍ existe
+## 1. Diagnostico rapido
+
+### Lo que si existe
 
 | Componente | Estado |
 |---|---|
-| Dashboard 3D cinematográfico (Next.js + Three.js) | ✅ Completo y pulido |
-| Paneles del COMMAND_CENTER (LeftRail, RightRail, CenterPanel, BottomRail) | ✅ Construidos (datos mock) |
-| `opensky.db` — 1 día de datos (2026-04-27) | ✅ Existe (insuficiente) |
-| `scripts/data_extraction.py` y `data_processing.py` | ✅ Existen |
-| `notebooks/01_pipeline_acled_gdelt.ipynb` | ✅ Existe |
-| Plan maestro, contexto y preguntas de investigación documentados | ✅ Documentado |
+| Dashboard 3D cinematografico en `dashboard/` | Existe, pero trabaja con datos mock |
+| `scripts/data_extraction.py` | Existe para ACLED, GDELT BigQuery y UCDP, pero el `main` no ejecuta descargas |
+| `scripts/data_processing.py` | Existe para procesar ACLED/UCDP y unir ACLED con GDELT |
+| `notebooks/01_pipeline_acled_gdelt.ipynb` | Existe |
+| Documentacion de contexto y plan maestro | Existe |
+| `data/raw/` y `data/processed/` | Existen, pero estan vacios salvo `.gitkeep` |
 
----
+### Lo critico que falta
 
-## 🔴 CRÍTICO — El corazón del proyecto ML (no existe nada aún)
-
-### Datos reales
-
-| Archivo que falta | Fuente | Dónde va |
+| Bloque | Faltante principal | Prioridad |
 |---|---|---|
-| `acled_iran.csv` | ACLED API | `data/raw/` |
-| `acled_israel.csv` | ACLED API | `data/raw/` |
-| `gdelt_ir_daily.csv` | GDELT / BigQuery | `data/raw/` |
-| `gdelt_is_daily.csv` | GDELT / BigQuery | `data/raw/` |
-| `rss_aljazeera.jsonl` | Feed RSS Al Jazeera | `data/raw/` |
-| `rss_bbc.jsonl` | Feed RSS BBC | `data/raw/` |
-| OpenSky histórico extendido (+180 días) | OpenSky API | `data/raw/opensky.db` |
-
-### Procesamiento y modelos
-
-| Archivo que falta | Descripción |
-|---|---|
-| `data/processed/master_table.csv` | Tabla maestra agregada (fecha × región) con todas las features |
-| `data/processed/ground_truth.csv` | ACLED + UCDP unificados, una fila por día |
-| `data/processed/model_results.json` | Predicciones del modelo para alimentar el dashboard |
-| `models/baseline_knn.pkl` | Modelo KNN entrenado |
-| `models/baseline_logreg.pkl` | Regresión Logística entrenada |
-| `models/random_forest.pkl` | Random Forest entrenado |
-| `models/best_model.pkl` | Mejor modelo final |
-
-### Scripts que faltan
-
-| Script | Propósito |
-|---|---|
-| `scripts/check_data_integrity.py` | Inspecciona fuentes y reporta cobertura, nulos y vacíos |
-| `scripts/feature_engineering.py` | Construye `flight_drop_index`, lags de GDELT, score RSS |
-| `scripts/train_models.py` | Pipeline reproducible de entrenamiento (KNN, LogReg, RF, HistGB) |
-| `scripts/run_pipeline.py` | Orquestador end-to-end (extrae → procesa → entrena → exporta) |
-| `scripts/export_dashboard_data.py` | Genera los JSON para el dashboard desde el modelo entrenado |
+| Datos reales | ACLED, GDELT, RSS y OpenSky historico en `data/raw/` | P0 |
+| Integridad | Script que reporte cobertura, nulos y rangos de fechas | P0 |
+| Tabla maestra | `data/processed/master_table.csv` con una fila por fecha-region | P0 |
+| Modelos | KNN, LogReg/Naive Bayes, Random Forest y comparacion | P0 |
+| Notebooks | EDA, feature engineering y comparacion de modelos | P0 |
+| Dashboard real | Exportar predicciones y reemplazar mocks | P1 |
+| Deploy | URL publica en Vercel/Netlify | P1 |
 
 ---
 
-## 🔴 CRÍTICO — Notebooks exigidos por la rúbrica
+## 2. Decision de enfoque
 
-| Notebook | Propósito | Estado |
-|---|---|---|
-| `02_eda_opensky.ipynb` | EDA de vuelos: cobertura, nulos, distribución temporal | ❌ No existe |
-| `03_feature_engineering.ipynb` | Construir y validar `flight_drop_index` y demás features | ❌ No existe |
-| `04_model_comparison.ipynb` | **Métricas de 3+ modelos**: accuracy, F1, matriz de confusión, ROC | ❌ No existe |
-| `05_dashboard_preview.ipynb` | Preview de los datos que alimentarán el dashboard | ❌ No existe |
+Si el tiempo es limitado, el proyecto debe avanzar en este orden:
 
-El notebook `04_model_comparison.ipynb` es el más importante para la rúbrica — debe mostrar:
-- Accuracy, Precision, Recall, F1-Score (macro) por modelo
-- Matriz de confusión por modelo
-- Feature importance de Random Forest
-- Comparación clara de cuál modelo gana y por qué
+1. Extraer datos reales.
+2. Validar que las fuentes se solapen en fechas.
+3. Construir una tabla maestra simple.
+4. Entrenar 3 modelos aunque sean baseline.
+5. Exportar resultados para el dashboard.
+
+La extraccion de datos es el primer paso correcto. Sin archivos reales en `data/raw/`, todo lo demas queda como maqueta.
 
 ---
 
-## 🟠 IMPORTANTE — Conectar datos reales al dashboard
+## 3. Plan de accion inmediato: extraccion de datos
 
-El dashboard actualmente **solo muestra datos simulados** (`mockData.ts`). La función `hydrateFromExports()` ya existe en el store pero nunca se llama con datos reales.
+### Objetivo de la primera jornada
 
-Pasos pendientes:
-1. `export_dashboard_data.py` genera `model_results.json` con el formato `{date, region, predicted_level, confidence}`
-2. El dashboard hace `fetch('/data/model_results.json')` al cargar y llama `hydrateFromExports()`
-3. El badge `DATOS SIMULADOS · PIPELINE NO CONECTADO` desaparece y pasa a `OK`
-4. Los paneles (LeftRail, RightRail, CenterPanel) muestran cifras reales del modelo
+Dejar en `data/raw/` al menos estas fuentes:
 
----
+| Archivo esperado | Fuente | Obligatorio | Nota |
+|---|---|---:|---|
+| `acled_iran.csv` | ACLED API | Si | Ground truth de eventos y fatalities |
+| `acled_israel.csv` | ACLED API | Si | Ground truth complementario |
+| `gdelt_ir_daily.csv` | GDELT BigQuery | Si | Tono, menciones y eventos mediaticos |
+| `gdelt_is_daily.csv` | GDELT BigQuery | Si | Comparacion regional |
+| `rss_aljazeera.jsonl` | RSS | Si | Titulares y resumen |
+| `rss_bbc.jsonl` | RSS | Si | Contraste editorial |
+| `opensky.db` o `opensky_daily.csv` | OpenSky | Ideal | Senal fisica central; si no hay historico, usar plan B |
 
-## 🟡 DESPLIEGUE — Sin URL pública
+Rango recomendado inicial:
 
-| Qué falta | Detalle |
-|---|---|
-| `vercel.json` en la raíz del repo | Configuración de despliegue para Next.js |
-| Primer deploy en Vercel | Conectar el repo y publicar |
-| URL pública funcional | Necesaria para la entrega al profesor |
-| GitHub Actions (`update_data.yml`) | Cron job cada 6h: extrae datos → corre modelo → hace commit (opcional pero impresiona) |
-
----
-
-## 📋 Checklist de la Rúbrica
-
-| Criterio | Estado | Prioridad |
-|---|---|---|
-| ≥ 3 fuentes abiertas con datos reales extraídos | 🔴 Solo OpenSky existe | P0 |
-| ≥ 3 modelos ML entrenados y comparados | 🔴 Cero modelos | P0 |
-| Notebook con métricas (F1, accuracy, confusion matrix) | 🔴 No existe | P0 |
-| Feature engineering documentado | 🔴 No existe | P0 |
-| Pregunta de investigación clara y respondida | ✅ Definida | — |
-| Dashboard HTML interactivo | 🟡 Existe pero datos mock, sin deploy | P1 |
-| Dashboard con datos reales del modelo | 🔴 No conectado | P1 |
-| URL pública accesible por el profesor | 🔴 No hay deploy | P1 |
-| Feature importance documentada | 🔴 No existe | P1 |
-| Automatización con GitHub Actions | ⬜ Opcional | P2 |
-
----
-
-## 🗓 Orden de ejecución recomendado
-
-```
-1. Extraer datos reales
-   └─ Correr data_extraction.py para ACLED + GDELT + RSS
-   └─ Extender opensky.db con histórico de 6 meses
-
-2. Feature engineering
-   └─ Crear master_table.csv con flight_drop_index y lags de GDELT
-   └─ Validar en notebooks/03_feature_engineering.ipynb
-
-3. Entrenar y comparar modelos
-   └─ notebooks/04_model_comparison.ipynb
-   └─ Guardar models/*.pkl
-
-4. Exportar resultados
-   └─ export_dashboard_data.py → model_results.json
-
-5. Conectar datos reales al dashboard
-   └─ fetch('/data/model_results.json') en el frontend
-   └─ Verificar que los paneles muestren cifras reales
-
-6. Deploy en Vercel
-   └─ vercel.json + primer push
-   └─ URL pública para entrega
+```text
+2025-11-01 a 2026-05-30
 ```
 
+Si alguna fuente limita el acceso, usar el mayor rango disponible y documentarlo en `data/processed/integrity_report.txt`.
+
 ---
 
-*Documento generado: 2026-05-30*
+## 4. Antes de extraer: credenciales y entorno
+
+### Variables de entorno esperadas
+
+Crear un `.env` local a partir de `.env.example` y completar lo que aplique:
+
+```text
+ACLED_EMAIL=
+ACLED_KEY=
+GCP_PROJECT_ID=
+UCDP_TOKEN=
+```
+
+Notas:
+
+| Fuente | Requiere credencial | Estado en script |
+|---|---:|---|
+| ACLED | Si | Implementado en `fetch_acled()` |
+| GDELT BigQuery | Si, via Google Cloud | Implementado en `fetch_gdelt()` |
+| UCDP | Si, opcional | Implementado en `fetch_ucdp()` |
+| RSS | No | Falta implementar |
+| OpenSky | No/Si, segun endpoint | Falta implementar historico robusto |
+
+### Comandos base
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
+Despues de instalar, probar:
+
+```powershell
+python scripts/data_extraction.py
+```
+
+Hoy ese comando solo confirma que el modulo carga. Hay que modificar el `main` o crear un orquestador para ejecutar descargas reales.
+
+---
+
+## 5. Cambios concretos que hay que hacer en codigo
+
+### 5.1. `scripts/data_extraction.py`
+
+Acciones:
+
+1. Activar parametros por CLI con `argparse`.
+2. Permitir seleccionar fuente: `acled`, `gdelt`, `ucdp`, `rss`, `all`.
+3. Agregar extractor RSS con `feedparser`.
+4. Agregar manejo de errores por fuente para que una API fallida no tumbe todo el pipeline.
+5. Guardar siempre en `data/raw/`.
+
+Comando objetivo:
+
+```powershell
+python scripts/data_extraction.py --source all --start 2025-11-01 --end 2026-05-30
+```
+
+Salida esperada:
+
+```text
+data/raw/acled_iran.csv
+data/raw/acled_israel.csv
+data/raw/gdelt_ir_daily.csv
+data/raw/gdelt_is_daily.csv
+data/raw/rss_aljazeera.jsonl
+data/raw/rss_bbc.jsonl
+```
+
+### 5.2. `scripts/check_data_integrity.py`
+
+Crear este script antes de modelar.
+
+Debe reportar:
+
+| Chequeo | Resultado esperado |
+|---|---|
+| Archivos presentes | Lista de archivos encontrados/faltantes |
+| Rango temporal por fuente | Fecha minima y maxima |
+| Numero de filas | Filas por archivo |
+| Nulos clave | Porcentaje de nulos en columnas importantes |
+| Solape temporal | Fechas comunes entre ACLED, GDELT, RSS/OpenSky |
+
+Salida objetivo:
+
+```text
+data/processed/integrity_report.txt
+```
+
+### 5.3. `scripts/data_processing.py`
+
+Despues de extraer:
+
+1. Agregar region (`iran`, `israel`) a cada fuente.
+2. Agregar ACLED por `event_date` y `region`.
+3. Agregar GDELT por `event_date` y `region`.
+4. Convertir RSS a features diarias: conteo de titulares y score simple de urgencia.
+5. Crear `data/processed/ground_truth.csv`.
+
+---
+
+## 6. Plan B si una fuente se bloquea
+
+| Problema | Plan B |
+|---|---|
+| ACLED no funciona por credenciales | Usar UCDP como ground truth temporal y documentar limitacion |
+| GDELT BigQuery no esta configurado | Usar GDELT API 2.0 o Google News RSS como proxy de volumen mediatico |
+| OpenSky no entrega historico suficiente | Crear `opensky_daily.csv` con el dia disponible y marcar OpenSky como feature exploratoria, no como predictor principal |
+| RSS devuelve pocos articulos | Ampliar con Google News RSS para `Iran Israel conflict` |
+
+Para cumplir rubrica, minimo viable:
+
+```text
+ACLED/UCDP + GDELT/RSS + OpenSky/RSS adicional
+```
+
+---
+
+## 7. Despues de extraer: tabla maestra minima
+
+Crear `data/processed/master_table.csv` con una fila por dia-region.
+
+Columnas minimas:
+
+| Columna | Fuente |
+|---|---|
+| `event_date` | Todas |
+| `region` | Derivada |
+| `total_fatalities` | ACLED/UCDP |
+| `event_count` | ACLED/UCDP |
+| `gdelt_mentions` | GDELT |
+| `avg_tone` | GDELT |
+| `material_conflict_events` | GDELT |
+| `high_conflict_events` | GDELT |
+| `rss_article_count` | RSS |
+| `rss_urgency_score` | RSS |
+| `flights_airborne` | OpenSky, si existe |
+| `flight_drop_index` | Feature engineering |
+| `target_alert_level` | Derivada de fatalities |
+
+Target sugerido:
+
+```text
+0 = sin muertes
+1 = baja intensidad, 1 a 10 muertes
+2 = alta intensidad, mas de 10 muertes
+```
+
+---
+
+## 8. Notebooks que hay que crear
+
+| Notebook | Proposito | Prioridad |
+|---|---|---|
+| `02_eda_opensky.ipynb` | Ver cobertura y anomalias de vuelos | P1 |
+| `03_feature_engineering.ipynb` | Validar `flight_drop_index`, lags y RSS score | P0 |
+| `04_model_comparison.ipynb` | Comparar minimo 3 modelos con metricas | P0 |
+| `05_dashboard_preview.ipynb` | Revisar JSON final antes de dashboard | P1 |
+
+El mas importante para la nota es `04_model_comparison.ipynb`.
+
+Debe incluir:
+
+| Metrica | Requerida |
+|---|---:|
+| Accuracy | Si |
+| Precision macro | Si |
+| Recall macro | Si |
+| F1 macro | Si |
+| Matriz de confusion | Si |
+| Feature importance de Random Forest | Si |
+
+---
+
+## 9. Modelos minimos
+
+Entrenar al menos:
+
+| Modelo | Archivo esperado |
+|---|---|
+| KNN | `models/baseline_knn.pkl` |
+| Regresion Logistica | `models/baseline_logreg.pkl` |
+| Naive Bayes o Random Forest | `models/random_forest.pkl` |
+| Mejor modelo | `models/best_model.pkl` |
+
+Validacion recomendada:
+
+```text
+Train: 2025-11-01 a 2026-03-31
+Test:  2026-04-01 a 2026-05-30
+```
+
+Evitar `train_test_split` aleatorio porque mezcla futuro con pasado.
+
+---
+
+## 10. Conexion con dashboard
+
+El dashboard hoy usa datos simulados. El objetivo es producir:
+
+```text
+data/processed/model_results.json
+```
+
+Formato:
+
+```json
+[
+  {
+    "date": "2026-05-30",
+    "region": "iran",
+    "predicted_level": 1,
+    "confidence": 0.72
+  }
+]
+```
+
+Pendiente luego:
+
+1. Crear `scripts/export_dashboard_data.py`.
+2. Copiar/exportar JSON a una ruta servible por el dashboard.
+3. Hacer que el frontend llame `fetch('/data/model_results.json')`.
+4. Reemplazar el indicador de datos simulados por estado real.
+
+---
+
+## 11. Checklist operativo P0
+
+### Dia 1: extraccion y diagnostico
+
+- [ ] Completar `.env`.
+- [ ] Instalar dependencias.
+- [ ] Modificar `scripts/data_extraction.py` para ejecutar ACLED, GDELT y RSS por CLI.
+- [ ] Ejecutar extraccion para Iran e Israel.
+- [ ] Verificar que `data/raw/` tenga archivos reales.
+- [ ] Crear `scripts/check_data_integrity.py`.
+- [ ] Generar `data/processed/integrity_report.txt`.
+
+### Dia 2: procesamiento y tabla maestra
+
+- [ ] Crear `ground_truth.csv`.
+- [ ] Agregar GDELT por dia-region.
+- [ ] Convertir RSS a features diarias.
+- [ ] Crear `master_table.csv`.
+- [ ] Documentar cobertura y nulos.
+
+### Dia 3: modelos y notebook de rubrica
+
+- [ ] Crear `scripts/train_models.py`.
+- [ ] Entrenar 3 modelos.
+- [ ] Guardar `.pkl` en `models/`.
+- [ ] Crear `04_model_comparison.ipynb`.
+- [ ] Exportar `model_results.json`.
+
+### Dia 4: dashboard y entrega
+
+- [ ] Conectar dashboard a `model_results.json`.
+- [ ] Verificar visualmente paneles.
+- [ ] Deploy en Vercel/Netlify.
+- [ ] Pegar URL publica en la documentacion de entrega.
+
+---
+
+## 12. Proxima accion recomendada
+
+Empezar por este cambio:
+
+```text
+Crear/editar scripts/data_extraction.py para que realmente descargue:
+ACLED Iran + ACLED Israel + GDELT IR + GDELT IS + RSS Al Jazeera + RSS BBC.
+```
+
+Primer criterio de exito:
+
+```text
+data/raw/ deja de estar vacio y check_data_integrity.py confirma al menos 60 dias de solape temporal entre fuentes.
+```
