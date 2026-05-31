@@ -5,7 +5,7 @@ import ModelEvaluationDashboard from "@/components/analysis/ModelEvaluationDashb
 
 export default function BottomRail() {
   return (
-    <Panel title="RESULTADOS CLASIFICACION 2026" className="mt-4 max-h-[48vh] overflow-y-auto">
+    <Panel title="RESULTADOS CLASIFICACION 2026" className="mt-3 max-h-[34vh] overflow-y-auto">
       <ModelEvaluationDashboard />
     </Panel>
   );

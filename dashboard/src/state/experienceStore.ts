@@ -1,8 +1,8 @@
 "use client";
 
 import { create } from "zustand";
-import type { AlertItem, DataStatus, ExperienceMode, ThreatLevel } from "@/state/experienceTypes";
-import { buildMockSeries, defaultAlerts, defaultMetrics, defaultModelComparison } from "@/state/mockData";
+import type { AlertItem, ConflictEvent, DataStatus, ExperienceMode, ThreatLevel } from "@/state/experienceTypes";
+import { buildMockSeries, defaultAlerts, defaultConflictEvents, defaultMetrics, defaultModelComparison } from "@/state/mockData";
 
 type QualityState = {
   targetDpr: number;
@@ -53,6 +53,8 @@ type ExperienceState = {
 
   metrics: Metrics;
   alerts: AlertItem[];
+  conflictEvents: ConflictEvent[];
+  selectedConflictEventId: string;
   chartSeries: ChartSeries;
   modelComparison: ModelComparisonEntry[];
 
@@ -68,7 +70,8 @@ type ExperienceState = {
   setInitialized: (v: boolean) => void;
   setScrollProgress: (v: number) => void;
   setMouse: (v: { x: number; y: number }) => void;
-  hydrateFromExports: (payload: Partial<{ threatLevel: ThreatLevel; metrics: Metrics; alerts: AlertItem[]; chartSeries: ChartSeries; modelComparison: ModelComparisonEntry[] }>) => void;
+  hydrateFromExports: (payload: Partial<{ threatLevel: ThreatLevel; metrics: Metrics; alerts: AlertItem[]; conflictEvents: ConflictEvent[]; chartSeries: ChartSeries; modelComparison: ModelComparisonEntry[] }>) => void;
+  selectConflictEvent: (id: string) => void;
   triggerMissile: () => void;
   setMissileT: (t: number) => void;
   setMissileActive: (v: boolean) => void;
@@ -90,6 +93,8 @@ export const useExperienceStore = create<ExperienceState>((set) => ({
 
   metrics: defaultMetrics(),
   alerts: defaultAlerts(),
+  conflictEvents: defaultConflictEvents(),
+  selectedConflictEventId: "",
   chartSeries: buildMockSeries(),
   modelComparison: defaultModelComparison(),
 
@@ -110,9 +115,12 @@ export const useExperienceStore = create<ExperienceState>((set) => ({
       threatLevel: payload.threatLevel ?? s.threatLevel,
       metrics: payload.metrics ?? s.metrics,
       alerts: payload.alerts ?? s.alerts,
+      conflictEvents: payload.conflictEvents ?? s.conflictEvents,
+      selectedConflictEventId: payload.conflictEvents?.[0]?.id ?? s.selectedConflictEventId,
       chartSeries: payload.chartSeries ?? s.chartSeries,
       modelComparison: payload.modelComparison ?? s.modelComparison
     })),
+  selectConflictEvent: (id) => set({ selectedConflictEventId: id }),
   triggerMissile: () => set({ missileActive: true, missileT: 0 }),
   setMissileT: (t) => set({ missileT: t }),
   setMissileActive: (v) => set({ missileActive: v }),

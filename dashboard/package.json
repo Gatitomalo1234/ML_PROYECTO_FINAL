@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "data:conflicts": "python ../scripts/export_conflict_events.py",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

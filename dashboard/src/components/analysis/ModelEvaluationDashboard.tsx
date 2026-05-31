@@ -27,9 +27,11 @@ export default function ModelEvaluationDashboard() {
     <div className="space-y-3">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <div className="text-[10px] tracking-[0.24em] text-white/55">MODULO DE EVALUACION COMPARATIVA</div>
-          <div className="mt-1 text-[11px] text-white/38">
-            Train: 2026 hasta abril · Test: mayo 2026 · Target: fatalities &gt; 0
+          <div className="text-[10px] tracking-[0.24em] text-white/55">MÓDULO DE EVALUACIÓN COMPARATIVA</div>
+          <div className="mt-1 flex items-center gap-2 text-[10px] text-white/45">
+            <span className="rounded bg-white/10 px-1.5 py-0.5">Train: Ene-Abr 2026</span>
+            <span className="rounded bg-white/10 px-1.5 py-0.5">Test: May 2026</span>
+            <span className="rounded bg-critical-500/15 text-critical-500 px-1.5 py-0.5">Predicción: Probabilidad de letalidad (víctimas fatales &gt; 0) en incidentes</span>
           </div>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -67,31 +69,41 @@ export default function ModelEvaluationDashboard() {
         ))}
       </div>
 
-      <div className="grid grid-cols-12 gap-3">
-        <div className="col-span-12 md:col-span-3">
-          <MetricBarChart models={models} metric={metric} split={split} selected={selectedModel} onSelect={setSelectedModel} />
-        </div>
-        <div className="col-span-12 md:col-span-3">
-          <LineCurveChart title="CURVAS ROC" kicker="overlay 3 modelos" models={models} curves={rocCurves} selected={selectedModel} xLabel="FPR" yLabel="TPR" />
-        </div>
-        <div className="col-span-12 md:col-span-3">
-          <LineCurveChart title="PRECISION-RECALL" kicker="dataset desbalanceado" models={models} curves={prCurves} selected={selectedModel} xLabel="RECALL" yLabel="PRECISION" />
-        </div>
-        <div className="col-span-12 md:col-span-3">
-          <ConfusionMatrixChart model={activeModel} />
-        </div>
+      <div className="overflow-x-auto pb-1 [scrollbar-width:thin]">
+        <div className="flex snap-x snap-mandatory gap-3">
+          <section className="min-w-full snap-start">
+            <div className="grid grid-cols-12 gap-3">
+              <div className="col-span-12 md:col-span-3">
+                <MetricBarChart models={models} metric={metric} split={split} selected={selectedModel} onSelect={setSelectedModel} />
+              </div>
+              <div className="col-span-12 md:col-span-3">
+                <LineCurveChart title="CURVAS ROC" kicker="overlay 3 modelos" models={models} curves={rocCurves} selected={selectedModel} xLabel="FPR" yLabel="TPR" />
+              </div>
+              <div className="col-span-12 md:col-span-3">
+                <LineCurveChart title="PRECISION-RECALL" kicker="dataset desbalanceado" models={models} curves={prCurves} selected={selectedModel} xLabel="RECALL" yLabel="PRECISION" />
+              </div>
+              <div className="col-span-12 md:col-span-3">
+                <ConfusionMatrixChart model={activeModel} />
+              </div>
+            </div>
+          </section>
 
-        <div className="col-span-12 md:col-span-4">
-          <CoefficientChart />
-        </div>
-        <div className="col-span-12 md:col-span-2">
-          <KnnSensitivityChart />
-        </div>
-        <div className="col-span-12 md:col-span-3">
-          <ProbabilityDistributionChart model={activeModel} />
-        </div>
-        <div className="col-span-12 md:col-span-3">
-          <ThresholdChart threshold={threshold} onThreshold={setThreshold} />
+          <section className="min-w-full snap-start pt-2">
+            <div className="grid grid-cols-12 gap-4">
+              <div className="col-span-12 md:col-span-6 lg:col-span-3">
+                <CoefficientChart />
+              </div>
+              <div className="col-span-12 md:col-span-6 lg:col-span-3">
+                <ProbabilityDistributionChart model={activeModel} />
+              </div>
+              <div className="col-span-12 md:col-span-6 lg:col-span-3">
+                <ThresholdChart threshold={threshold} onThreshold={setThreshold} />
+              </div>
+              <div className="col-span-12 md:col-span-6 lg:col-span-3">
+                <KnnSensitivityChart />
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </div>

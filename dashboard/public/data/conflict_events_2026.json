@@ -1,0 +1,4032 @@
+[
+  {
+    "id": "IRW-1776146543860-0",
+    "date": "2026-04-14",
+    "time": "06:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Airstrike - Beirut",
+    "location": "Beirut",
+    "country": "Lebanon",
+    "lat": 33.89,
+    "lon": 35.5,
+    "fatalities": 357,
+    "injured": 0,
+    "actors": [],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.theguardian.com/world/audio/2026/apr/14/after-four-decades-lebanon-and-israel-finally-talk-podcast",
+    "confidence": 0.74,
+    "summary": "Unspecified targets, resulting in civilian deaths",
+    "metadata": {
+      "weapon": "Air Strike",
+      "target": "civilian",
+      "infrastructure": "strike report",
+      "keywords": [
+        "iranwarlive",
+        "airstrike",
+        "air strike",
+        "news wire"
+      ],
+      "modelScore": 0.74
+    }
+  },
+  {
+    "id": "IRW-1775757732209-0",
+    "date": "2026-04-09",
+    "time": "18:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Airstrike - Beirut",
+    "location": "Beirut",
+    "country": "Lebanon",
+    "lat": 33.89,
+    "lon": 35.5,
+    "fatalities": 300,
+    "injured": 0,
+    "actors": [
+      "Israel"
+    ],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.nytimes.com/2026/04/09/world/middleeast/lebanon-israel-iran-war-airstrikes.html",
+    "confidence": 0.86,
+    "summary": "Israeli air strikes, levelling several buildings in the center of Beirut as part of a massive wave of attacks across Lebanon.",
+    "metadata": {
+      "weapon": "Air Strike",
+      "target": "unknown",
+      "infrastructure": "strike report",
+      "keywords": [
+        "iranwarlive",
+        "airstrike",
+        "air strike",
+        "high confidence (multi-source)"
+      ],
+      "modelScore": 0.86
+    }
+  },
+  {
+    "id": "IRW-1775880124051-0",
+    "date": "2026-04-11",
+    "time": "04:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Airstrike - Beirut",
+    "location": "Beirut",
+    "country": "Lebanon",
+    "lat": 33.89,
+    "lon": 35.5,
+    "fatalities": 300,
+    "injured": 0,
+    "actors": [
+      "Hezbollah"
+    ],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.theguardian.com/world/video/2026/apr/10/deadly-israeli-strikes-hit-beirut-lebanon-video",
+    "confidence": 0.74,
+    "summary": "Central Beirut, densely populated areas, Hezbollah targets, several buildings, infrastructure",
+    "metadata": {
+      "weapon": "Air Strike",
+      "target": "infrastructure",
+      "infrastructure": "strike report",
+      "keywords": [
+        "iranwarlive",
+        "airstrike",
+        "air strike",
+        "news wire"
+      ],
+      "modelScore": 0.74
+    }
+  },
+  {
+    "id": "IRW-20260307-4505",
+    "date": "2026-03-07",
+    "time": "05:30Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Airstrike - Lebanon",
+    "location": "Lebanon",
+    "country": "Lebanon",
+    "lat": 33.8747,
+    "lon": 35.84798,
+    "fatalities": 217,
+    "injured": 0,
+    "actors": [
+      "Israel"
+    ],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.aljazeera.com/news/liveblog/2026/3/7/iran-war-live-trump-says-no-deal-with-iran-until-unconditional-surrender?traffic_source=rss",
+    "confidence": 0.74,
+    "summary": "Israeli bombing campaign in Lebanon, resulting in 217 dead and 800 injured.",
+    "metadata": {
+      "weapon": "Airstrikes/Bombing (Cumulative Impact)",
+      "target": "unknown",
+      "infrastructure": "Ongoing heavy Israeli aerial campaign in Lebanon with significant civilian casualties reported.",
+      "keywords": [
+        "iranwarlive",
+        "airstrike",
+        "airstrikes/bombing (cumulative impact)",
+        "news wire"
+      ],
+      "modelScore": 0.74
+    }
+  },
+  {
+    "id": "IRW-1773721881744-2",
+    "date": "2026-03-17",
+    "time": "04:30Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Airstrike - Strike location",
+    "location": "Strike location",
+    "country": "Regional",
+    "lat": 34.52,
+    "lon": 69.17,
+    "fatalities": 200,
+    "injured": 0,
+    "actors": [],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.aljazeera.com/video/newsfeed/2026/3/17/afghanistan-accuses-pakistan-of-air-strike-on-drug-rehab-centre?traffic_source=rss",
+    "confidence": 0.74,
+    "summary": "Drug rehabilitation centre",
+    "metadata": {
+      "weapon": "Air Strike",
+      "target": "unknown",
+      "infrastructure": "strike report",
+      "keywords": [
+        "iranwarlive",
+        "airstrike",
+        "air strike",
+        "state media/unverified"
+      ],
+      "modelScore": 0.74
+    }
+  },
+  {
+    "id": "IRW-1773774123773-2",
+    "date": "2026-03-17",
+    "time": "19:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Airstrike - Strike location",
+    "location": "Strike location",
+    "country": "Regional",
+    "lat": 34.52,
+    "lon": 69.17,
+    "fatalities": 200,
+    "injured": 0,
+    "actors": [],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.aljazeera.com/video/newsfeed/2026/3/17/what-we-know-about-deadly-strike-on-kabul-medical-centre?traffic_source=rss",
+    "confidence": 0.74,
+    "summary": "Drug rehabilitation centre, civilians and addicts",
+    "metadata": {
+      "weapon": "Air Strike",
+      "target": "civilian",
+      "infrastructure": "strike report",
+      "keywords": [
+        "iranwarlive",
+        "airstrike",
+        "air strike",
+        "news wire"
+      ],
+      "modelScore": 0.74
+    }
+  },
+  {
+    "id": "IRW-20260309-8604",
+    "date": "2026-03-09",
+    "time": "02:00Z",
+    "type": "MISSILE",
+    "severity": "CRITICAL",
+    "title": "Missile - Strike location",
+    "location": "Strike location",
+    "country": "Iran",
+    "lat": 27.14385,
+    "lon": 57.07218,
+    "fatalities": 175,
+    "injured": 0,
+    "actors": [
+      "US",
+      "Iran"
+    ],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.nytimes.com/2026/03/08/world/middleeast/iran-minab-school-strike.html",
+    "confidence": 0.86,
+    "summary": "US Tomahawk missile hit a naval base beside an Iranian school, killing 175 people, mostly children.",
+    "metadata": {
+      "weapon": "Missile strike",
+      "target": "school",
+      "infrastructure": "Major US kinetic action resulting in high civilian casualties, previously misattributed to Iran.",
+      "keywords": [
+        "iranwarlive",
+        "missile",
+        "missile strike",
+        "high confidence (multi-source)"
+      ],
+      "modelScore": 0.86
+    }
+  },
+  {
+    "id": "IRW-20260306-1065",
+    "date": "2026-03-06",
+    "time": "23:30Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Airstrike - Strike location",
+    "location": "Strike location",
+    "country": "Israel",
+    "lat": 27.15708,
+    "lon": 57.06991,
+    "fatalities": 175,
+    "injured": 0,
+    "actors": [
+      "Israel",
+      "US"
+    ],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.aljazeera.com/news/2026/3/6/calls-grow-for-independent-probe-into-deadly-iranian-girls-school-attack",
+    "confidence": 0.86,
+    "summary": "US/Israeli airstrike hit a girls' primary school.",
+    "metadata": {
+      "weapon": "Airstrike",
+      "target": "school",
+      "infrastructure": "Deadly strike on a civilian girls' primary school, killing 175 people, prompting calls for an independent probe.",
+      "keywords": [
+        "iranwarlive",
+        "airstrike",
+        "high confidence (multi-source)"
+      ],
+      "modelScore": 0.86
+    }
+  },
+  {
+    "id": "IRW-20260307-7359",
+    "date": "2026-03-07",
+    "time": "01:30Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Airstrike - Tehran",
+    "location": "Tehran",
+    "country": "Israel",
+    "lat": 35.78569,
+    "lon": 51.43072,
+    "fatalities": 175,
+    "injured": 0,
+    "actors": [
+      "Israel",
+      "US"
+    ],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.nytimes.com/video/world/middleeast/100000010750321/how-we-analyzed-the-strike-on-the-iranian-school.html",
+    "confidence": 0.74,
+    "summary": "US/Israeli airstrike on an elementary school.",
+    "metadata": {
+      "weapon": "Airstrike",
+      "target": "school",
+      "infrastructure": "Ongoing US-Israeli attacks on Iran; targeted elementary school.",
+      "keywords": [
+        "iranwarlive",
+        "airstrike",
+        "news wire"
+      ],
+      "modelScore": 0.74
+    }
+  },
+  {
+    "id": "IRW-1773716510224-8",
+    "date": "2026-03-17",
+    "time": "03:00Z",
+    "type": "MISSILE",
+    "severity": "CRITICAL",
+    "title": "Missile - Strike location",
+    "location": "Strike location",
+    "country": "Iran",
+    "lat": 27.15,
+    "lon": 57.08,
+    "fatalities": 170,
+    "injured": 0,
+    "actors": [
+      "US"
+    ],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.aljazeera.com/news/2026/3/16/us-responsible-for-deadly-attack-on-iranian-school-amnesty-international?traffic_source=rss",
+    "confidence": 0.86,
+    "summary": "School hit by US attack (likely Tomahawk missile).",
+    "metadata": {
+      "weapon": "Missile Strike",
+      "target": "school",
+      "infrastructure": "strike report",
+      "keywords": [
+        "iranwarlive",
+        "missile",
+        "missile strike",
+        "high confidence (multi-source)"
+      ],
+      "modelScore": 0.86
+    }
+  },
+  {
+    "id": "IRW-1773304305498-6",
+    "date": "2026-03-12",
+    "time": "08:30Z",
+    "type": "GROUND",
+    "severity": "CRITICAL",
+    "title": "Ground - Strike location",
+    "location": "Strike location",
+    "country": "Iran",
+    "lat": 32.0,
+    "lon": 53.0,
+    "fatalities": 170,
+    "injured": 0,
+    "actors": [],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.aljazeera.com/news/2026/3/12/who-bombed-the-iranian-girls-school-killing-more-than-170-what-we-know",
+    "confidence": 0.6,
+    "summary": "Girls' school",
+    "metadata": {
+      "weapon": "Bombing",
+      "target": "school",
+      "infrastructure": "strike report",
+      "keywords": [
+        "iranwarlive",
+        "ground",
+        "bombing",
+        "osint"
+      ],
+      "modelScore": 0.6
+    }
+  },
+  {
+    "id": "IRW-1773309707333-9",
+    "date": "2026-03-12",
+    "time": "10:00Z",
+    "type": "GROUND",
+    "severity": "CRITICAL",
+    "title": "Ground - Strike location",
+    "location": "Strike location",
+    "country": "Iran",
+    "lat": 32.42,
+    "lon": 53.69,
+    "fatalities": 170,
+    "injured": 0,
+    "actors": [],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.aljazeera.com/news/2026/3/12/who-bombed-the-iranian-girls-school-killing-more-than-170-what-we-know?traffic_source=rss",
+    "confidence": 0.6,
+    "summary": "Girls' elementary school",
+    "metadata": {
+      "weapon": "Bombing",
+      "target": "school",
+      "infrastructure": "strike report",
+      "keywords": [
+        "iranwarlive",
+        "ground",
+        "bombing",
+        "osint"
+      ],
+      "modelScore": 0.6
+    }
+  },
+  {
+    "id": "IRW-1773111649977-0",
+    "date": "2026-03-10",
+    "time": "03:00Z",
+    "type": "MISSILE",
+    "severity": "CRITICAL",
+    "title": "Missile - Strike location",
+    "location": "Strike location",
+    "country": "Iran",
+    "lat": 27.15,
+    "lon": 57.08,
+    "fatalities": 170,
+    "injured": 0,
+    "actors": [],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.aljazeera.com/news/2026/3/9/us-senators-demand-probe-into-appalling-attack-on-girlss-school-in-iran?traffic_source=rss",
+    "confidence": 0.6,
+    "summary": "Girls' school and nearby military base",
+    "metadata": {
+      "weapon": "Missile/Bombing",
+      "target": "school",
+      "infrastructure": "strike report",
+      "keywords": [
+        "iranwarlive",
+        "missile",
+        "missile/bombing",
+        "osint"
+      ],
+      "modelScore": 0.6
+    }
+  },
+  {
+    "id": "IRW-1773113443732-0",
+    "date": "2026-03-10",
+    "time": "03:30Z",
+    "type": "MISSILE",
+    "severity": "CRITICAL",
+    "title": "Missile - Strike location",
+    "location": "Strike location",
+    "country": "Iran",
+    "lat": 27.15,
+    "lon": 57.08,
+    "fatalities": 170,
+    "injured": 0,
+    "actors": [],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.aljazeera.com/news/2026/3/9/us-senators-demand-probe-into-appalling-attack-on-girlss-school-in-iran",
+    "confidence": 0.6,
+    "summary": "Military base near a primary/girls' school",
+    "metadata": {
+      "weapon": "Missile/Bombing",
+      "target": "school",
+      "infrastructure": "strike report",
+      "keywords": [
+        "iranwarlive",
+        "missile",
+        "missile/bombing",
+        "osint"
+      ],
+      "modelScore": 0.6
+    }
+  },
+  {
+    "id": "IRW-1773154879202-3",
+    "date": "2026-03-10",
+    "time": "15:00Z",
+    "type": "MISSILE",
+    "severity": "CRITICAL",
+    "title": "Missile - Strike location",
+    "location": "Strike location",
+    "country": "Iran",
+    "lat": 27.1833,
+    "lon": 56.2833,
+    "fatalities": 168,
+    "injured": 0,
+    "actors": [],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.bbc.com/news/articles/cvg548lyjnyo?at_medium=RSS&at_campaign=rss",
+    "confidence": 0.6,
+    "summary": "Military base near a primary school",
+    "metadata": {
+      "weapon": "Missile",
+      "target": "school",
+      "infrastructure": "strike report",
+      "keywords": [
+        "iranwarlive",
+        "missile",
+        "osint"
+      ],
+      "modelScore": 0.6
+    }
+  },
+  {
+    "id": "IRW-20260228-1003",
+    "date": "2026-02-28",
+    "time": "08:04Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Airstrike - Minab",
+    "location": "Minab",
+    "country": "Iran",
+    "lat": 27.1467,
+    "lon": 57.08,
+    "fatalities": 165,
+    "injured": 0,
+    "actors": [
+      "US",
+      "Iran",
+      "IRGC"
+    ],
+    "source": "iranwarlive_strikes",
+    "url": "https://halifax.citynews.ca/2026/03/06/evidence-suggests-the-deadly-blast-at-an-iranian-school-was-likely-a-us-airstrike-2/",
+    "confidence": 0.74,
+    "summary": "US munition intended for an adjacent IRGC compound inadvertently strikes the Shajareh Tayyebeh Elementary School in Minab, Iran.",
+    "metadata": {
+      "weapon": "Air Strike",
+      "target": "school",
+      "infrastructure": "Severe collateral damage incident involving predominantly civilian children.",
+      "keywords": [
+        "iranwarlive",
+        "airstrike",
+        "air strike",
+        "news wire"
+      ],
+      "modelScore": 0.74
+    }
+  },
+  {
+    "id": "conflict_1f3f84caa9e19cf37ced4c43",
+    "date": "2026-03-08",
+    "time": "00:00Z",
+    "type": "DRONE",
+    "severity": "CRITICAL",
+    "title": "Air/drone strike",
+    "location": "Minab",
+    "country": "Iran",
+    "lat": 27.131,
+    "lon": 57.087,
+    "fatalities": 165,
+    "injured": 0,
+    "actors": [
+      "Military Forces of the United States",
+      "Civilians (Iran)"
+    ],
+    "source": "gdeltcloud_events_iran_2026",
+    "url": "https://gdeltcloud.com/stories/airdrone-strike-7f8131a7",
+    "confidence": 0.007,
+    "summary": "On 2026-03-08, a reported US strike using a Tomahawk missile hit an IRGC base adjacent to the Shajareh Tayebeh primary school in Minab, Hormozgan province. Video analysis by multiple outlets said the munition was consistent with a US Tomahawk and indicated a US operation. Iranian authorities reported that 165 people were killed at the school; other reports gave higher figures including children and teachers. The stri...",
+    "metadata": {
+      "weapon": "Air/drone strike",
+      "target": "Civilians targeted",
+      "infrastructure": "Explosions/Remote violence",
+      "keywords": [
+        "gdeltcloud",
+        "drone",
+        "explosions/remote violence",
+        "air/drone strike"
+      ],
+      "modelScore": 0.007
+    }
+  },
+  {
+    "id": "IRW-1773505896260-9",
+    "date": "2026-03-14",
+    "time": "16:30Z",
+    "type": "GROUND",
+    "severity": "CRITICAL",
+    "title": "Ground - Strike location",
+    "location": "Strike location",
+    "country": "Iran",
+    "lat": 35.3,
+    "lon": 47.0,
+    "fatalities": 112,
+    "injured": 0,
+    "actors": [],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.aljazeera.com/news/2026/3/14/more-than-110-people-killed-in-irans-kurdistan-official?traffic_source=rss",
+    "confidence": 0.6,
+    "summary": "General area, implied civilian impact",
+    "metadata": {
+      "weapon": "US-Israel attacks",
+      "target": "civilian",
+      "infrastructure": "strike report",
+      "keywords": [
+        "iranwarlive",
+        "ground",
+        "us-israel attacks",
+        "osint"
+      ],
+      "modelScore": 0.6
+    }
+  },
+  {
+    "id": "IRW-1776326470752-1",
+    "date": "2026-04-16",
+    "time": "08:00Z",
+    "type": "MISSILE",
+    "severity": "CRITICAL",
+    "title": "Missile - Strike location",
+    "location": "Strike location",
+    "country": "Iran",
+    "lat": 26.55,
+    "lon": 56.25,
+    "fatalities": 104,
+    "injured": 0,
+    "actors": [
+      "US",
+      "Iran"
+    ],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.bbc.com/news/articles/c9qdd318qd9o?at_medium=RSS&at_campaign=rss",
+    "confidence": 0.74,
+    "summary": "Iranian vessel Iris Dena hit by US torpedo attack",
+    "metadata": {
+      "weapon": "Missile Strike",
+      "target": "unknown",
+      "infrastructure": "strike report",
+      "keywords": [
+        "iranwarlive",
+        "missile",
+        "missile strike",
+        "news wire"
+      ],
+      "modelScore": 0.74
+    }
+  },
+  {
+    "id": "IRW-1777219297028-1",
+    "date": "2026-04-26",
+    "time": "16:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Airstrike - Tehran",
+    "location": "Tehran",
+    "country": "Iran",
+    "lat": 35.69,
+    "lon": 51.39,
+    "fatalities": 100,
+    "injured": 0,
+    "actors": [
+      "US"
+    ],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.nytimes.com/2026/04/25/world/middleeast/families-of-iranian-children-killed-in-school-airstrike-pen-letter-to-pope.html",
+    "confidence": 0.74,
+    "summary": "School, resulting in child casualties, attributed to US military mistake",
+    "metadata": {
+      "weapon": "Air Strike",
+      "target": "school",
+      "infrastructure": "strike report",
+      "keywords": [
+        "iranwarlive",
+        "airstrike",
+        "air strike",
+        "news wire"
+      ],
+      "modelScore": 0.74
+    }
+  },
+  {
+    "id": "conflict_8f39a73b",
+    "date": "2026-04-08",
+    "time": "00:00Z",
+    "type": "DRONE",
+    "severity": "CRITICAL",
+    "title": "Israel strikes central Beirut, killing over 100 amid Iran truce dispute",
+    "location": "Beirut",
+    "country": "Lebanon",
+    "lat": 33.8938,
+    "lon": 35.5018,
+    "fatalities": 100,
+    "injured": 0,
+    "actors": [
+      "Israel",
+      "Civilians"
+    ],
+    "source": "gdeltcloud_events_israel_2026",
+    "url": "https://gdeltcloud.com/stories/israel-strikes-central-beirut-killing-over-100-amid-iran-tru-e824a5dc",
+    "confidence": 0.009,
+    "summary": "On 2026-04-08, Israeli airstrikes hit several commercial and residential areas in central Beirut, Lebanon. The article says the strikes killed over 100 people and caused heavy destruction in the city center. No Hezbollah retaliatory strikes were reported in the first hours after the attack.",
+    "metadata": {
+      "weapon": "Air/drone strike",
+      "target": "Civilians targeted",
+      "infrastructure": "Explosions/Remote violence",
+      "keywords": [
+        "gdeltcloud",
+        "drone",
+        "explosions/remote violence",
+        "air/drone strike"
+      ],
+      "modelScore": 0.009
+    }
+  },
+  {
+    "id": "conflict_8f39a73b",
+    "date": "2026-04-08",
+    "time": "00:00Z",
+    "type": "DRONE",
+    "severity": "CRITICAL",
+    "title": "Israel strikes central Beirut, killing over 100 amid Iran truce dispute",
+    "location": "Beirut",
+    "country": "Lebanon",
+    "lat": 33.8938,
+    "lon": 35.5018,
+    "fatalities": 100,
+    "injured": 0,
+    "actors": [
+      "Israel",
+      "Civilians"
+    ],
+    "source": "gdeltcloud_events_lebanon_2026",
+    "url": "https://gdeltcloud.com/stories/israel-strikes-central-beirut-killing-over-100-amid-iran-tru-e824a5dc",
+    "confidence": 0.009,
+    "summary": "On 2026-04-08, Israeli airstrikes hit several commercial and residential areas in central Beirut, Lebanon. The article says the strikes killed over 100 people and caused heavy destruction in the city center. No Hezbollah retaliatory strikes were reported in the first hours after the attack.",
+    "metadata": {
+      "weapon": "Air/drone strike",
+      "target": "Civilians targeted",
+      "infrastructure": "Explosions/Remote violence",
+      "keywords": [
+        "gdeltcloud",
+        "drone",
+        "explosions/remote violence",
+        "air/drone strike"
+      ],
+      "modelScore": 0.009
+    }
+  },
+  {
+    "id": "conflict_5f890ddf",
+    "date": "2026-04-12",
+    "time": "00:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Israel completes siege and begins invasion of Bint Jbeyl in southern Lebanon",
+    "location": "Bint Jbeil",
+    "country": "Lebanon",
+    "lat": 33.3033,
+    "lon": 35.3811,
+    "fatalities": 100,
+    "injured": 0,
+    "actors": [
+      "Israel Defense Forces",
+      "Hezbollah"
+    ],
+    "source": "gdeltcloud_events_israel_2026",
+    "url": "https://gdeltcloud.com/stories/israel-completes-siege-and-begins-invasion-of-bint-jbeyl-in-37d03158",
+    "confidence": 0.007,
+    "summary": "On 2026-04-12, Israeli forces completed the siege of Bint Jbeyl in southern Lebanon and launched ground assaults there, with clashes reported on the ground and accompanying airstrikes. The Israeli military said troops from the 98th Division, including paratrooper, commando, and Givati units, were operating in the area. The article also quoted Israeli claims that over 100 Hezbollah members were killed, though this was...",
+    "metadata": {
+      "weapon": "Armed clash",
+      "target": "unknown",
+      "infrastructure": "Battles",
+      "keywords": [
+        "gdeltcloud",
+        "airstrike",
+        "battles",
+        "armed clash"
+      ],
+      "modelScore": 0.007
+    }
+  },
+  {
+    "id": "conflict_5f890ddf",
+    "date": "2026-04-12",
+    "time": "00:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Israel completes siege and begins invasion of Bint Jbeyl in southern Lebanon",
+    "location": "Bint Jbeil",
+    "country": "Lebanon",
+    "lat": 33.3033,
+    "lon": 35.3811,
+    "fatalities": 100,
+    "injured": 0,
+    "actors": [
+      "Israel Defense Forces",
+      "Hezbollah"
+    ],
+    "source": "gdeltcloud_events_lebanon_2026",
+    "url": "https://gdeltcloud.com/stories/israel-completes-siege-and-begins-invasion-of-bint-jbeyl-in-37d03158",
+    "confidence": 0.007,
+    "summary": "On 2026-04-12, Israeli forces completed the siege of Bint Jbeyl in southern Lebanon and launched ground assaults there, with clashes reported on the ground and accompanying airstrikes. The Israeli military said troops from the 98th Division, including paratrooper, commando, and Givati units, were operating in the area. The article also quoted Israeli claims that over 100 Hezbollah members were killed, though this was...",
+    "metadata": {
+      "weapon": "Armed clash",
+      "target": "unknown",
+      "infrastructure": "Battles",
+      "keywords": [
+        "gdeltcloud",
+        "airstrike",
+        "battles",
+        "armed clash"
+      ],
+      "modelScore": 0.007
+    }
+  },
+  {
+    "id": "IRW-1777903343298-0",
+    "date": "2026-05-04",
+    "time": "14:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Airstrike - Strike location",
+    "location": "Strike location",
+    "country": "Lebanon",
+    "lat": 33.27,
+    "lon": 35.2,
+    "fatalities": 77,
+    "injured": 0,
+    "actors": [],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.bbc.com/news/articles/cy523z7x0g5o?at_medium=RSS&at_campaign=rss",
+    "confidence": 0.74,
+    "summary": "Strikes on southern Lebanon",
+    "metadata": {
+      "weapon": "Air Strike",
+      "target": "unknown",
+      "infrastructure": "strike report",
+      "keywords": [
+        "iranwarlive",
+        "airstrike",
+        "air strike",
+        "news wire"
+      ],
+      "modelScore": 0.74
+    }
+  },
+  {
+    "id": "IRW-2026-03-23-C02",
+    "date": "2026-03-05",
+    "time": "01:45Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Airstrike - Strike location",
+    "location": "Strike location",
+    "country": "Iran",
+    "lat": 32.7483,
+    "lon": 44.2505,
+    "fatalities": 65,
+    "injured": 0,
+    "actors": [],
+    "source": "iranwarlive_strikes",
+    "url": "https://defense.gov",
+    "confidence": 0.86,
+    "summary": "Preemptive Strike on PMF Logistics Node at Jurf al Sakhr",
+    "metadata": {
+      "weapon": "Air Strike",
+      "target": "unknown",
+      "infrastructure": "Degradation of Iraqi Shia Militias",
+      "keywords": [
+        "iranwarlive",
+        "airstrike",
+        "air strike",
+        "high confidence"
+      ],
+      "modelScore": 0.86
+    }
+  },
+  {
+    "id": "IRW-1777867331669-0",
+    "date": "2026-05-04",
+    "time": "04:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Airstrike - Strike location",
+    "location": "Strike location",
+    "country": "Lebanon",
+    "lat": 33.27,
+    "lon": 35.2,
+    "fatalities": 41,
+    "injured": 0,
+    "actors": [
+      "Hezbollah"
+    ],
+    "source": "iranwarlive_strikes",
+    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPSGJjck82amFhWlA2S0IwcDhxMExFRS04WGVfRUJUNHpUMDBkcGF1YzlZc0hzcm5DRl95WmpNamkzTVF2TGFBY01mQWRzTDFoY1JtOFlYMV9EaFZNVWJiRUFGdXhoSHEtZzNGd2VYWTc3Sk9WOExFdUZsa1hOTHZJdXpfZkN0TmU5cm16R0RPZGFqR1JsaEFGcjVR0gGfAUFVX3lxTE43empuR1NlMGN4UG4xQmMtNHdfSTdWdlMtbzdvV0VqbG9GTHlBajJWRFMzWVV1ak5rOW90WDNKT3p3MlNMMjR4Xzh2TUZFWDZ2blJfUFRBdDlQVmRONDI0Rk5qTzMtQ3FJenk2TDVXbmctN0hFUGE1YzExQ2l1TzQ1MVhTNnM2Mkg5end0SXhNVE5NOUNXbWZaVVJtV1E4VQ?oc=5&ucbcb=1&hl=en-GB&gl=GB&ceid=GB:en",
+    "confidence": 0.86,
+    "summary": "Southern Lebanon, targeting Hezbollah infrastructure/personnel",
+    "metadata": {
+      "weapon": "Air Strike",
+      "target": "infrastructure",
+      "infrastructure": "strike report",
+      "keywords": [
+        "iranwarlive",
+        "airstrike",
+        "air strike",
+        "high confidence (multi-source)"
+      ],
+      "modelScore": 0.86
+    }
+  },
+  {
+    "id": "IRW-1777831320532-0",
+    "date": "2026-05-03",
+    "time": "18:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Airstrike - Strike location",
+    "location": "Strike location",
+    "country": "Lebanon",
+    "lat": 33.27,
+    "lon": 35.2,
+    "fatalities": 41,
+    "injured": 0,
+    "actors": [
+      "Israel"
+    ],
+    "source": "iranwarlive_strikes",
+    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPSGJjck82amFhWlA2S0IwcDhxMExFRS04WGVfRUJUNHpUMDBkcGF1YzlZc0hzcm5DRl95WmpNamkzTVF2TGFBY01mQWRzTDFoY1JtOFlYMV9EaFZNVWJiRUFGdXhoSHEtZzNGd2VYWTc3Sk9WOExFdUZsa1hOTHZJdXpfZkN0TmU5cm16R0RPZGFqR1JsaEFGcjVR0gGfAUFVX3lxTE43empuR1NlMGN4UG4xQmMtNHdfSTdWdlMtbzdvV0VqbG9GTHlBakpWRFMzWVV1ak5rOW90WDNKT3p3MlNMMjR4Xzh2TUZFWDZ2blJfUFRBdDlQVmRONDI0Rk5qTzMtQ3FJenk2TDVXbmctN0hFUGE1YzExQ2l1TzQ1MVhTNnM2Mkg5end0SXhNVE5NOUNXbUZaVVJtV1E4VQ?oc=5&hl=en-US&gl=US&ceid=US:en",
+    "confidence": 0.74,
+    "summary": "Israeli air strikes on Lebanon",
+    "metadata": {
+      "weapon": "Air Strike",
+      "target": "unknown",
+      "infrastructure": "strike report",
+      "keywords": [
+        "iranwarlive",
+        "airstrike",
+        "air strike",
+        "news wire"
+      ],
+      "modelScore": 0.74
+    }
+  },
+  {
+    "id": "conflict_9b52544091c2c53c6514b447",
+    "date": "2026-03-08",
+    "time": "00:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Armed clash",
+    "location": "Nabi Chit",
+    "country": "Lebanon",
+    "lat": 33.9606,
+    "lon": 36.1078,
+    "fatalities": 41,
+    "injured": 0,
+    "actors": [
+      "Military Forces of Israel (2022-)",
+      "Hezbollah"
+    ],
+    "source": "gdeltcloud_events_israel_2026",
+    "url": "https://gdeltcloud.com/stories/armed-clash-590e6734",
+    "confidence": 0.008,
+    "summary": "On 8 March 2026, Israeli special forces conducted an airborne raid in Nabi Chit in the eastern Bekaa Valley, reportedly seeking the remains of a missing Israeli airman. Local residents and Hezbollah members reportedly fought back during the operation. Lebanese health authorities said at least 41 people were killed and 40 injured; the dead reportedly included Hezbollah members, three Lebanese soldiers, and civilians i...",
+    "metadata": {
+      "weapon": "Armed clash",
+      "target": "unknown",
+      "infrastructure": "Battles",
+      "keywords": [
+        "gdeltcloud",
+        "airstrike",
+        "battles",
+        "armed clash"
+      ],
+      "modelScore": 0.008
+    }
+  },
+  {
+    "id": "conflict_9b52544091c2c53c6514b447",
+    "date": "2026-03-08",
+    "time": "00:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Armed clash",
+    "location": "Nabi Chit",
+    "country": "Lebanon",
+    "lat": 33.9606,
+    "lon": 36.1078,
+    "fatalities": 41,
+    "injured": 0,
+    "actors": [
+      "Military Forces of Israel (2022-)",
+      "Hezbollah"
+    ],
+    "source": "gdeltcloud_events_lebanon_2026",
+    "url": "https://gdeltcloud.com/stories/armed-clash-590e6734",
+    "confidence": 0.008,
+    "summary": "On 8 March 2026, Israeli special forces conducted an airborne raid in Nabi Chit in the eastern Bekaa Valley, reportedly seeking the remains of a missing Israeli airman. Local residents and Hezbollah members reportedly fought back during the operation. Lebanese health authorities said at least 41 people were killed and 40 injured; the dead reportedly included Hezbollah members, three Lebanese soldiers, and civilians i...",
+    "metadata": {
+      "weapon": "Armed clash",
+      "target": "unknown",
+      "infrastructure": "Battles",
+      "keywords": [
+        "gdeltcloud",
+        "airstrike",
+        "battles",
+        "armed clash"
+      ],
+      "modelScore": 0.008
+    }
+  },
+  {
+    "id": "conflict_d231ceaaac735fe50bbfcc97",
+    "date": "2026-03-07",
+    "time": "00:00Z",
+    "type": "GROUND",
+    "severity": "CRITICAL",
+    "title": "Armed clash",
+    "location": "Nabi Chit",
+    "country": "Lebanon",
+    "lat": 33.9667,
+    "lon": 36.1167,
+    "fatalities": 41,
+    "injured": 0,
+    "actors": [
+      "Israel Defense Forces",
+      "Hezbollah"
+    ],
+    "source": "gdeltcloud_events_israel_2026",
+    "url": "https://gdeltcloud.com/stories/armed-clash-d9bcf079",
+    "confidence": 0.007,
+    "summary": "On the night of 6-7 March 2026, Israeli special forces carried out a raid in Nabi Chit, in Lebanon's Bekaa Valley, reportedly to recover the remains of missing pilot Ron Arad from a cemetery. The operation was conducted under heavy fire in a Hezbollah stronghold and failed to recover the body. The article reports that 41 people were killed in the operation, but does not clearly disaggregate combatant and civilian fat...",
+    "metadata": {
+      "weapon": "Armed clash",
+      "target": "unknown",
+      "infrastructure": "Battles",
+      "keywords": [
+        "gdeltcloud",
+        "ground",
+        "battles",
+        "armed clash"
+      ],
+      "modelScore": 0.007
+    }
+  },
+  {
+    "id": "conflict_d231ceaaac735fe50bbfcc97",
+    "date": "2026-03-07",
+    "time": "00:00Z",
+    "type": "GROUND",
+    "severity": "CRITICAL",
+    "title": "Armed clash",
+    "location": "Nabi Chit",
+    "country": "Lebanon",
+    "lat": 33.9667,
+    "lon": 36.1167,
+    "fatalities": 41,
+    "injured": 0,
+    "actors": [
+      "Israel Defense Forces",
+      "Hezbollah"
+    ],
+    "source": "gdeltcloud_events_lebanon_2026",
+    "url": "https://gdeltcloud.com/stories/armed-clash-d9bcf079",
+    "confidence": 0.007,
+    "summary": "On the night of 6-7 March 2026, Israeli special forces carried out a raid in Nabi Chit, in Lebanon's Bekaa Valley, reportedly to recover the remains of missing pilot Ron Arad from a cemetery. The operation was conducted under heavy fire in a Hezbollah stronghold and failed to recover the body. The article reports that 41 people were killed in the operation, but does not clearly disaggregate combatant and civilian fat...",
+    "metadata": {
+      "weapon": "Armed clash",
+      "target": "unknown",
+      "infrastructure": "Battles",
+      "keywords": [
+        "gdeltcloud",
+        "ground",
+        "battles",
+        "armed clash"
+      ],
+      "modelScore": 0.007
+    }
+  },
+  {
+    "id": "IRW-20260228-1002",
+    "date": "2026-02-28",
+    "time": "07:30Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Airstrike - Tehran",
+    "location": "Tehran",
+    "country": "Israel",
+    "lat": 35.6892,
+    "lon": 51.389,
+    "fatalities": 40,
+    "injured": 0,
+    "actors": [
+      "Israel",
+      "US",
+      "Iran"
+    ],
+    "source": "iranwarlive_strikes",
+    "url": "https://en.majalla.com/node/329961/politics/israel%E2%80%99s-long-penetration-war-pays",
+    "confidence": 0.86,
+    "summary": "Israeli and US precision munitions strike the Pasteur Street compound in Tehran, assassinating Iranian Supreme Leader Ali Khamenei and senior officials.",
+    "metadata": {
+      "weapon": "Air Strike",
+      "target": "compound",
+      "infrastructure": "Strategic decapitation strike aimed at crippling the Iranian centralized command structure.",
+      "keywords": [
+        "iranwarlive",
+        "airstrike",
+        "air strike",
+        "high confidence (multi-source)"
+      ],
+      "modelScore": 0.86
+    }
+  },
+  {
+    "id": "conflict_841f72af",
+    "date": "2026-04-02",
+    "time": "00:00Z",
+    "type": "DRONE",
+    "severity": "CRITICAL",
+    "title": "Israeli army says it killed over 40 Hezbollah militants in south Lebanon",
+    "location": "South Lebanon",
+    "country": "Lebanon",
+    "lat": 33.273,
+    "lon": 35.203,
+    "fatalities": 40,
+    "injured": 0,
+    "actors": [
+      "Israel Defense Forces",
+      "Hezbollah"
+    ],
+    "source": "gdeltcloud_events_israel_2026",
+    "url": "https://gdeltcloud.com/stories/israeli-army-says-it-killed-over-40-hezbollah-militants-in-s-93a049c5",
+    "confidence": 0.007,
+    "summary": "On 2026-04-02, the Israel Defense Forces said they killed more than 40 Hezbollah militants in air, maritime, and ground attacks in southern Lebanon over the previous 24 hours. The military also said it struck dozens of Hezbollah infrastructure sites, including headquarters, weapons depots, launch platforms, and anti-tank missile positions. The article does not provide independently confirmed casualty figures, so the ...",
+    "metadata": {
+      "weapon": "Air/drone strike",
+      "target": "unknown",
+      "infrastructure": "Explosions/Remote violence",
+      "keywords": [
+        "gdeltcloud",
+        "drone",
+        "explosions/remote violence",
+        "air/drone strike"
+      ],
+      "modelScore": 0.007
+    }
+  },
+  {
+    "id": "conflict_841f72af",
+    "date": "2026-04-02",
+    "time": "00:00Z",
+    "type": "DRONE",
+    "severity": "CRITICAL",
+    "title": "Israeli army says it killed over 40 Hezbollah militants in south Lebanon",
+    "location": "South Lebanon",
+    "country": "Lebanon",
+    "lat": 33.273,
+    "lon": 35.203,
+    "fatalities": 40,
+    "injured": 0,
+    "actors": [
+      "Israel Defense Forces",
+      "Hezbollah"
+    ],
+    "source": "gdeltcloud_events_lebanon_2026",
+    "url": "https://gdeltcloud.com/stories/israeli-army-says-it-killed-over-40-hezbollah-militants-in-s-93a049c5",
+    "confidence": 0.007,
+    "summary": "On 2026-04-02, the Israel Defense Forces said they killed more than 40 Hezbollah militants in air, maritime, and ground attacks in southern Lebanon over the previous 24 hours. The military also said it struck dozens of Hezbollah infrastructure sites, including headquarters, weapons depots, launch platforms, and anti-tank missile positions. The article does not provide independently confirmed casualty figures, so the ...",
+    "metadata": {
+      "weapon": "Air/drone strike",
+      "target": "unknown",
+      "infrastructure": "Explosions/Remote violence",
+      "keywords": [
+        "gdeltcloud",
+        "drone",
+        "explosions/remote violence",
+        "air/drone strike"
+      ],
+      "modelScore": 0.007
+    }
+  },
+  {
+    "id": "conflict_2dc73d6c2b327bf13e7cf028",
+    "date": "2026-03-07",
+    "time": "00:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Armed clash",
+    "location": "Nabi Chit",
+    "country": "Lebanon",
+    "lat": 33.955,
+    "lon": 36.109,
+    "fatalities": 40,
+    "injured": 0,
+    "actors": [
+      "Military Forces of Israel (2022-)",
+      "Hezbollah"
+    ],
+    "source": "gdeltcloud_events_israel_2026",
+    "url": "https://gdeltcloud.com/stories/armed-clash-f12a519c",
+    "confidence": 0.007,
+    "summary": "On 7 March 2026, Israeli special forces carried out a helicopter-borne raid near Nabi Chit in the Bekaa Valley while Israeli aircraft struck the area to support the operation. During the raid, Israeli forces clashed with Hezbollah fighters near a cemetery before withdrawing under air cover. Reports state that about 40 Hezbollah fighters were killed; the operation was aimed at searching for clues or remains connected ...",
+    "metadata": {
+      "weapon": "Armed clash",
+      "target": "unknown",
+      "infrastructure": "Battles",
+      "keywords": [
+        "gdeltcloud",
+        "airstrike",
+        "battles",
+        "armed clash"
+      ],
+      "modelScore": 0.007
+    }
+  },
+  {
+    "id": "conflict_2dc73d6c2b327bf13e7cf028",
+    "date": "2026-03-07",
+    "time": "00:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Armed clash",
+    "location": "Nabi Chit",
+    "country": "Lebanon",
+    "lat": 33.955,
+    "lon": 36.109,
+    "fatalities": 40,
+    "injured": 0,
+    "actors": [
+      "Military Forces of Israel (2022-)",
+      "Hezbollah"
+    ],
+    "source": "gdeltcloud_events_lebanon_2026",
+    "url": "https://gdeltcloud.com/stories/armed-clash-f12a519c",
+    "confidence": 0.007,
+    "summary": "On 7 March 2026, Israeli special forces carried out a helicopter-borne raid near Nabi Chit in the Bekaa Valley while Israeli aircraft struck the area to support the operation. During the raid, Israeli forces clashed with Hezbollah fighters near a cemetery before withdrawing under air cover. Reports state that about 40 Hezbollah fighters were killed; the operation was aimed at searching for clues or remains connected ...",
+    "metadata": {
+      "weapon": "Armed clash",
+      "target": "unknown",
+      "infrastructure": "Battles",
+      "keywords": [
+        "gdeltcloud",
+        "airstrike",
+        "battles",
+        "armed clash"
+      ],
+      "modelScore": 0.007
+    }
+  },
+  {
+    "id": "IRW-1778364064142-0",
+    "date": "2026-05-09",
+    "time": "22:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Airstrike - Beirut",
+    "location": "Beirut",
+    "country": "Lebanon",
+    "lat": 33.89,
+    "lon": 35.5,
+    "fatalities": 39,
+    "injured": 0,
+    "actors": [
+      "Hezbollah"
+    ],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.bbc.com/news/articles/cn4pjegk358o?at_medium=RSS&at_campaign=rss",
+    "confidence": 0.74,
+    "summary": "Hezbollah targets/personnel",
+    "metadata": {
+      "weapon": "Air Strike",
+      "target": "unknown",
+      "infrastructure": "strike report",
+      "keywords": [
+        "iranwarlive",
+        "airstrike",
+        "air strike",
+        "news wire"
+      ],
+      "modelScore": 0.74
+    }
+  },
+  {
+    "id": "IRW-1779940897748-0",
+    "date": "2026-05-28",
+    "time": "04:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Airstrike - Beirut",
+    "location": "Beirut",
+    "country": "Lebanon",
+    "lat": 33.89,
+    "lon": 35.5,
+    "fatalities": 31,
+    "injured": 0,
+    "actors": [
+      "Hezbollah"
+    ],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.theguardian.com/commentisfree/2026/may/27/the-guardian-view-on-lebanons-suffering-the-ceasefire-didn’t-stop-israeli-attacks-now-they’re-intensifying-again",
+    "confidence": 0.74,
+    "summary": "Hezbollah infrastructure sites and fighters across Lebanon",
+    "metadata": {
+      "weapon": "Air Strike",
+      "target": "infrastructure",
+      "infrastructure": "strike report",
+      "keywords": [
+        "iranwarlive",
+        "airstrike",
+        "air strike",
+        "news wire"
+      ],
+      "modelScore": 0.74
+    }
+  },
+  {
+    "id": "IRW-1779976928204-0",
+    "date": "2026-05-28",
+    "time": "14:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Airstrike - Lebanon",
+    "location": "Lebanon",
+    "country": "Lebanon",
+    "lat": 33.27,
+    "lon": 35.2,
+    "fatalities": 31,
+    "injured": 0,
+    "actors": [
+      "Hezbollah"
+    ],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.theguardian.com/commentisfree/2026/may/27/the-guardian-view-on-lebanons-suffering-the-ceasefire-didn-t-stop-israeli-attacks-now-they-re-intensifying-again",
+    "confidence": 0.74,
+    "summary": "Hezbollah infrastructure sites and fighters in Lebanon",
+    "metadata": {
+      "weapon": "Air Strike",
+      "target": "infrastructure",
+      "infrastructure": "strike report",
+      "keywords": [
+        "iranwarlive",
+        "airstrike",
+        "air strike",
+        "news wire"
+      ],
+      "modelScore": 0.74
+    }
+  },
+  {
+    "id": "IRW-1779919298472-1",
+    "date": "2026-05-27",
+    "time": "22:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Airstrike - Lebanon",
+    "location": "Lebanon",
+    "country": "Lebanon",
+    "lat": 33.89,
+    "lon": 35.5,
+    "fatalities": 31,
+    "injured": 0,
+    "actors": [],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.theguardian.com/commentisfree/2026/may/27/the-guardian-view-on-lebanons-suffering-the-ceasefire-didnt-stop-israeli-attacks-now-theyre-intensifying-again",
+    "confidence": 0.74,
+    "summary": "Unspecified targets in Lebanon, killing 31 people",
+    "metadata": {
+      "weapon": "Air Strike",
+      "target": "unknown",
+      "infrastructure": "strike report",
+      "keywords": [
+        "iranwarlive",
+        "airstrike",
+        "air strike",
+        "news wire"
+      ],
+      "modelScore": 0.74
+    }
+  },
+  {
+    "id": "conflict_9ded99d5c57f4df418fa709f",
+    "date": "2026-03-12",
+    "time": "00:00Z",
+    "type": "DRONE",
+    "severity": "CRITICAL",
+    "title": "Air/drone strike",
+    "location": "Akashat",
+    "country": "Iraq",
+    "lat": 34.4847,
+    "lon": 40.9627,
+    "fatalities": 30,
+    "injured": 0,
+    "actors": [
+      "Unidentified Armed Group (Iraq)",
+      "Popular Mobilization Forces"
+    ],
+    "source": "gdeltcloud_events_iraq_2026",
+    "url": "https://gdeltcloud.com/stories/airdrone-strike-39b663b2",
+    "confidence": 0.009,
+    "summary": "On 2026-03-12, airstrikes hit the headquarters of the Popular Mobilization Forces in Akashat, western Anbar Province, Iraq. Iraqi media reported at least 30 killed and dozens wounded, and said at least three PMF 19th Brigade sites were targeted. The attacker was not identified in the reporting.",
+    "metadata": {
+      "weapon": "Air/drone strike",
+      "target": "unknown",
+      "infrastructure": "Explosions/Remote violence",
+      "keywords": [
+        "gdeltcloud",
+        "drone",
+        "explosions/remote violence",
+        "air/drone strike"
+      ],
+      "modelScore": 0.009
+    }
+  },
+  {
+    "id": "conflict_39e0bffd42847d658aac2746",
+    "date": "2026-03-12",
+    "time": "00:00Z",
+    "type": "DRONE",
+    "severity": "CRITICAL",
+    "title": "Air/drone strike",
+    "location": "Akashat / al-Qaim area",
+    "country": "Iraq",
+    "lat": 34.246,
+    "lon": 41.682,
+    "fatalities": 30,
+    "injured": 0,
+    "actors": [
+      "Unidentified Armed Group (Iraq)",
+      "Popular Mobilization Forces"
+    ],
+    "source": "gdeltcloud_events_iraq_2026",
+    "url": "https://gdeltcloud.com/stories/airdrone-strike-3b3d969e",
+    "confidence": 0.008,
+    "summary": "On 2026-03-12, an airstrike reportedly hit positions belonging to Iraq’s Popular Mobilization Forces between Akashat and al-Qaim in Anbar province. The report said around 30 people were killed and dozens wounded. The article did not identify the attacker.",
+    "metadata": {
+      "weapon": "Air/drone strike",
+      "target": "unknown",
+      "infrastructure": "Explosions/Remote violence",
+      "keywords": [
+        "gdeltcloud",
+        "drone",
+        "explosions/remote violence",
+        "air/drone strike"
+      ],
+      "modelScore": 0.008
+    }
+  },
+  {
+    "id": "conflict_293471c0",
+    "date": "2026-04-02",
+    "time": "00:00Z",
+    "type": "DRONE",
+    "severity": "CRITICAL",
+    "title": "Israeli airstrikes kill at least 27 in Lebanon; PM says no end in sight",
+    "location": "Nabatieh",
+    "country": "Lebanon",
+    "lat": 33.3787,
+    "lon": 35.4839,
+    "fatalities": 27,
+    "injured": 0,
+    "actors": [
+      "Israel Defense Forces",
+      "Hezbollah"
+    ],
+    "source": "gdeltcloud_events_israel_2026",
+    "url": "https://gdeltcloud.com/stories/israeli-airstrikes-kill-at-least-27-in-lebanon-pm-says-no-en-ce9d42df",
+    "confidence": 0.008,
+    "summary": "On 2026-04-02, Israeli forces carried out airstrikes and ground attacks across Lebanon, according to the article. Lebanon’s Health Ministry said 27 people were killed and 105 wounded in the last 24 hours, with a family of four killed in a Nabatieh airstrike. The article also says the Israeli military claimed to have killed Hezbollah fighters during ground operations.",
+    "metadata": {
+      "weapon": "Air/drone strike",
+      "target": "unknown",
+      "infrastructure": "Battles",
+      "keywords": [
+        "gdeltcloud",
+        "drone",
+        "battles",
+        "air/drone strike"
+      ],
+      "modelScore": 0.008
+    }
+  },
+  {
+    "id": "conflict_293471c0",
+    "date": "2026-04-02",
+    "time": "00:00Z",
+    "type": "DRONE",
+    "severity": "CRITICAL",
+    "title": "Israeli airstrikes kill at least 27 in Lebanon; PM says no end in sight",
+    "location": "Nabatieh",
+    "country": "Lebanon",
+    "lat": 33.3787,
+    "lon": 35.4839,
+    "fatalities": 27,
+    "injured": 0,
+    "actors": [
+      "Israel Defense Forces",
+      "Hezbollah"
+    ],
+    "source": "gdeltcloud_events_lebanon_2026",
+    "url": "https://gdeltcloud.com/stories/israeli-airstrikes-kill-at-least-27-in-lebanon-pm-says-no-en-ce9d42df",
+    "confidence": 0.008,
+    "summary": "On 2026-04-02, Israeli forces carried out airstrikes and ground attacks across Lebanon, according to the article. Lebanon’s Health Ministry said 27 people were killed and 105 wounded in the last 24 hours, with a family of four killed in a Nabatieh airstrike. The article also says the Israeli military claimed to have killed Hezbollah fighters during ground operations.",
+    "metadata": {
+      "weapon": "Air/drone strike",
+      "target": "unknown",
+      "infrastructure": "Battles",
+      "keywords": [
+        "gdeltcloud",
+        "drone",
+        "battles",
+        "air/drone strike"
+      ],
+      "modelScore": 0.008
+    }
+  },
+  {
+    "id": "conflict_b838becd4b9363213abf0c59",
+    "date": "2026-03-27",
+    "time": "00:00Z",
+    "type": "MISSILE",
+    "severity": "CRITICAL",
+    "title": "Shelling/artillery/missile attack",
+    "location": "Isfahan",
+    "country": "Iran",
+    "lat": 32.6546,
+    "lon": 51.668,
+    "fatalities": 26,
+    "injured": 0,
+    "actors": [
+      "United States",
+      "Civilians"
+    ],
+    "source": "gdeltcloud_events_iran_2026",
+    "url": "https://gdeltcloud.com/stories/shellingartillerymissile-attack-f05aed7d",
+    "confidence": 0.008,
+    "summary": "On 2026-03-27, missiles struck a purely civilian area in Isfahan, Iran, reportedly as part of a broader US and Israeli air and missile operation. Iranian state television and local media said at least 26 people were killed and rescue operations were ongoing. The report says the target area was entirely civilian residential land.",
+    "metadata": {
+      "weapon": "Shelling/artillery/missile attack",
+      "target": "Civilians targeted",
+      "infrastructure": "Explosions/Remote violence",
+      "keywords": [
+        "gdeltcloud",
+        "missile",
+        "explosions/remote violence",
+        "shelling/artillery/missile attack"
+      ],
+      "modelScore": 0.008
+    }
+  },
+  {
+    "id": "IRW-1773410456625-1",
+    "date": "2026-03-13",
+    "time": "14:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Airstrike - Beirut",
+    "location": "Beirut",
+    "country": "Lebanon",
+    "lat": 33.89,
+    "lon": 35.5,
+    "fatalities": 25,
+    "injured": 0,
+    "actors": [],
+    "source": "iranwarlive_strikes",
+    "url": "https://www.aljazeera.com/news/2026/3/13/israel-attacks-beirut-in-targeted-killing-attempt-kills-several-in-south?traffic_source=rss",
+    "confidence": 0.6,
+    "summary": "Areas in Beirut, south, east Lebanon",
+    "metadata": {
+      "weapon": "Air Strikes",
+      "target": "unknown",
+      "infrastructure": "strike report",
+      "keywords": [
+        "iranwarlive",
+        "airstrike",
+        "air strikes",
+        "osint"
+      ],
+      "modelScore": 0.6
+    }
+  },
+  {
+    "id": "conflict_fb02a0db",
+    "date": "2026-04-10",
+    "time": "00:00Z",
+    "type": "DRONE",
+    "severity": "CRITICAL",
+    "title": "Israeli strikes kill 25+ including 12 Lebanese state security in Nabatieh",
+    "location": "Nabatieh",
+    "country": "Lebanon",
+    "lat": 33.3809,
+    "lon": 35.4839,
+    "fatalities": 25,
+    "injured": 0,
+    "actors": [
+      "Israel",
+      "Civilians"
+    ],
+    "source": "gdeltcloud_events_israel_2026",
+    "url": "https://gdeltcloud.com/stories/israeli-strikes-kill-25-including-12-lebanese-state-security-cafb4971",
+    "confidence": 0.009,
+    "summary": "On 2026-04-10, Israeli strikes hit Nabatieh in southern Lebanon, including a building opposite the local government headquarters housing State Security, shops in the town centre, and sites near Kfarjouz. More than 25 people were killed, including 12 Lebanese State Security officers; the remaining victims were reported to be civilians. The strikes were described as among the most intense attacks on the town since figh...",
+    "metadata": {
+      "weapon": "Air/drone strike",
+      "target": "Civilians targeted",
+      "infrastructure": "Explosions/Remote violence",
+      "keywords": [
+        "gdeltcloud",
+        "drone",
+        "explosions/remote violence",
+        "air/drone strike"
+      ],
+      "modelScore": 0.009
+    }
+  },
+  {
+    "id": "conflict_fb02a0db",
+    "date": "2026-04-10",
+    "time": "00:00Z",
+    "type": "DRONE",
+    "severity": "CRITICAL",
+    "title": "Israeli strikes kill 25+ including 12 Lebanese state security in Nabatieh",
+    "location": "Nabatieh",
+    "country": "Lebanon",
+    "lat": 33.3809,
+    "lon": 35.4839,
+    "fatalities": 25,
+    "injured": 0,
+    "actors": [
+      "Israel",
+      "Civilians"
+    ],
+    "source": "gdeltcloud_events_lebanon_2026",
+    "url": "https://gdeltcloud.com/stories/israeli-strikes-kill-25-including-12-lebanese-state-security-cafb4971",
+    "confidence": 0.009,
+    "summary": "On 2026-04-10, Israeli strikes hit Nabatieh in southern Lebanon, including a building opposite the local government headquarters housing State Security, shops in the town centre, and sites near Kfarjouz. More than 25 people were killed, including 12 Lebanese State Security officers; the remaining victims were reported to be civilians. The strikes were described as among the most intense attacks on the town since figh...",
+    "metadata": {
+      "weapon": "Air/drone strike",
+      "target": "Civilians targeted",
+      "infrastructure": "Explosions/Remote violence",
+      "keywords": [
+        "gdeltcloud",
+        "drone",
+        "explosions/remote violence",
+        "air/drone strike"
+      ],
+      "modelScore": 0.009
+    }
+  },
+  {
+    "id": "conflictsapp-strike-sa-2026-04-10-vance-islamabad-track",
+    "date": "2026-04-10",
+    "time": "09:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Vance leads Islamabad talks with Iran",
+    "location": "Strike target",
+    "country": "Iran",
+    "lat": 33.6,
+    "lon": 73.1,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "US"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.84,
+    "summary": "The White House confirmed that Vice President JD Vance would lead the US negotiating team in direct talks with Iran in Islamabad on April 10. The announcement came as the ceasefire framework showed signs of strain with Iran accusing the US of violating three clauses of the agreed framework.",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Strike target",
+      "infrastructure": "STRIKE",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "us",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.84
+    }
+  },
+  {
+    "id": "conflictsapp-strike-mt-2026-04-10-hormuz-still-closed",
+    "date": "2026-04-10",
+    "time": "10:30Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "White House demands Hormuz reopen",
+    "location": "Strike target",
+    "country": "Iran",
+    "lat": 26.5,
+    "lon": 56.3,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "IRAN"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.84,
+    "summary": "The White House issued a direct demand that Iran immediately reopen the Strait of Hormuz, warning that failure to comply would have serious consequences for the ceasefire negotiations. The demand came 24 hours after Iranian state media announced the second closure of the strategic waterway.",
+    "metadata": {
+      "weapon": "NAVAL_STRIKE",
+      "target": "Strike target",
+      "infrastructure": "STRIKE",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "iran",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.84
+    }
+  },
+  {
+    "id": "conflictsapp-strike-sa-2026-04-09-beirut-central-strikes",
+    "date": "2026-04-09",
+    "time": "10:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "182 killed in central Beirut strikes",
+    "location": "Beirut",
+    "country": "Lebanon",
+    "lat": 33.8569,
+    "lon": 35.4975,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.84,
+    "summary": "Lebanon's Health Ministry confirmed 182 people were killed in Israeli airstrikes on central Beirut, marking the highest single-day death toll in the Israel-Hezbollah war. The strikes targeted the Basta neighborhood and other central districts. Among the dead were two Lebanese journalists from Al Jazeera and other media organizations covering the conflict.",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Beirut",
+      "infrastructure": "STRIKE",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.84
+    }
+  },
+  {
+    "id": "conflictsapp-strike-mt-2026-04-09-hormuz-closed-second-time",
+    "date": "2026-04-09",
+    "time": "14:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Iran closes Hormuz for second time",
+    "location": "Strike target",
+    "country": "Lebanon",
+    "lat": 26.5,
+    "lon": 56.3,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "IRAN"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.84,
+    "summary": "Iran closed the Strait of Hormuz for a second time following Israeli strikes on Lebanon, threatening the fragile ceasefire framework hours after the US-Iran agreement was announced. Iranian state media reported the closure was a proportional response to Israel's violation of the ceasefire's geographic scope.",
+    "metadata": {
+      "weapon": "NAVAL_STRIKE",
+      "target": "Strike target",
+      "infrastructure": "STRIKE",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "iran",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.84
+    }
+  },
+  {
+    "id": "conflictsapp-strike-sa-2026-04-08-hormuz-ceasefire-opens",
+    "date": "2026-04-08",
+    "time": "00:30Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Hormuz ceasefire opens shipping lane",
+    "location": "Strike target",
+    "country": "Iran",
+    "lat": 26.5,
+    "lon": 56.3,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "US"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.84,
+    "summary": "Trump announced a US-Iran 2-week ceasefire effective immediately. Iran agreed to reopen the Strait of Hormuz under monitoring. Iran's Supreme National Security Council confirmed acceptance. Talks will begin in Islamabad on Friday. The announcement came minutes before Trump's 8PM ET deadline.",
+    "metadata": {
+      "weapon": "NAVAL_STRIKE",
+      "target": "Strike target",
+      "infrastructure": "STRIKE",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "us",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.84
+    }
+  },
+  {
+    "id": "conflictsapp-strike-sa-2026-04-08-idf-largest-lebanon-strikes",
+    "date": "2026-04-08",
+    "time": "09:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF largest coordinated Lebanon strikes",
+    "location": "Beirut",
+    "country": "Lebanon",
+    "lat": 33.8569,
+    "lon": 35.4975,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.84,
+    "summary": "The Israeli Air Force conducted its largest coordinated strike campaign against Hezbollah targets in Lebanon since the start of the war. IDF struck Beirut's southern suburbs, the Bekaa Valley, and southern Lebanon simultaneously. Lebanese Ministry of Health reported 14 killed and hundreds wounded in initial reports, with later tallies reaching 300+ casualties. The strikes came hours after Netanyahu confirmed the Iran...",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Beirut",
+      "infrastructure": "STRIKE",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.84
+    }
+  },
+  {
+    "id": "conflictsapp-target-t-2026-04-07-tehran-synagogue-d39-001",
+    "date": "2026-04-07",
+    "time": "03:30Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Synagogue — Tehran",
+    "location": "Synagogue — Tehran",
+    "country": "Israel",
+    "lat": 35.6892,
+    "lon": 51.389,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "USIL"
+    ],
+    "source": "conflictsapp_map_targets",
+    "url": null,
+    "confidence": 0.82,
+    "summary": "A synagogue in Tehran was 'completely destroyed' in a US-Israeli strike overnight April 7, prompting international outrage. Reports indicated 15 people were killed across Iran overnight as part of a sustained wave of attacks. This marked the first confirmed strike on a religious/civilian cultural site in Tehran during the conflict.",
+    "metadata": {
+      "weapon": "COMMAND",
+      "target": "Synagogue — Tehran",
+      "infrastructure": "iran-israel-war",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "usil",
+        "destroyed",
+        "iran-israel-war"
+      ],
+      "modelScore": 0.82
+    }
+  },
+  {
+    "id": "conflictsapp-target-t-alba-bahrain-d29-001",
+    "date": "2026-03-28",
+    "time": "06:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Alba — Aluminium Bahrain industrial complex",
+    "location": "Alba — Aluminium Bahrain industrial complex",
+    "country": "Israel",
+    "lat": 26.19,
+    "lon": 50.55,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "IRAN"
+    ],
+    "source": "conflictsapp_map_targets",
+    "url": null,
+    "confidence": 0.82,
+    "summary": "Aluminium Bahrain (Alba) confirmed its facilities were targeted in an Iranian attack, with two people mildly injured. The IRGC explicitly stated it targeted both Alba (Bahrain) and Emirates Global Aluminium (UAE) in retaliation for US-Israeli strikes on two Iranian steel plants. Damage assessment ongoing. Alba is one of the world's largest aluminium smelters.",
+    "metadata": {
+      "weapon": "INFRASTRUCTURE",
+      "target": "Alba — Aluminium Bahrain industrial complex",
+      "infrastructure": "Infrastructure",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "iran",
+        "damaged",
+        "infrastructure"
+      ],
+      "modelScore": 0.82
+    }
+  },
+  {
+    "id": "conflictsapp-target-t-ega-al-taweelah-abu-dhabi-d29-001",
+    "date": "2026-03-28",
+    "time": "06:00Z",
+    "type": "GROUND",
+    "severity": "CRITICAL",
+    "title": "EGA Al Taweelah Aluminium Complex, KEZAD",
+    "location": "EGA Al Taweelah Aluminium Complex, KEZAD",
+    "country": "Israel",
+    "lat": 24.43,
+    "lon": 54.55,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "IRAN"
+    ],
+    "source": "conflictsapp_map_targets",
+    "url": null,
+    "confidence": 0.82,
+    "summary": "Iran struck the UAE's Khalifa Economic Zone (KEZAD) with cruise missiles, BMs, and drones — hitting Emirates Global Aluminium's Al Taweelah complex (significant damage, multiple injuries) and causing 3 fires and 6 civilian injuries. The IRGC explicitly stated both EGA (UAE) and Alba (Bahrain) were targeted as deliberate retaliation for US-Israeli strikes on two Iranian steel plants (Khuzestan + Mobarakeh). Iran's Dub...",
+    "metadata": {
+      "weapon": "INFRASTRUCTURE",
+      "target": "EGA Al Taweelah Aluminium Complex, KEZAD",
+      "infrastructure": "Infrastructure",
+      "keywords": [
+        "conflictsapp",
+        "ground",
+        "iran",
+        "damaged",
+        "infrastructure"
+      ],
+      "modelScore": 0.82
+    }
+  },
+  {
+    "id": "conflictsapp-target-t-barzani-residence-duhok-d29-001",
+    "date": "2026-03-28",
+    "time": "17:15Z",
+    "type": "DRONE",
+    "severity": "CRITICAL",
+    "title": "KRG President Barzani Residence, Duhok",
+    "location": "KRG President Barzani Residence, Duhok",
+    "country": "Iraq",
+    "lat": 36.87,
+    "lon": 42.97,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "PMF"
+    ],
+    "source": "conflictsapp_map_targets",
+    "url": null,
+    "confidence": 0.82,
+    "summary": "The residence of Nechirvan Barzani, president of Iraq's semi-autonomous Kurdistan Region, was struck by a drone in Duhok, causing damage but no casualties. The home was empty at the time. No group claimed responsibility. Iraqi PM al-Sudani condemned the 'heinous act'; a joint federal-KRG security investigation launched.",
+    "metadata": {
+      "weapon": "COMMAND",
+      "target": "KRG President Barzani Residence, Duhok",
+      "infrastructure": "Political Target",
+      "keywords": [
+        "conflictsapp",
+        "drone",
+        "pmf",
+        "damaged",
+        "political target"
+      ],
+      "modelScore": 0.82
+    }
+  },
+  {
+    "id": "conflictsapp-target-t-pmf-kirkuk-strike-d29-001",
+    "date": "2026-03-28",
+    "time": "17:45Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "PMF position, Kirkuk area",
+    "location": "PMF position, Kirkuk area",
+    "country": "Israel",
+    "lat": 35.47,
+    "lon": 44.39,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "USIL"
+    ],
+    "source": "conflictsapp_map_targets",
+    "url": null,
+    "confidence": 0.82,
+    "summary": "A strike in the Kirkuk area of northern Iraq killed three Popular Mobilization Forces fighters and wounded four others. The PMF (Hashed al-Shaabi) blamed the US and Israel, calling it a 'treacherous Zionist-American attack.' Neither the IDF nor US CENTCOM immediately claimed responsibility.",
+    "metadata": {
+      "weapon": "ARMY_BASE",
+      "target": "PMF position, Kirkuk area",
+      "infrastructure": "PMF",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "usil",
+        "damaged",
+        "pmf"
+      ],
+      "modelScore": 0.82
+    }
+  },
+  {
+    "id": "conflictsapp-target-t-isfahan-underwater-research-centre-d26-001",
+    "date": "2026-03-25",
+    "time": "12:07Z",
+    "type": "MARITIME",
+    "severity": "CRITICAL",
+    "title": "Underwater Research Centre — Isfahan, Iran",
+    "location": "Underwater Research Centre — Isfahan, Iran",
+    "country": "Israel",
+    "lat": 32.53,
+    "lon": 51.69,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "IRAN"
+    ],
+    "source": "conflictsapp_map_targets",
+    "url": null,
+    "confidence": 0.82,
+    "summary": "The IDF, guided by Israeli navy intelligence, struck the Iranian Underwater Research Centre in Isfahan — described as the only facility in Iran responsible for the design and development of submarines and support systems for the Iranian navy. The IDF confirmed the centre also produced various types of unmanned naval vessels. The strike is a direct retaliation for Iran's 101-missile attack on the USS Abraham Lincoln. ...",
+    "metadata": {
+      "weapon": "NAVAL_BASE",
+      "target": "Underwater Research Centre — Isfahan, Iran",
+      "infrastructure": "naval-research",
+      "keywords": [
+        "conflictsapp",
+        "maritime",
+        "iran",
+        "destroyed",
+        "naval-research"
+      ],
+      "modelScore": 0.82
+    }
+  },
+  {
+    "id": "conflictsapp-target-t-2026-03-23-dallafa-bridge-lebanon-d24-001",
+    "date": "2026-03-23",
+    "time": "13:00Z",
+    "type": "GROUND",
+    "severity": "CRITICAL",
+    "title": "Dallafa Bridge",
+    "location": "Dallafa Bridge",
+    "country": "Lebanon",
+    "lat": 33.4,
+    "lon": 35.5,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_targets",
+    "url": null,
+    "confidence": 0.82,
+    "summary": "Israel's military struck the Dallafa Bridge in southern Lebanon on Monday, the latest in a series of strikes on vital transit routes. Israeli officials said the attacks target Hezbollah logistics and fighter movement from northern Lebanon toward the south. Lebanese civilians have also relied on the bridges to flee fighting in southern Lebanon.",
+    "metadata": {
+      "weapon": "INFRASTRUCTURE",
+      "target": "Dallafa Bridge",
+      "infrastructure": "INSTALLATION",
+      "keywords": [
+        "conflictsapp",
+        "ground",
+        "israel",
+        "destroyed",
+        "installation"
+      ],
+      "modelScore": 0.82
+    }
+  },
+  {
+    "id": "conflictsapp-target-t-qasmiya-bridge-litani-idf-d23-001",
+    "date": "2026-03-22",
+    "time": "09:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Qasmiya Bridge — Litani River (DESTROYED)",
+    "location": "Qasmiya Bridge — Litani River (DESTROYED)",
+    "country": "Lebanon",
+    "lat": 33.35,
+    "lon": 35.24,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_targets",
+    "url": null,
+    "confidence": 0.82,
+    "summary": "Israel destroyed five bridges over the Litani River in southern Lebanon, severing Hezbollah's supply routes and civilian movement south of the river. Lebanese President Joseph Aoun condemned the strikes as 'a dangerous escalation and a blatant violation of Lebanon's sovereignty,' calling them 'a prelude to a ground invasion.' Aoun said the targeting 'constitutes an attempt to sever the geographic connection between t...",
+    "metadata": {
+      "weapon": "INFRASTRUCTURE",
+      "target": "Qasmiya Bridge — Litani River (DESTROYED)",
+      "infrastructure": "IDF ordered strike — Qasmiya Bridge, Litani River coastal highway",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "destroyed",
+        "idf ordered strike — qasmiya bridge, litani river coastal highway"
+      ],
+      "modelScore": 0.82
+    }
+  },
+  {
+    "id": "conflictsapp-target-t-majdal-selm-barji-strike-d22-001",
+    "date": "2026-03-21",
+    "time": "20:00Z",
+    "type": "GROUND",
+    "severity": "CRITICAL",
+    "title": "Majdal Selm — Radwan Force special forces command",
+    "location": "Majdal Selm — Radwan Force special forces command",
+    "country": "Lebanon",
+    "lat": 33.15,
+    "lon": 35.4,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_targets",
+    "url": null,
+    "confidence": 0.82,
+    "summary": "The Israeli Air Force killed Abu Khalil Barji, the commander of Hezbollah Radwan Force's elite special forces unit, in an airstrike on the town of Majdal Selm in southern Lebanon on Day 22 (March 21). Two other Hezbollah operatives were also killed. The IDF also struck other Hezbollah infrastructure in southern Lebanon overnight. Barji commanded the Radwan Force's most elite fighting element — the unit trained for cr...",
+    "metadata": {
+      "weapon": "COMMAND",
+      "target": "Majdal Selm — Radwan Force special forces command",
+      "infrastructure": "IAF targeted kill — Radwan Force special forces commander",
+      "keywords": [
+        "conflictsapp",
+        "ground",
+        "israel",
+        "destroyed",
+        "iaf targeted kill — radwan force special forces commander"
+      ],
+      "modelScore": 0.82
+    }
+  },
+  {
+    "id": "conflictsapp-target-t-2026-03-19-haifa-oil-refinery-israel-d20-001",
+    "date": "2026-03-19",
+    "time": "17:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Haifa Oil Refinery (Bazan Group), Israel",
+    "location": "Haifa Oil Refinery (Bazan Group), Israel",
+    "country": "Israel",
+    "lat": 32.82,
+    "lon": 34.97,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "IRGC"
+    ],
+    "source": "conflictsapp_map_targets",
+    "url": null,
+    "confidence": 0.82,
+    "summary": "Iran's IRGC said it targeted oil refineries in Haifa and Ashdod with 'pinpoint missiles' along with security targets and military support centres. Israel's energy ministry confirmed a missile strike hit the Haifa refinery complex but caused no 'significant damage.' Energy minister Eli Cohen said power was briefly disrupted, electricity restored to most affected. No immediate confirmation on Ashdod. The attacks mark t...",
+    "metadata": {
+      "weapon": "INFRASTRUCTURE",
+      "target": "Haifa Oil Refinery (Bazan Group), Israel",
+      "infrastructure": "Israeli oil refinery strike",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "irgc",
+        "damaged",
+        "israeli oil refinery strike"
+      ],
+      "modelScore": 0.82
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-us-irgc-minelayers-hormuz-d12",
+    "date": "2026-03-11",
+    "time": "03:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "US destroys 16 IRGC mine-laying vessels near Hormuz",
+    "location": "Strike target",
+    "country": "Iran",
+    "lat": 26.5,
+    "lon": 56.5,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "US"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "US destroys 16 IRGC mine-laying vessels near Hormuz",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Strike target",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "us",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-us-iran-missile-factory-d12",
+    "date": "2026-03-11",
+    "time": "03:00Z",
+    "type": "MISSILE",
+    "severity": "CRITICAL",
+    "title": "US heavy bombers → large ballistic missile manufacturing facility, Iran",
+    "location": "large ballistic missile manufacturing facility, Iran",
+    "country": "Iran",
+    "lat": 35.7,
+    "lon": 51.4,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "US"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "US heavy bombers → large ballistic missile manufacturing facility, Iran",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "large ballistic missile manufacturing facility, Iran",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "missile",
+        "us",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-idf-iran-fresh-wave-d12",
+    "date": "2026-03-11",
+    "time": "11:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF fresh extensive wave → Iran + simultaneous Beirut strikes",
+    "location": "Iran + simultaneous Beirut strikes",
+    "country": "Iran",
+    "lat": 35.7,
+    "lon": 51.4,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF fresh extensive wave → Iran + simultaneous Beirut strikes",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Iran + simultaneous Beirut strikes",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-iran-oman-salalah-port-d12",
+    "date": "2026-03-11",
+    "time": "13:30Z",
+    "type": "DRONE",
+    "severity": "CRITICAL",
+    "title": "Iran drones → Salalah port, Oman (3 fuel tanks on fire)",
+    "location": "Salalah port, Oman (3 fuel tanks on fire)",
+    "country": "Iran",
+    "lat": 17.0,
+    "lon": 54.0,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "IRAN"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "Iran drones → Salalah port, Oman (3 fuel tanks on fire)",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Salalah port, Oman (3 fuel tanks on fire)",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "drone",
+        "iran",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-idf-tehran-early-wave-d11",
+    "date": "2026-03-10",
+    "time": "03:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF → Tehran (03:00 — Imam Hossein R&D complex)",
+    "location": "Tehran (03:00 — Imam Hossein R&D complex)",
+    "country": "Iran",
+    "lat": 35.7,
+    "lon": 51.4,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF → Tehran (03:00 — Imam Hossein R&D complex)",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Tehran (03:00 — Imam Hossein R&D complex)",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-irgc-al-harir-d11",
+    "date": "2026-03-10",
+    "time": "05:00Z",
+    "type": "MISSILE",
+    "severity": "CRITICAL",
+    "title": "IRGC → Al-Harir (Kurdistan) — 5 missiles strike US base",
+    "location": "Al-Harir (Kurdistan) — 5 missiles strike US base",
+    "country": "Iran",
+    "lat": 36.2,
+    "lon": 44.0,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "IRGC"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IRGC → Al-Harir (Kurdistan) — 5 missiles strike US base",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Al-Harir (Kurdistan) — 5 missiles strike US base",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "missile",
+        "irgc",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-b2-fordow-missile-sites-d11",
+    "date": "2026-03-10",
+    "time": "10:00Z",
+    "type": "MISSILE",
+    "severity": "CRITICAL",
+    "title": "US B2 → Fordow/Qom (2,000lb penetrators — buried missile sites)",
+    "location": "Fordow/Qom (2,000lb penetrators — buried missile sites)",
+    "country": "Iran",
+    "lat": 34.88,
+    "lon": 51.0,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "US"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "US B2 → Fordow/Qom (2,000lb penetrators — buried missile sites)",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Fordow/Qom (2,000lb penetrators — buried missile sites)",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "missile",
+        "us",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-idf-tehran-third-wave-d11",
+    "date": "2026-03-10",
+    "time": "10:30Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF → Tehran (3rd wave Day 11 — regime sites)",
+    "location": "Tehran (3rd wave Day 11 — regime sites)",
+    "country": "Iran",
+    "lat": 35.7,
+    "lon": 51.4,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF → Tehran (3rd wave Day 11 — regime sites)",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Tehran (3rd wave Day 11 — regime sites)",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-idf-tabriz-command-d11",
+    "date": "2026-03-10",
+    "time": "10:30Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF → Tabriz (first strikes — IRGC + special forces HQ)",
+    "location": "Tabriz (first strikes — IRGC + special forces HQ)",
+    "country": "Iran",
+    "lat": 38.1,
+    "lon": 46.3,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF → Tabriz (first strikes — IRGC + special forces HQ)",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Tabriz (first strikes — IRGC + special forces HQ)",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-iran-uae-refinery-d11",
+    "date": "2026-03-10",
+    "time": "12:00Z",
+    "type": "DRONE",
+    "severity": "CRITICAL",
+    "title": "Iran → UAE oil refinery (drone strike — production halted)",
+    "location": "UAE oil refinery (drone strike — production halted)",
+    "country": "Iran",
+    "lat": 24.5,
+    "lon": 54.4,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "IRAN"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "Iran → UAE oil refinery (drone strike — production halted)",
+    "metadata": {
+      "weapon": "DRONE",
+      "target": "UAE oil refinery (drone strike — production halted)",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "drone",
+        "iran",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-us-navy-hormuz-escort-d11",
+    "date": "2026-03-10",
+    "time": "17:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "US Navy → Hormuz (first escorted tanker transit since war began)",
+    "location": "Hormuz (first escorted tanker transit since war began)",
+    "country": "Regional",
+    "lat": 22.5,
+    "lon": 58.5,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "US"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "US Navy → Hormuz (first escorted tanker transit since war began)",
+    "metadata": {
+      "weapon": "NAVAL_STRIKE",
+      "target": "Hormuz (first escorted tanker transit since war began)",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "us",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-iran-bahrain-bapco-d10",
+    "date": "2026-03-09",
+    "time": "01:00Z",
+    "type": "DRONE",
+    "severity": "CRITICAL",
+    "title": "Iran → Bapco refinery Bahrain (ablaze — force majeure declared)",
+    "location": "Bapco refinery Bahrain (ablaze — force majeure declared)",
+    "country": "Iran",
+    "lat": 26.22,
+    "lon": 50.57,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "IRAN"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "Iran → Bapco refinery Bahrain (ablaze — force majeure declared)",
+    "metadata": {
+      "weapon": "DRONE",
+      "target": "Bapco refinery Bahrain (ablaze — force majeure declared)",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "drone",
+        "iran",
+        "p1",
+        "impacted"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-iran-cluster-yehud-d10",
+    "date": "2026-03-09",
+    "time": "10:30Z",
+    "type": "GROUND",
+    "severity": "CRITICAL",
+    "title": "Iran cluster bomb → Yehud/Holon/Bat Yam (1 killed, 6+ sites)",
+    "location": "Yehud/Holon/Bat Yam (1 killed, 6+ sites)",
+    "country": "Israel",
+    "lat": 32.05,
+    "lon": 34.88,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "IRAN"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "Iran cluster bomb → Yehud/Holon/Bat Yam (1 killed, 6+ sites)",
+    "metadata": {
+      "weapon": "BALLISTIC",
+      "target": "Yehud/Holon/Bat Yam (1 killed, 6+ sites)",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "ground",
+        "iran",
+        "p1",
+        "impacted"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-idf-tehran-quds-force-d10",
+    "date": "2026-03-09",
+    "time": "18:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF → Tehran — IRGC Quds Force HQ (170+ bombs, new stage of war)",
+    "location": "Tehran — IRGC Quds Force HQ (170+ bombs, new stage of war)",
+    "country": "Iran",
+    "lat": 35.7,
+    "lon": 51.4,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF → Tehran — IRGC Quds Force HQ (170+ bombs, new stage of war)",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Tehran — IRGC Quds Force HQ (170+ bombs, new stage of war)",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-idf-tehran-second-wave-d10",
+    "date": "2026-03-09",
+    "time": "21:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF → Tehran (2nd wave Day 10 — Iranian regime sites)",
+    "location": "Tehran (2nd wave Day 10 — Iranian regime sites)",
+    "country": "Iran",
+    "lat": 35.7,
+    "lon": 51.4,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF → Tehran (2nd wave Day 10 — Iranian regime sites)",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Tehran (2nd wave Day 10 — Iranian regime sites)",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-idf-isfahan-f14-d9",
+    "date": "2026-03-08",
+    "time": "04:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF → Isfahan F-14 fleet destroyed",
+    "location": "Isfahan F-14 fleet destroyed",
+    "country": "Iran",
+    "lat": 32.65,
+    "lon": 51.67,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF → Isfahan F-14 fleet destroyed",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Isfahan F-14 fleet destroyed",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-idf-navy-beirut-hotel-d9",
+    "date": "2026-03-08",
+    "time": "05:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF Navy → Beirut hotel — 5 IRGC Quds Force commanders killed",
+    "location": "Beirut hotel — 5 IRGC Quds Force commanders killed",
+    "country": "Lebanon",
+    "lat": 33.88,
+    "lon": 35.49,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF Navy → Beirut hotel — 5 IRGC Quds Force commanders killed",
+    "metadata": {
+      "weapon": "NAVAL_STRIKE",
+      "target": "Beirut hotel — 5 IRGC Quds Force commanders killed",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-iran-uae-missiles-d9",
+    "date": "2026-03-08",
+    "time": "13:00Z",
+    "type": "MISSILE",
+    "severity": "CRITICAL",
+    "title": "Iran → UAE 17 ballistic missiles (16 intercepted)",
+    "location": "UAE 17 ballistic missiles (16 intercepted)",
+    "country": "Iran",
+    "lat": 24.45,
+    "lon": 54.37,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "IRAN"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "Iran → UAE 17 ballistic missiles (16 intercepted)",
+    "metadata": {
+      "weapon": "BALLISTIC",
+      "target": "UAE 17 ballistic missiles (16 intercepted)",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "missile",
+        "iran",
+        "p1",
+        "impacted"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-iran-cluster-bomb-tel-aviv-d9",
+    "date": "2026-03-08",
+    "time": "13:30Z",
+    "type": "GROUND",
+    "severity": "CRITICAL",
+    "title": "Iran → Tel Aviv cluster bomb warhead",
+    "location": "Tel Aviv cluster bomb warhead",
+    "country": "Israel",
+    "lat": 32.08,
+    "lon": 34.87,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "IRAN"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "Iran → Tel Aviv cluster bomb warhead",
+    "metadata": {
+      "weapon": "BALLISTIC",
+      "target": "Tel Aviv cluster bomb warhead",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "ground",
+        "iran",
+        "p1",
+        "impacted"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-idf-irgc-airforce-hq-d9",
+    "date": "2026-03-08",
+    "time": "20:00Z",
+    "type": "MISSILE",
+    "severity": "CRITICAL",
+    "title": "IDF → IRGC Air Force HQ Tehran (missile campaign nerve centre)",
+    "location": "IRGC Air Force HQ Tehran (missile campaign nerve centre)",
+    "country": "Iran",
+    "lat": 35.71,
+    "lon": 51.37,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF → IRGC Air Force HQ Tehran (missile campaign nerve centre)",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "IRGC Air Force HQ Tehran (missile campaign nerve centre)",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "missile",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-idf-tehran-surge-d8",
+    "date": "2026-03-07",
+    "time": "06:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Airstrike - Tehran",
+    "location": "Tehran",
+    "country": "Iran",
+    "lat": 35.72,
+    "lon": 51.42,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Tehran",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-idf-tehran-oil-depot-d8",
+    "date": "2026-03-07",
+    "time": "23:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF → Tehran oil depot (first energy infra strike)",
+    "location": "Tehran oil depot (first energy infra strike)",
+    "country": "Iran",
+    "lat": 35.68,
+    "lon": 51.45,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF → Tehran oil depot (first energy infra strike)",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Tehran oil depot (first energy infra strike)",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-m-irgc-tel-aviv-d7",
+    "date": "2026-03-06",
+    "time": "04:00Z",
+    "type": "GROUND",
+    "severity": "CRITICAL",
+    "title": "Ground - Tel Aviv",
+    "location": "Tel Aviv",
+    "country": "Israel",
+    "lat": 32.08,
+    "lon": 34.78,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "IRGC"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "",
+    "metadata": {
+      "weapon": "BALLISTIC",
+      "target": "Tel Aviv",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "ground",
+        "irgc",
+        "p1",
+        "impacted"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-m-irgc-herzliya-d7",
+    "date": "2026-03-06",
+    "time": "04:10Z",
+    "type": "GROUND",
+    "severity": "CRITICAL",
+    "title": "Ground - Tel Aviv",
+    "location": "Tel Aviv",
+    "country": "Israel",
+    "lat": 32.17,
+    "lon": 34.84,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "IRGC"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "",
+    "metadata": {
+      "weapon": "BALLISTIC",
+      "target": "Tel Aviv",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "ground",
+        "irgc",
+        "p1",
+        "impacted"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-idf-khamenei-bunker-d7",
+    "date": "2026-03-06",
+    "time": "09:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Airstrike - Tehran",
+    "location": "Tehran",
+    "country": "Iran",
+    "lat": 35.72,
+    "lon": 51.42,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Tehran",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-us-deep-iran-hegseth-d6",
+    "date": "2026-03-05",
+    "time": "06:30Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "CENTCOM Deep Strike — 1000mi into Iran",
+    "location": "Strike target",
+    "country": "Iran",
+    "lat": 36.3,
+    "lon": 57.5,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "US"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "CENTCOM Deep Strike — 1000mi into Iran",
+    "metadata": {
+      "weapon": "CRUISE",
+      "target": "Strike target",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "us",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-israel-tehran-govt-d6",
+    "date": "2026-03-05",
+    "time": "09:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF Tehran Government Strikes — Phase 2",
+    "location": "Tehran",
+    "country": "Iran",
+    "lat": 35.7,
+    "lon": 51.4,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF Tehran Government Strikes — Phase 2",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Tehran",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-usil-mojtaba-hunt-d6",
+    "date": "2026-03-05",
+    "time": "10:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Mojtaba Khamenei Hunt — USIL Decapitation",
+    "location": "Tehran",
+    "country": "Iran",
+    "lat": 35.7,
+    "lon": 51.4,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "USIL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "Mojtaba Khamenei Hunt — USIL Decapitation",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Tehran",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "usil",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-us-b2-missile-sites-d5-06",
+    "date": "2026-03-04",
+    "time": "03:00Z",
+    "type": "MISSILE",
+    "severity": "CRITICAL",
+    "title": "USAF B-2 — Hardened ballistic missile facilities",
+    "location": "Strike target",
+    "country": "Iran",
+    "lat": 33.72,
+    "lon": 52.52,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "US"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "USAF B-2 — Hardened ballistic missile facilities",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Strike target",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "missile",
+        "us",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-israel-tehran-gov-d5-01",
+    "date": "2026-03-04",
+    "time": "04:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF — Tehran Presidential Office & Basij HQ",
+    "location": "Tehran",
+    "country": "Iran",
+    "lat": 35.69,
+    "lon": 51.39,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF — Tehran Presidential Office & Basij HQ",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Tehran",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-israel-isfahan-d5-04",
+    "date": "2026-03-04",
+    "time": "05:30Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF — Isfahan targets (near nuclear site)",
+    "location": "Strike target",
+    "country": "Iran",
+    "lat": 32.65,
+    "lon": 51.68,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF — Isfahan targets (near nuclear site)",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Strike target",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-kurdish-pjak-iran-offensive-d5",
+    "date": "2026-03-04",
+    "time": "22:46Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Kurdish militia ground offensive — NW Iran",
+    "location": "Strike target",
+    "country": "Iran",
+    "lat": 37.4,
+    "lon": 45.1,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "IRAN"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "Kurdish militia ground offensive — NW Iran",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Strike target",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "iran",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-quds-lebanon-cmdr-d4",
+    "date": "2026-03-03",
+    "time": "07:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF Day 4: Strike → IRGC Quds Lebanon HQ (Daoud Ali Zadeh killed)",
+    "location": "IRGC Quds Lebanon HQ (Daoud Ali Zadeh killed)",
+    "country": "Lebanon",
+    "lat": 33.55,
+    "lon": 35.52,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF Day 4: Strike → IRGC Quds Lebanon HQ (Daoud Ali Zadeh killed)",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "IRGC Quds Lebanon HQ (Daoud Ali Zadeh killed)",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-mehrabad-d4",
+    "date": "2026-03-03",
+    "time": "10:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF Day 4: Nevatim → Mehrabad Airport Tehran (domestic aviation hub)",
+    "location": "Mehrabad Airport Tehran (domestic aviation hub)",
+    "country": "Iran",
+    "lat": 35.69,
+    "lon": 51.31,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "USIL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF Day 4: Nevatim → Mehrabad Airport Tehran (domestic aviation hub)",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Mehrabad Airport Tehran (domestic aviation hub)",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "usil",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-nuclear-compound-d4",
+    "date": "2026-03-03",
+    "time": "13:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF Day 4: Nevatim → Nuclear weapons development compound, Tehran suburbs",
+    "location": "Nuclear weapons development compound, Tehran suburbs",
+    "country": "Iran",
+    "lat": 35.8,
+    "lon": 51.6,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "USIL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF Day 4: Nevatim → Nuclear weapons development compound, Tehran suburbs",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Nuclear weapons development compound, Tehran suburbs",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "usil",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-d4-centcom-1700-targets",
+    "date": "2026-03-03",
+    "time": "14:30Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "CENTCOM Day 4: 1,700+ total targets struck across Operation Epic Fury",
+    "location": "Tehran",
+    "country": "Iran",
+    "lat": 35.7,
+    "lon": 51.42,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "USIL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "CENTCOM Day 4: 1,700+ total targets struck across Operation Epic Fury",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Tehran",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "usil",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-d4-us-iran-night",
+    "date": "2026-03-03",
+    "time": "21:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "US Day 4 Night: Al Udeid → Continued Tehran military infrastructure",
+    "location": "Continued Tehran military infrastructure",
+    "country": "Iran",
+    "lat": 35.7607,
+    "lon": 51.5059,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "US"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "US Day 4 Night: Al Udeid → Continued Tehran military infrastructure",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Continued Tehran military infrastructure",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "us",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s23",
+    "date": "2026-03-02",
+    "time": "01:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF Day 3: Nevatim → Hezbollah Dahieh, Beirut (31 killed)",
+    "location": "Hezbollah Dahieh, Beirut (31 killed)",
+    "country": "Lebanon",
+    "lat": 33.8706,
+    "lon": 35.5184,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF Day 3: Nevatim → Hezbollah Dahieh, Beirut (31 killed)",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Hezbollah Dahieh, Beirut (31 killed)",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s-natanz-entrance-d3",
+    "date": "2026-03-02",
+    "time": "04:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF Day 3: Nevatim → Natanz entrance building (IAEA confirmed)",
+    "location": "Natanz entrance building (IAEA confirmed)",
+    "country": "Iran",
+    "lat": 33.7243,
+    "lon": 51.726,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "USIL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF Day 3: Nevatim → Natanz entrance building (IAEA confirmed)",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Natanz entrance building (IAEA confirmed)",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "usil",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s26",
+    "date": "2026-03-02",
+    "time": "14:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF Day 3 PM: \"Broad wave\" strikes on \"heart of Tehran\"",
+    "location": "Tehran",
+    "country": "Iran",
+    "lat": 35.7,
+    "lon": 51.42,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF Day 3 PM: \"Broad wave\" strikes on \"heart of Tehran\"",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Tehran",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s27",
+    "date": "2026-03-02",
+    "time": "23:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF Day 3 Night: IRIB State Broadcaster HQ (Evin, Tehran)",
+    "location": "Tehran",
+    "country": "Iran",
+    "lat": 35.79,
+    "lon": 51.44,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF Day 3 Night: IRIB State Broadcaster HQ (Evin, Tehran)",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Tehran",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s1",
+    "date": "2026-03-01",
+    "time": "02:14Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "B-2 Strike: Diego Garcia → Fordow",
+    "location": "Fordow",
+    "country": "Iran",
+    "lat": 34.8846,
+    "lon": 50.5719,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "US"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "B-2 Strike: Diego Garcia → Fordow",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Fordow",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "us",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s5",
+    "date": "2026-03-01",
+    "time": "02:14Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "B-2 Strike: Diego Garcia → IRGC HQ Tehran",
+    "location": "IRGC HQ Tehran",
+    "country": "Iran",
+    "lat": 35.7219,
+    "lon": 51.3347,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "US"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "B-2 Strike: Diego Garcia → IRGC HQ Tehran",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "IRGC HQ Tehran",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "us",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s6",
+    "date": "2026-03-01",
+    "time": "02:14Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF Strike: Nevatim → Fordow",
+    "location": "Fordow",
+    "country": "Iran",
+    "lat": 34.8846,
+    "lon": 50.5719,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF Strike: Nevatim → Fordow",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Fordow",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s7",
+    "date": "2026-03-01",
+    "time": "02:14Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF Strike: Nevatim → Natanz",
+    "location": "Natanz",
+    "country": "Iran",
+    "lat": 33.7243,
+    "lon": 51.726,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF Strike: Nevatim → Natanz",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Natanz",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s2",
+    "date": "2026-03-01",
+    "time": "02:17Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "B-2 Strike: Diego Garcia → Natanz",
+    "location": "Natanz",
+    "country": "Iran",
+    "lat": 33.7243,
+    "lon": 51.726,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "US"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "B-2 Strike: Diego Garcia → Natanz",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Natanz",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "us",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s3",
+    "date": "2026-03-01",
+    "time": "02:22Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "B-2 Strike: Diego Garcia → Isfahan",
+    "location": "Isfahan",
+    "country": "Iran",
+    "lat": 32.4355,
+    "lon": 51.6625,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "US"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "B-2 Strike: Diego Garcia → Isfahan",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Isfahan",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "us",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s4",
+    "date": "2026-03-01",
+    "time": "02:35Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "B-2 Strike: Diego Garcia → Parchin",
+    "location": "Parchin",
+    "country": "Iran",
+    "lat": 35.5194,
+    "lon": 51.7757,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "US"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "B-2 Strike: Diego Garcia → Parchin",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "Parchin",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "us",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s17",
+    "date": "2026-03-01",
+    "time": "06:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF Day 2: Nevatim → IRGC HQ Tehran (dozens of command centers)",
+    "location": "IRGC HQ Tehran (dozens of command centers)",
+    "country": "Iran",
+    "lat": 35.7,
+    "lon": 51.42,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF Day 2: Nevatim → IRGC HQ Tehran (dozens of command centers)",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "IRGC HQ Tehran (dozens of command centers)",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-strike-s18",
+    "date": "2026-03-01",
+    "time": "06:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IDF Day 2: Nevatim → IRGC Intelligence HQ Tehran",
+    "location": "IRGC Intelligence HQ Tehran",
+    "country": "Iran",
+    "lat": 35.72,
+    "lon": 51.45,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_strikes",
+    "url": null,
+    "confidence": 0.68,
+    "summary": "IDF Day 2: Nevatim → IRGC Intelligence HQ Tehran",
+    "metadata": {
+      "weapon": "AIRSTRIKE",
+      "target": "IRGC Intelligence HQ Tehran",
+      "infrastructure": "KINETIC",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "israel",
+        "p1",
+        "complete"
+      ],
+      "modelScore": 0.68
+    }
+  },
+  {
+    "id": "conflictsapp-target-t-hadera-orot-rabin-power-plant-d26-001",
+    "date": "2026-03-25",
+    "time": "09:28Z",
+    "type": "MISSILE",
+    "severity": "CRITICAL",
+    "title": "Orot Rabin Power Plant — Hadera, Israel",
+    "location": "Orot Rabin Power Plant — Hadera, Israel",
+    "country": "Israel",
+    "lat": 32.47,
+    "lon": 34.902,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "ISRAEL"
+    ],
+    "source": "conflictsapp_map_targets",
+    "url": null,
+    "confidence": 0.66,
+    "summary": "An Iranian missile reportedly targeted the Orot Rabin power plant in Hadera — Israel's largest electricity generation facility — but impacted several kilometres away. Israeli media reports the strike as a near-miss with no confirmed damage to the plant or casualties. Separately, an explosion was reported near the Hadera power station. The targeting of Orot Rabin represents the most significant attempted infrastructur...",
+    "metadata": {
+      "weapon": "INFRASTRUCTURE",
+      "target": "Orot Rabin Power Plant — Hadera, Israel",
+      "infrastructure": "power-infrastructure",
+      "keywords": [
+        "conflictsapp",
+        "missile",
+        "israel",
+        "damaged",
+        "power-infrastructure"
+      ],
+      "modelScore": 0.66
+    }
+  },
+  {
+    "id": "conflictsapp-target-t-irgc-minelayers-hormuz-d12",
+    "date": "2026-03-11",
+    "time": "03:00Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "IRGC mine-laying vessels — 16 destroyed by US near Hormuz",
+    "location": "IRGC mine-laying vessels — 16 destroyed by US near Hormuz",
+    "country": "Iran",
+    "lat": 26.5,
+    "lon": 56.5,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "IRGC"
+    ],
+    "source": "conflictsapp_map_targets",
+    "url": null,
+    "confidence": 0.66,
+    "summary": "US preemptive strike on 16 dedicated IRGC mine-laying vessels near Hormuz. Substantially degrades Iran's ability to execute Hormuz mining threat. Largest single US naval action of the war.",
+    "metadata": {
+      "weapon": "NAVAL_BASE",
+      "target": "IRGC mine-laying vessels — 16 destroyed by US near Hormuz",
+      "infrastructure": "INSTALLATION",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "irgc",
+        "destroyed",
+        "installation"
+      ],
+      "modelScore": 0.66
+    }
+  },
+  {
+    "id": "conflictsapp-target-t-dubai-airport-drone-d12",
+    "date": "2026-03-11",
+    "time": "05:30Z",
+    "type": "DRONE",
+    "severity": "CRITICAL",
+    "title": "Dubai International Airport — targeted by Iranian drones (2 downed, 4 injured)",
+    "location": "Dubai International Airport — targeted by Iranian drones (2 downed, 4 injured)",
+    "country": "Iran",
+    "lat": 25.25,
+    "lon": 55.36,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "IRAN"
+    ],
+    "source": "conflictsapp_map_targets",
+    "url": null,
+    "confidence": 0.66,
+    "summary": "World's busiest airport. 2 Iranian drones intercepted nearby. 4 foreign nationals injured. Flights resumed. Part of Iran's Gulf civilian infrastructure targeting campaign.",
+    "metadata": {
+      "weapon": "INFRASTRUCTURE",
+      "target": "Dubai International Airport — targeted by Iranian drones (2 downed, 4 injured)",
+      "infrastructure": "INSTALLATION",
+      "keywords": [
+        "conflictsapp",
+        "drone",
+        "iran",
+        "damaged",
+        "installation"
+      ],
+      "modelScore": 0.66
+    }
+  },
+  {
+    "id": "conflictsapp-target-t-isfahan-cultural-sites-d12",
+    "date": "2026-03-11",
+    "time": "09:30Z",
+    "type": "AIRSTRIKE",
+    "severity": "CRITICAL",
+    "title": "Isfahan cultural sites damaged — Ali Qapu, Chehel Sotoun, Jameh Mosque (UNESCO)",
+    "location": "Isfahan cultural sites damaged — Ali Qapu, Chehel Sotoun, Jameh Mosque (UNESCO)",
+    "country": "Iran",
+    "lat": 32.657,
+    "lon": 51.677,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "IRAN"
+    ],
+    "source": "conflictsapp_map_targets",
+    "url": null,
+    "confidence": 0.66,
+    "summary": "IDF strikes on Isfahan governor's building (Day 9) caused collateral damage to adjacent UNESCO heritage sites: Ali Qapu Palace, Chehel Sotoun palace and garden, Jameh Mosque (turquoise tiles fallen). UNESCO expresses concern. IDF says not targeting cultural sites.",
+    "metadata": {
+      "weapon": "INFRASTRUCTURE",
+      "target": "Isfahan cultural sites damaged — Ali Qapu, Chehel Sotoun, Jameh Mosque (UNESCO)",
+      "infrastructure": "INSTALLATION",
+      "keywords": [
+        "conflictsapp",
+        "airstrike",
+        "iran",
+        "damaged",
+        "installation"
+      ],
+      "modelScore": 0.66
+    }
+  },
+  {
+    "id": "conflictsapp-target-t-salalah-port-oman-d12",
+    "date": "2026-03-11",
+    "time": "13:30Z",
+    "type": "DRONE",
+    "severity": "CRITICAL",
+    "title": "Salalah Port, Oman — Iranian drones, 3 fuel tanks on fire",
+    "location": "Salalah Port, Oman — Iranian drones, 3 fuel tanks on fire",
+    "country": "Iran",
+    "lat": 17.0,
+    "lon": 54.0,
+    "fatalities": 0,
+    "injured": 0,
+    "actors": [
+      "IRAN"
+    ],
+    "source": "conflictsapp_map_targets",
+    "url": null,
+    "confidence": 0.66,
+    "summary": "Oman's second-largest city port. 3 fuel storage tanks struck by Iranian drones, on fire. Port suspended. No casualties. Earlier Duqm port attack also reported. Iran attacking neutral Oman — major diplomatic escalation.",
+    "metadata": {
+      "weapon": "INFRASTRUCTURE",
+      "target": "Salalah Port, Oman — Iranian drones, 3 fuel tanks on fire",
+      "infrastructure": "INSTALLATION",
+      "keywords": [
+        "conflictsapp",
+        "drone",
+        "iran",
+        "damaged",
+        "installation"
+      ],
+      "modelScore": 0.66
+    }
+  }
+]

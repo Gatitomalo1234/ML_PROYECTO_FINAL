@@ -1,4 +1,4 @@
-import type { AlertItem, ThreatLevel } from "@/state/experienceTypes";
+import type { AlertItem, ConflictEvent, ThreatLevel } from "@/state/experienceTypes";
 
 type ModelResultRow = {
   date: string;
@@ -19,12 +19,14 @@ export async function loadDashboardExports(): Promise<
     threatLevel: ThreatLevel;
     metrics: { flightsAirborne: number; flightDropIndex: number; anomalies24h: number };
     alerts: AlertItem[];
+    conflictEvents: ConflictEvent[];
     chartSeries: { flights: number[]; fatalities: number[]; confidence: number[] };
   }>
 > {
-  const [model, master] = await Promise.all([
+  const [model, master, conflictEvents] = await Promise.all([
     fetch("/data/model_results.json", { cache: "no-store" }).then((r) => (r.ok ? (r.json() as Promise<ModelResultRow[]>) : Promise.reject(new Error("model_results")))),
-    fetch("/data/master_table.json", { cache: "no-store" }).then((r) => (r.ok ? (r.json() as Promise<MasterRow[]>) : Promise.reject(new Error("master_table"))))
+    fetch("/data/master_table.json", { cache: "no-store" }).then((r) => (r.ok ? (r.json() as Promise<MasterRow[]>) : Promise.reject(new Error("master_table")))),
+    fetch("/data/conflict_events_2026.json", { cache: "no-store" }).then((r) => (r.ok ? (r.json() as Promise<ConflictEvent[]>) : []))
   ]);
 
   const latestModel = model.at(-1);
@@ -53,6 +55,7 @@ export async function loadDashboardExports(): Promise<
     threatLevel,
     metrics: { flightsAirborne: Math.round(lastFlights), flightDropIndex: dropIndex, anomalies24h },
     alerts,
+    conflictEvents,
     chartSeries: { flights, fatalities, confidence: confidenceSeries }
   };
 }
@@ -63,4 +66,3 @@ function mean(arr: number[]) {
   for (const v of arr) s += v;
   return s / arr.length;
 }
-

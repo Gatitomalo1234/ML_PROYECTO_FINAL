@@ -273,43 +273,51 @@ def build_iranwarlive_event_model():
 
 
 def build_gdeltcloud_event_model():
-    path = RAW_DIR / "gdeltcloud_events_iran_2026.csv"
-    df = read_csv_if_exists(path)
-    if df.empty:
-        return pd.DataFrame()
+    frames = []
+    for path in sorted(RAW_DIR.glob("gdeltcloud_events_*_2026.csv")):
+        df = read_csv_if_exists(path)
+        if df.empty:
+            continue
 
-    text = (
-        df.get("title", "").fillna("").astype(str)
-        + " "
-        + df.get("summary", "").fillna("").astype(str)
-        + " "
-        + df.get("actors", "").fillna("").astype(str)
-    )
-    frame = pd.DataFrame(
-        {
-            "event_id": df.get("id", ""),
-            "event_date": date_series(df, "event_date") if "event_date" in df.columns else pd.NaT,
-            "source": "gdeltcloud",
-            "country": df.get("geo.country", df.get("query_country", "Iran")),
-            "region": df.get("query_country", "iran").fillna("iran").astype(str).str.lower(),
-            "location": df.get("geo.location", ""),
-            "latitude": pd.to_numeric(df.get("geo.latitude", 0), errors="coerce"),
-            "longitude": pd.to_numeric(df.get("geo.longitude", 0), errors="coerce"),
-            "actor1": df.get("actors", ""),
-            "actor2": "",
-            "event_type": df.get("category", ""),
-            "sub_event_type": df.get("subcategory", df.get("event_code", "")),
-            "weapon_type": text.map(classify_weapon_type),
-            "target_type": text.map(classify_target_type),
-            "civilian_targeting": df.get("civilian_targeting", 0),
-            "attack_like_event": 1,
-            "fatalities": df.get("fatalities", 0),
-            "confidence": df.get("metrics.confidence", ""),
-            "source_url": df.get("primary_story_url", df.get("url", "")),
-            "text": text,
-        }
-    )
-    return frame
+        text = (
+            df.get("title", "").fillna("").astype(str)
+            + " "
+            + df.get("summary", "").fillna("").astype(str)
+            + " "
+            + df.get("actors", "").fillna("").astype(str)
+        )
+        query_country = df.get("query_country", normalize_region_from_filename(path))
+        if not isinstance(query_country, pd.Series):
+            query_country = pd.Series([query_country] * len(df), index=df.index)
+        frame = pd.DataFrame(
+            {
+                "event_id": df.get("id", ""),
+                "event_date": date_series(df, "event_date") if "event_date" in df.columns else pd.NaT,
+                "source": "gdeltcloud",
+                "country": df.get("geo.country", query_country),
+                "region": query_country.fillna("global").astype(str).str.lower(),
+                "location": df.get("geo.location", ""),
+                "latitude": pd.to_numeric(df.get("geo.latitude", 0), errors="coerce"),
+                "longitude": pd.to_numeric(df.get("geo.longitude", 0), errors="coerce"),
+                "actor1": df.get("actors", ""),
+                "actor2": "",
+                "event_type": df.get("category", ""),
+                "sub_event_type": df.get("subcategory", df.get("event_code", "")),
+                "weapon_type": text.map(classify_weapon_type),
+                "target_type": text.map(classify_target_type),
+                "civilian_targeting": df.get("civilian_targeting", 0),
+                "attack_like_event": 1,
+                "fatalities": df.get("fatalities", 0),
+                "confidence": df.get("metrics.confidence", ""),
+                "source_url": df.get("primary_story_url", df.get("url", "")),
+                "text": text,
+            }
+        )
+        frames.append(frame)
+
+    if not frames:
+        return pd.DataFrame()
+    return pd.concat(frames, ignore_index=True)
 
 
 def build_event_model_table():
@@ -413,10 +421,15 @@ def load_gdelt_daily():
 
 
 def load_gdeltcloud_summary_daily():
-    path = RAW_DIR / "gdeltcloud_summary_iran_2026.csv"
-    df = read_csv_if_exists(path)
-    if df.empty or "key" not in df.columns:
+    frames = []
+    for path in sorted(RAW_DIR.glob("gdeltcloud_summary_*_2026.csv")):
+        df = read_csv_if_exists(path)
+        if df.empty or "key" not in df.columns:
+            continue
+        frames.append(df)
+    if not frames:
         return pd.DataFrame(columns=["event_date", "region"])
+    df = pd.concat(frames, ignore_index=True)
 
     df["event_date"] = date_series(df, "key")
     df["region"] = df.get("query_country", "iran")
@@ -457,10 +470,15 @@ def load_gdeltcloud_summary_daily():
 
 
 def load_gdeltcloud_events_daily():
-    path = RAW_DIR / "gdeltcloud_events_iran_2026.csv"
-    df = read_csv_if_exists(path)
-    if df.empty or "event_date" not in df.columns:
+    frames = []
+    for path in sorted(RAW_DIR.glob("gdeltcloud_events_*_2026.csv")):
+        df = read_csv_if_exists(path)
+        if df.empty or "event_date" not in df.columns:
+            continue
+        frames.append(df)
+    if not frames:
         return pd.DataFrame(columns=["event_date", "region"])
+    df = pd.concat(frames, ignore_index=True)
 
     df["event_date"] = date_series(df, "event_date")
     df["region"] = df.get("query_country", "iran")
