@@ -5,17 +5,22 @@ import { useExperienceStore } from "@/state/experienceStore";
 
 export default function BottomRail() {
   const series = useExperienceStore((s) => s.chartSeries);
+  const models = useExperienceStore((s) => s.modelComparison);
+  const best = models.reduce((a, b) => (b.f1 > a.f1 ? b : a), models[0]);
+
   return (
-    <Panel title="TRÁFICO · BAJAS · CONFIANZA DEL MODELO" className="mt-4">
-      <div className="grid grid-cols-3 gap-3">
-        <MiniChart label="Vuelos Activos" value={series.flights[series.flights.length - 1] ?? 0} unit="" tone="system" data={series.flights} />
-        <MiniChart label="Bajas (24–48h)" value={series.fatalities[series.fatalities.length - 1] ?? 0} unit="" tone="critical" data={series.fatalities} />
-        <MiniChart label="Confianza" value={Math.round((series.confidence[series.confidence.length - 1] ?? 0.62) * 100)} unit="%" tone="caution" data={series.confidence} />
+    <Panel title="RESULTADOS CLASIFICACION 2026" className="mt-4">
+      <div className="grid grid-cols-4 gap-3">
+        <MiniChart label="F1 temporal" value={Math.round((best?.f1 ?? 0) * 100)} unit="%" tone="system" data={models.map((m) => m.f1)} />
+        <MiniChart label="ROC-AUC" value={Math.round((best?.rocAuc ?? 0) * 100)} unit="%" tone="system" data={models.map((m) => m.rocAuc ?? 0)} />
+        <MiniChart label="Recall letal" value={Math.round((best?.recall ?? 0) * 100)} unit="%" tone="caution" data={models.map((m) => m.recall)} />
+        <MiniChart label="Letales mayo" value={series.fatalities[series.fatalities.length - 1] ?? 0} unit="" tone="critical" data={series.fatalities} />
       </div>
       <div className="mt-3 flex flex-wrap gap-2 text-[10px] tracking-[0.22em] text-white/45">
-        <span className="rounded border border-white/10 bg-white/5 px-2 py-1">REGIÓN: IR/IS</span>
-        <span className="rounded border border-white/10 bg-white/5 px-2 py-1">AOI: HORMUZ</span>
-        <span className="rounded border border-white/10 bg-white/5 px-2 py-1">FILTRO: ANOMALÍA</span>
+        <span className="rounded border border-system-500/20 bg-system-500/8 px-2 py-1">SELECCION: LOGREG L1 CORE</span>
+        <span className="rounded border border-white/10 bg-white/5 px-2 py-1">TRAIN: 2026 HASTA ABRIL</span>
+        <span className="rounded border border-white/10 bg-white/5 px-2 py-1">TEST: MAYO 2026</span>
+        <span className="rounded border border-white/10 bg-white/5 px-2 py-1">OBJETIVO: FATALITIES &gt; 0</span>
       </div>
     </Panel>
   );
@@ -43,7 +48,7 @@ function MiniChart({
   value,
   unit,
   tone,
-  data
+  data,
 }: {
   label: string;
   value: number;
@@ -56,7 +61,7 @@ function MiniChart({
   return (
     <div className="rounded border border-white/10 bg-white/5 px-3 py-3">
       <div className="text-[10px] tracking-[0.22em] text-white/45">{label.toUpperCase()}</div>
-      <div className={`mt-2 text-[18px] font-medium tracking-[-0.02em] ${color}`}>
+      <div className={`mt-2 text-[18px] font-medium ${color}`}>
         {value}
         <span className="ml-1 text-[12px] text-white/35">{unit}</span>
       </div>
@@ -64,4 +69,3 @@ function MiniChart({
     </div>
   );
 }
-

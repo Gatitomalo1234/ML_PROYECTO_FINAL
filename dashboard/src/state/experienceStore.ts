@@ -21,7 +21,21 @@ type ChartSeries = {
   confidence: number[];
 };
 
-export type ModelComparisonEntry = { name: string; f1: number; accuracy: number; precision: number; recall: number };
+export type ModelComparisonEntry = {
+  name: string;
+  f1: number;
+  accuracy: number;
+  precision: number;
+  recall: number;
+  balancedAccuracy?: number;
+  rocAuc?: number;
+  averagePrecision?: number;
+  tn?: number;
+  fp?: number;
+  fn?: number;
+  tp?: number;
+  note?: string;
+};
 
 type ExperienceState = {
   mode: ExperienceMode;
