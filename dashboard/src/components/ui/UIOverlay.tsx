@@ -6,7 +6,6 @@ import RightRail from "@/components/ui/panels/RightRail";
 import BottomRail from "@/components/ui/panels/BottomRail";
 import CenterPanel from "@/components/ui/panels/CenterPanel";
 import MissileAlert from "@/components/ui/panels/MissileAlert";
-import TacticalHeader from "@/components/ui/panels/TacticalHeader";
 import CinematicTitles from "@/components/ui/panels/CinematicTitles";
 import BootSequence from "@/components/ui/BootSequence";
 import ProjectNarrativeSection from "@/components/ui/ProjectNarrativeSection";
@@ -28,7 +27,6 @@ export default function UIOverlay() {
       <AnimatePresence>
       {isCommand && (
         <motion.div key="command" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.7 }}>
-          <TacticalHeader />
           <div className="pointer-events-auto absolute inset-6 flex flex-col gap-5">
             <div className="flex min-h-0 flex-1 gap-5">
               <motion.div className="min-w-0 flex-[3] relative"
