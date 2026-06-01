@@ -68,6 +68,13 @@ export default function BootSequence() {
   // Synthetic audio — beep per line + system-online chord
   useBootAudio(phase);
 
+  // Auto-start after 6 s if the user hasn't clicked — avoids dead-end for first-time visitors
+  useEffect(() => {
+    const id = setTimeout(() => handleStart(), 6000);
+    return () => clearTimeout(id);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // Minimum 3 s so the boot sequence is always seen
   useEffect(() => {
     if (!started) return;
