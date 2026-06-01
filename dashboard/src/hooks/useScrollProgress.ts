@@ -19,10 +19,13 @@ export function useScrollProgress(enabled: boolean) {
       // Narrative modal open → block page scroll so the modal can scroll freely
       if (narrativeModalOpen) return;
 
-      if (mode === "CONFLICT_LOCK" || mode === "COMMAND_CENTER" || missileActive) return;
+      if (mode === "CONFLICT_LOCK" || mode === "FINAL_SUMMARY" || missileActive) return;
 
       const delta = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY;
       const next  = clamp01(acc.current + delta / 3000);
+
+      // In COMMAND_CENTER only allow scrolling forward (toward FINAL_SUMMARY)
+      if (mode === "COMMAND_CENTER" && next < acc.current) return;
 
       // Lock: cannot exit PROJECT_NARRATIVE until all 5 nodes are revealed.
       // Nodes appear one per 20 % of the narrative scroll range [1/8, 2/8].
