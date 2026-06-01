@@ -1,12 +1,14 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useExperienceStore } from "@/state/experienceStore";
 import LeftRail from "@/components/ui/panels/LeftRail";
 import RightRail from "@/components/ui/panels/RightRail";
 import BottomRail from "@/components/ui/panels/BottomRail";
 import CenterPanel from "@/components/ui/panels/CenterPanel";
 import MissileAlert from "@/components/ui/panels/MissileAlert";
+import TacticalHeader from "@/components/ui/panels/TacticalHeader";
+import CinematicTitles from "@/components/ui/panels/CinematicTitles";
 import BootSequence from "@/components/ui/BootSequence";
 
 export default function UIOverlay() {
@@ -23,6 +25,8 @@ export default function UIOverlay() {
 
       {/* COMMAND_CENTER: panels start below the 52px header */}
       {isCommand && (
+        <>
+          <TacticalHeader />
         <div className="pointer-events-auto absolute inset-5 top-[68px] flex flex-col gap-3">
           <div className="flex min-h-0 flex-1 gap-3">
             <motion.div className="w-52 shrink-0"
@@ -47,12 +51,15 @@ export default function UIOverlay() {
             <BottomRail />
           </motion.div>
         </div>
+        </>
       )}
 
       {missileActive && <MissileAlert />}
 
       {/* Big centered title — only during the initial cinematic phases */}
       <CinematicTitle />
+      <CinematicTitles />
+      <ScrollCue />
 
       <FlashEffect />
       <DataStatusBadge />
@@ -178,5 +185,39 @@ function FlashEffect() {
       transition={{ duration: 1.1, times: [0, 0.20, 1], ease: "easeOut" }}
       onAnimationComplete={() => setFlashing(false)}
     />
+  );
+}
+
+// ─── Scroll cue — shown after boot until user starts scrolling ────────────────
+function ScrollCue() {
+  const initialized    = useExperienceStore((s) => s.initialized);
+  const mode           = useExperienceStore((s) => s.mode);
+  const scrollProgress = useExperienceStore((s) => s.scrollProgress);
+
+  const show = initialized && mode !== "COMMAND_CENTER" && mode !== "BOOT" && scrollProgress < 0.05;
+
+  return (
+    <AnimatePresence>
+      {show && (
+        <motion.div
+          className="pointer-events-none absolute inset-x-0 bottom-12 flex flex-col items-center gap-2"
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -4 }}
+          transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
+        >
+          <div className="font-mono text-[9px] tracking-[0.46em] text-white/50">
+            DESPLAZA PARA EXPLORAR
+          </div>
+          <motion.div
+            className="text-white/30 text-[14px] leading-none"
+            animate={{ y: [0, 5, 0] }}
+            transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+          >
+            ▾
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

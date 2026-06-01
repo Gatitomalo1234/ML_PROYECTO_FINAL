@@ -6,6 +6,11 @@
   color-scheme: dark;
 }
 
+/* Hide native cursor globally — replaced by CustomCursor component */
+* {
+  cursor: none !important;
+}
+
 html,
 body {
   height: 100%;

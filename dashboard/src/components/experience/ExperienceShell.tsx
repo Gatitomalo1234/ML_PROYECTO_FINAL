@@ -3,6 +3,7 @@
 import SceneCanvas from "@/components/scene/SceneCanvas";
 import UIOverlay from "@/components/ui/UIOverlay";
 import ExperienceController from "@/systems/ExperienceController";
+import CustomCursor from "@/components/ui/CustomCursor";
 
 export default function ExperienceShell() {
   return (
@@ -10,6 +11,7 @@ export default function ExperienceShell() {
       <SceneCanvas />
       <UIOverlay />
       <ExperienceController />
+      <CustomCursor />
     </div>
   );
 }

@@ -24,13 +24,14 @@ const barlow = Barlow({
 });
 
 export const metadata: Metadata = {
-  title: "Aerospace Intelligence System",
+  title: "AIS · Sistema OSINT Aeroespacial | Conflicto Irán–Israel 2026",
   description: "Cinematic aerospace intelligence experience and tactical OSINT dashboard.",
+  icons: { icon: "/logo.png" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body className={`${orbitron.variable} ${plexMono.variable} ${barlow.variable}`}>
         {children}
       </body>

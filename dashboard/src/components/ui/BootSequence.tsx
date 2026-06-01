@@ -306,7 +306,7 @@ export default function BootSequence() {
           {/* ── System text lines (shown after click) ── */}
           {started && (
             <div className="pointer-events-none absolute top-[22%]"
-              style={{ left: "calc(50% + 295px)", width: 400 }}>
+              style={{ right: "5vw", width: "min(400px, 35vw)" }}>
               {LINES.slice(0, phase).map((line, i) => (
                 <motion.div
                   key={i}
