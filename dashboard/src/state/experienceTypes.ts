@@ -7,7 +7,8 @@ export type ExperienceMode =
   | "STRATEGIC_ORBIT"
   | "FLY_TO_CONFLICT"
   | "CONFLICT_LOCK"
-  | "COMMAND_CENTER";
+  | "COMMAND_CENTER"
+  | "FINAL_SUMMARY";
 
 export type ThreatLevel = "NOMINAL" | "CAUTION" | "CRITICAL";
 

@@ -10,11 +10,13 @@ import CinematicTitles from "@/components/ui/panels/CinematicTitles";
 import BootSequence from "@/components/ui/BootSequence";
 import ProjectNarrativeSection from "@/components/ui/ProjectNarrativeSection";
 import NewsTicker from "@/components/ui/panels/NewsTicker";
+import FinalSummarySection from "@/components/ui/FinalSummarySection";
 
 export default function UIOverlay() {
   const mode          = useExperienceStore((s) => s.mode);
   const missileActive = useExperienceStore((s) => s.missileActive);
   const isCommand     = mode === "COMMAND_CENTER";
+  const isSummary     = mode === "FINAL_SUMMARY";
 
   return (
     <div className="pointer-events-none fixed inset-0 z-20">
@@ -59,6 +61,11 @@ export default function UIOverlay() {
       )}
       </AnimatePresence>
 
+      {/* FINAL_SUMMARY: cinematic closing briefing */}
+      <AnimatePresence>
+        {isSummary && <FinalSummarySection key="final-summary" />}
+      </AnimatePresence>
+
       {missileActive && <MissileAlert />}
 
       {/* Big centered title — only during the initial cinematic phases */}
@@ -83,7 +90,7 @@ export default function UIOverlay() {
 // ─── Canvas mask ──────────────────────────────────────────────────────────────
 function CanvasMask() {
   const mode = useExperienceStore((s) => s.mode);
-  const darken = mode === "COMMAND_CENTER";
+  const darken = mode === "COMMAND_CENTER" || mode === "FINAL_SUMMARY";
   return (
     <div
       className="pointer-events-none absolute inset-0 bg-graphite-950"
@@ -205,7 +212,7 @@ function ScrollCue() {
   const mode           = useExperienceStore((s) => s.mode);
   const scrollProgress = useExperienceStore((s) => s.scrollProgress);
 
-  const show = initialized && mode !== "COMMAND_CENTER" && mode !== "BOOT" && scrollProgress < 0.05;
+  const show = initialized && mode !== "COMMAND_CENTER" && mode !== "FINAL_SUMMARY" && mode !== "BOOT" && scrollProgress < 0.05;
 
   return (
     <AnimatePresence>

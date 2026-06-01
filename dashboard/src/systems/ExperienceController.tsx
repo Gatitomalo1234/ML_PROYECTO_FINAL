@@ -64,9 +64,15 @@ export default function ExperienceController() {
     // Narrative modal open → let modal scroll freely
     if (state.narrativeModalOpen) return;
 
-    // CONFLICT_LOCK and COMMAND_CENTER are terminal — scroll cannot exit them
+    // CONFLICT_LOCK and FINAL_SUMMARY are scroll-locked
     if (state.mode === "CONFLICT_LOCK") return;
-    if (state.mode === "COMMAND_CENTER") return;
+    if (state.mode === "FINAL_SUMMARY") return;
+
+    // COMMAND_CENTER: one-way transition to FINAL_SUMMARY on deep scroll
+    if (state.mode === "COMMAND_CENTER") {
+      if (scroll >= 0.93) setMode("FINAL_SUMMARY");
+      return;
+    }
 
     // Normal cinematic scroll flow
     const { mode: nextMode, t, orbit } = mapScrollToState(scroll);
