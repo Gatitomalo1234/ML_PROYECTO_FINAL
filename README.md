@@ -23,7 +23,7 @@
 |--------|------|-----------|
 | **ACLED** | Estructurada / API | Ground truth de eventos armados, actores, fechas, coordenadas y fatalidades |
 | **IranWarLive / GDELT Cloud** | Textual / feed | Titulares y registros de 2026; embeddings semánticos via PCA |
-| **OpenSky Network** | Operacional / API | Estados de vuelos en espacio aéreo MENA (snapshot 2026-04-27) |
+| **OpenSky Network** | Operacional / API | Snapshot de estados de vuelos 2026-04-27 (1 día, 261 registros). **No se usa como predictor** — histórico insuficiente para construir `flight_drop_index`. Documentado como limitación. |
 | **UKMTO** | Contexto marítimo | Incidentes en Estrecho de Ormuz y Golfo Pérsico |
 
 ---
@@ -146,7 +146,7 @@ Orden recomendado:
 
 ## Limitaciones
 
-- **Cobertura de OpenSky:** Solo 1 snapshot del 27 de abril de 2026. No fue posible obtener histórico suficiente para construir el `flight_drop_index` como predictor principal.
+- **OpenSky descartado como predictor:** Solo existe 1 snapshot del 27 de abril de 2026 (261 registros). Sin histórico continuo es imposible calcular `flight_drop_index = (vuelos_hoy − media_7d) / media_7d`. El mapa interactivo de vuelos **no fue implementado** por esta razón. Los datos de `opensky.db` se incluyen en el repo como evidencia de la fuente consultada pero no alimentan ningún modelo. La sección "Inteligencia Aérea" del dashboard usa datos ilustrativos para mostrar el concepto visual.
 - **Sesgo de reporteo ACLED:** Los eventos con víctimas tienen mayor cobertura mediática y mayor probabilidad de aparecer en ACLED. El modelo puede estar aprendiendo también visibilidad mediática, no solo riesgo real.
 - **Distribución 2024-2025 vs 2026:** Las tasas de letalidad difieren significativamente entre períodos, por eso el modelo se restringe a 2026.
 - **Target binario simplificado:** Se modela `fatalities > 0` en lugar de número de víctimas. Esto pierde información sobre la severidad del evento.

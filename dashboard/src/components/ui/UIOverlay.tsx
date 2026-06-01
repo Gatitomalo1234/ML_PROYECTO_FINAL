@@ -76,10 +76,15 @@ export default function UIOverlay() {
               <div className="font-display text-[15px] font-semibold tracking-[0.2em] text-white/85">INTELIGENCIA AÉREA</div>
               <div className="mt-1 text-[9px] tracking-widest text-white/35">TRÁFICO · ANOMALÍAS · ESPACIO AÉREO MENA</div>
             </motion.div>
-            <motion.div className="flex items-center gap-3 rounded-md border border-system-500/20 bg-graphite-900/60 px-4 py-3 backdrop-blur-sm"
+            <motion.div className="flex flex-col items-end gap-2"
               initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.3 }}>
-              <span className="h-2 w-2 rounded-full bg-system-500 animate-pulse" />
-              <span className="font-mono text-[11px] tracking-widest text-system-500">LIVE FEED</span>
+              <div className="flex items-center gap-3 rounded-md border border-system-500/20 bg-graphite-900/60 px-4 py-2.5 backdrop-blur-sm">
+                <span className="h-2 w-2 rounded-full bg-system-500 animate-pulse" />
+                <span className="font-mono text-[11px] tracking-widest text-system-500">SNAPSHOT 2026-04-27</span>
+              </div>
+              <div className="rounded border border-caution-500/25 bg-caution-500/8 px-3 py-1 text-[9px] tracking-widest text-caution-500/80">
+                DATOS ILUSTRATIVOS · OPENSKY HISTÓRICO NO DISPONIBLE
+              </div>
             </motion.div>
           </div>
 

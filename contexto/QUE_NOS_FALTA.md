@@ -1,6 +1,20 @@
 # Que nos falta - Plan de accion del proyecto
 
-Estado revisado: 2026-05-30
+Estado revisado: 2026-06-01
+
+## DECISION FINAL: OpenSky descartado como predictor y como mapa interactivo
+
+`data/raw/opensky.db` contiene un unico snapshot del 2026-04-27 (261 registros de `flight_states`).
+Sin historico continuo de al menos 30 dias no es posible calcular el `flight_drop_index` ni construir
+un mapa interactivo con valor analitico real.
+
+**Decision:** OpenSky queda documentado como fuente consultada pero NO se usa en ningun modelo
+ni se construye mapa interactivo de vuelos. La seccion "INTELIGENCIA AEREA" del dashboard
+usa datos ilustrativos y lo indica con un badge visible ("DATOS ILUSTRATIVOS").
+
+Esto esta documentado en: README.md (seccion Fuentes y Limitaciones) y en el badge del dashboard.
+
+---
 
 Este documento aterriza el trabajo pendiente del proyecto ML1. La prioridad inmediata es dejar de depender de datos simulados y construir una base real en `data/raw/` para poder pasar a feature engineering, modelos y dashboard.
 
