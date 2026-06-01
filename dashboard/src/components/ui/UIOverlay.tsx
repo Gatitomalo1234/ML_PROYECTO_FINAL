@@ -10,6 +10,7 @@ import MissileAlert from "@/components/ui/panels/MissileAlert";
 import TacticalHeader from "@/components/ui/panels/TacticalHeader";
 import CinematicTitles from "@/components/ui/panels/CinematicTitles";
 import BootSequence from "@/components/ui/BootSequence";
+import ProjectNarrativeSection from "@/components/ui/ProjectNarrativeSection";
 
 export default function UIOverlay() {
   const mode          = useExperienceStore((s) => s.mode);
@@ -65,6 +66,12 @@ export default function UIOverlay() {
       <DataStatusBadge />
       <BootText />
       <BootSequence />
+
+      <AnimatePresence>
+        {mode === "PROJECT_NARRATIVE" && (
+          <ProjectNarrativeSection key="narrative" />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
@@ -85,12 +92,11 @@ function CinematicTitle() {
   const mode       = useExperienceStore((s) => s.mode);
   const cinematicT = useExperienceStore((s) => s.cinematicT);
 
-  // Only show during pre-reveal phases
-  const activeMode = mode === "TYPOGRAPHY" || mode === "EARTH_REVEAL";
-  if (!activeMode) return null;
+  // Only show during TYPOGRAPHY — PROJECT_NARRATIVE and EARTH_REVEAL handle their own visuals
+  if (mode !== "TYPOGRAPHY") return null;
 
-  // Fade out as Earth starts revealing (cinematicT 0.22 → 0.30)
-  const opacity = Math.max(0, Math.min(1, 1 - (cinematicT - 0.22) / 0.08));
+  // Fade out near the end of TYPOGRAPHY (cinematicT 0.17 → 0.22)
+  const opacity = Math.max(0, Math.min(1, 1 - (cinematicT - 0.17) / 0.05));
   if (opacity < 0.01) return null;
 
   return (

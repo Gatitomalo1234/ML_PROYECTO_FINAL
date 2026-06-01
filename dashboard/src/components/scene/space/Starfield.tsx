@@ -3,6 +3,7 @@
 import * as THREE from "three";
 import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
+import { useExperienceStore } from "@/state/experienceStore";
 
 // Minecraft End-style: deep void, purple nebula wisps, dense bright stars with cross-flares
 
@@ -180,6 +181,9 @@ export default function Starfield() {
     }), []);
 
   useFrame((_, dt) => {
+    // Freeze twinkle and rotation while the narrative graph is visible
+    if (useExperienceStore.getState().mode === "PROJECT_NARRATIVE") return;
+
     if (starsRef.current) {
       starsRef.current.rotation.y += dt * 0.00065;
       starsRef.current.rotation.x += dt * 0.00022;

@@ -38,7 +38,9 @@ export default function SceneRoot({ mode }: { mode: ExperienceMode }) {
         <EffectComposer multisampling={2}>
           <Bloom intensity={0.38} luminanceThreshold={0.52} luminanceSmoothing={0.18} />
           <Vignette eskil={false} offset={0.16} darkness={0.62} />
-          <Noise premultiply blendFunction={BlendFunction.SOFT_LIGHT} opacity={0.14} />
+          {/* Opacity 0 during PROJECT_NARRATIVE — per-frame grain causes visible flickering on stars */}
+          <Noise premultiply blendFunction={BlendFunction.SOFT_LIGHT}
+            opacity={mode === "PROJECT_NARRATIVE" ? 0 : 0.14} />
         </EffectComposer>
       ) : null}
     </>

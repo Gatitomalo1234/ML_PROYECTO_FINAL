@@ -52,6 +52,8 @@ export default function CameraRig() {
   useFrame((_, dt) => {
     if (!rig.current || !pivot.current || !camera.current) return;
     if (allowUserOrbit) return; // OrbitControls takes over in COMMAND_CENTER
+    // Freeze camera completely during PROJECT_NARRATIVE to prevent any movement flicker
+    if (mode === "PROJECT_NARRATIVE") return;
 
     // ─── Smoothed timeline ────────────────────────────────────────────────────
     smoothT.current = THREE.MathUtils.lerp(

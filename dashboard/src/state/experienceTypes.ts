@@ -1,6 +1,7 @@
 export type ExperienceMode =
   | "BOOT"
   | "TYPOGRAPHY"
+  | "PROJECT_NARRATIVE"
   | "EARTH_REVEAL"
   | "AIRSPACE_ACTIVATION"
   | "STRATEGIC_ORBIT"

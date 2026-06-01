@@ -61,6 +61,9 @@ type ExperienceState = {
   missileActive: boolean;
   missileT: number;
 
+  narrativeModalOpen: boolean;
+  setNarrativeModalOpen: (v: boolean) => void;
+
   setMode: (mode: ExperienceMode) => void;
   setCinematicT: (t: number) => void;
   setAllowUserOrbit: (v: boolean) => void;
@@ -101,6 +104,8 @@ export const useExperienceStore = create<ExperienceState>((set) => ({
   missileActive: false,
   missileT: 0,
 
+  narrativeModalOpen: false,
+
   setMode: (mode) => set({ mode }),
   setCinematicT: (t) => set({ cinematicT: t }),
   setAllowUserOrbit: (v) => set({ allowUserOrbit: v }),
@@ -124,4 +129,5 @@ export const useExperienceStore = create<ExperienceState>((set) => ({
   triggerMissile: () => set({ missileActive: true, missileT: 0 }),
   setMissileT: (t) => set({ missileT: t }),
   setMissileActive: (v) => set({ missileActive: v }),
+  setNarrativeModalOpen: (v) => set({ narrativeModalOpen: v }),
 }));

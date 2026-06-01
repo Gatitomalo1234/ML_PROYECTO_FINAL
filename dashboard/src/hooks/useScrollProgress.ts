@@ -14,13 +14,31 @@ export function useScrollProgress(enabled: boolean) {
     }
 
     const onWheel = (e: WheelEvent) => {
-      // Lock scroll once CONFLICT_LOCK is reached — missile sequence must play out fully.
-      // Also locked during missileActive and in COMMAND_CENTER (OrbitControls takes over).
-      const { mode, missileActive } = useExperienceStore.getState();
+      const { mode, missileActive, narrativeModalOpen } = useExperienceStore.getState();
+
+      // Narrative modal open → block page scroll so the modal can scroll freely
+      if (narrativeModalOpen) return;
+
       if (mode === "CONFLICT_LOCK" || mode === "COMMAND_CENTER" || missileActive) return;
 
       const delta = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY;
-      acc.current = clamp01(acc.current + delta / 3000);
+      const next  = clamp01(acc.current + delta / 3000);
+
+      // Lock: cannot exit PROJECT_NARRATIVE until all 5 nodes are revealed.
+      // Nodes appear one per 20 % of the narrative scroll range [1/8, 2/8].
+      if (mode === "PROJECT_NARRATIVE") {
+        const narStart = 1 / 8, narEnd = 2 / 8;
+        const progress = (acc.current - narStart) / (narEnd - narStart);
+        const visible  = Math.min(5, Math.floor(Math.max(0, progress) * 5) + 1);
+        if (visible < 5 && next >= narEnd) {
+          // Cap just before exit — let the user keep scrolling within the range
+          acc.current = Math.min(next, narEnd - 0.001);
+          setProgress(acc.current);
+          return;
+        }
+      }
+
+      acc.current = next;
       setProgress(acc.current);
     };
 
