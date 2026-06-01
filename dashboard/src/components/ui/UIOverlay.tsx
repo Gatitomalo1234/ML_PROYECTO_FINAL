@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useExperienceStore } from "@/state/experienceStore";
-import LeftRail from "@/components/ui/panels/LeftRail";
 import RightRail from "@/components/ui/panels/RightRail";
 import BottomRail from "@/components/ui/panels/BottomRail";
 import CenterPanel from "@/components/ui/panels/CenterPanel";
@@ -11,11 +10,16 @@ import TacticalHeader from "@/components/ui/panels/TacticalHeader";
 import CinematicTitles from "@/components/ui/panels/CinematicTitles";
 import BootSequence from "@/components/ui/BootSequence";
 import ProjectNarrativeSection from "@/components/ui/ProjectNarrativeSection";
+import NewsTicker from "@/components/ui/panels/NewsTicker";
+import AviationLeftRail from "@/components/ui/panels/AviationLeftRail";
+import AviationRightRail from "@/components/ui/panels/AviationRightRail";
+import AviationCenterPanel from "@/components/ui/panels/AviationCenterPanel";
 
 export default function UIOverlay() {
   const mode          = useExperienceStore((s) => s.mode);
   const missileActive = useExperienceStore((s) => s.missileActive);
   const isCommand     = mode === "COMMAND_CENTER";
+  const isAviation    = mode === "AVIATION_FRONT";
 
   return (
     <div className="pointer-events-none fixed inset-0 z-20">
@@ -24,36 +28,82 @@ export default function UIOverlay() {
 
       <CanvasMask />
 
-      {/* COMMAND_CENTER: panels start below the 52px header */}
+      {/* COMMAND_CENTER: panels */}
+      <AnimatePresence>
       {isCommand && (
-        <>
+        <motion.div key="command" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.7 }}>
           <TacticalHeader />
-        <div className="pointer-events-auto absolute inset-5 top-[68px] flex flex-col gap-3">
-          <div className="flex min-h-0 flex-1 gap-3">
-            <motion.div className="w-52 shrink-0"
-              initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.55, delay: 0.10, ease: "easeOut" }}>
-              <LeftRail />
+          <div className="pointer-events-auto absolute inset-6 flex flex-col gap-5">
+            <div className="flex min-h-0 flex-1 gap-5">
+              <motion.div className="min-w-0 flex-[3] relative"
+                initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.15, ease: "easeOut" }}>
+                <div className="absolute inset-0">
+                  <CenterPanel />
+                </div>
+              </motion.div>
+              <motion.div className="w-[360px] shrink-0 relative"
+                initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.55, delay: 0.35, ease: "easeOut" }}>
+                <div className="absolute inset-0">
+                  <RightRail />
+                </div>
+              </motion.div>
+            </div>
+            <motion.div className="shrink-0 z-10"
+              initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.62, ease: "easeOut" }}>
+              <BottomRail />
             </motion.div>
-            <motion.div className="min-w-0 flex-[1.8]"
-              initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.28, ease: "easeOut" }}>
-              <CenterPanel />
-            </motion.div>
-            <motion.div className="w-72 shrink-0"
-              initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.55, delay: 0.46, ease: "easeOut" }}>
-              <RightRail />
+            <motion.div className="shrink-0 w-full z-10 -mx-6 w-[calc(100%+48px)] mt-2"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 1 }}>
+              <NewsTicker />
             </motion.div>
           </div>
-          <motion.div className="shrink-0"
-            initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.62, ease: "easeOut" }}>
-            <BottomRail />
-          </motion.div>
-        </div>
-        </>
+        </motion.div>
       )}
+      </AnimatePresence>
+
+      {/* AVIATION_FRONT: second scroll section */}
+      <AnimatePresence>
+      {isAviation && (
+        <motion.div key="aviation" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.9 }}>
+          {/* Aviation Header */}
+          <div className="absolute inset-x-6 top-6 flex items-center justify-between">
+            <motion.div initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
+              <div className="text-[9px] tracking-[0.4em] text-system-500/70">FRENTE</div>
+              <div className="font-display text-[15px] font-semibold tracking-[0.2em] text-white/85">INTELIGENCIA AÉREA</div>
+              <div className="mt-1 text-[9px] tracking-widest text-white/35">TRÁFICO · ANOMALÍAS · ESPACIO AÉREO MENA</div>
+            </motion.div>
+            <motion.div className="flex items-center gap-3 rounded-md border border-system-500/20 bg-graphite-900/60 px-4 py-3 backdrop-blur-sm"
+              initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.3 }}>
+              <span className="h-2 w-2 rounded-full bg-system-500 animate-pulse" />
+              <span className="font-mono text-[11px] tracking-widest text-system-500">LIVE FEED</span>
+            </motion.div>
+          </div>
+
+          {/* Aviation Panels */}
+          <div className="pointer-events-auto absolute inset-6 top-[76px] flex min-h-0 gap-5">
+            <motion.div className="w-[300px] shrink-0"
+              initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.55, delay: 0.25, ease: "easeOut" }}>
+              <AviationLeftRail />
+            </motion.div>
+            <motion.div className="min-w-0 flex-[2]"
+              initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.40, ease: "easeOut" }}>
+              <AviationCenterPanel />
+            </motion.div>
+            <motion.div className="w-[340px] shrink-0"
+              initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.55, delay: 0.55, ease: "easeOut" }}>
+              <AviationRightRail />
+            </motion.div>
+          </div>
+        </motion.div>
+      )}
+      </AnimatePresence>
 
       {missileActive && <MissileAlert />}
 
@@ -79,10 +129,11 @@ export default function UIOverlay() {
 // ─── Canvas mask ──────────────────────────────────────────────────────────────
 function CanvasMask() {
   const mode = useExperienceStore((s) => s.mode);
+  const darken = mode === "COMMAND_CENTER" || mode === "AVIATION_FRONT";
   return (
     <div
       className="pointer-events-none absolute inset-0 bg-graphite-950"
-      style={{ opacity: mode === "COMMAND_CENTER" ? 0.88 : 0, transition: "opacity 2.2s ease-in" }}
+      style={{ opacity: darken ? 0.88 : 0, transition: "opacity 2.2s ease-in" }}
     />
   );
 }

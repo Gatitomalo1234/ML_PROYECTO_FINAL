@@ -59,15 +59,8 @@ export function useAmbientAudio(mode: ExperienceMode) {
 
     try {
       const ctx = getCtx();
-      if (mode === "EARTH_REVEAL" || mode === "AIRSPACE_ACTIVATION" || mode === "STRATEGIC_ORBIT") {
-        droneRef.current = buildDrone(ctx, [{ freq: 55, gain: 0.018 }], RAMP);
-      } else if (mode === "FLY_TO_CONFLICT" || mode === "CONFLICT_LOCK") {
-        droneRef.current = buildDrone(ctx, [
-          { freq: 40, gain: 0.022 },
-          { freq: 80, gain: 0.012 },
-        ], RAMP);
-      }
-      // BOOT, TYPOGRAPHY, COMMAND_CENTER: silence — no drone started
+      // El sonido de interferencia (drone) ha sido deshabilitado.
+      // BOOT, TYPOGRAPHY, COMMAND_CENTER, EARTH_REVEAL, etc.: silence — no drone started
     } catch { /* autoplay blocked — silent */ }
   }, [mode]); // eslint-disable-line react-hooks/exhaustive-deps
 }

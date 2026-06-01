@@ -45,13 +45,13 @@ export default function CenterPanel() {
     <div className="flex h-full flex-col overflow-hidden rounded border border-white/8 bg-graphite-900">
 
       {/* ── Header ────────────────────────────────────────────────────────────── */}
-      <div className="flex shrink-0 items-center justify-between border-b border-white/8 px-4 py-2.5">
-        <div className="text-[10px] tracking-[0.28em] text-white/55">
+      <div className="flex shrink-0 items-center justify-between border-b border-white/8 px-6 py-3.5">
+        <div className="text-[11px] tracking-widest text-white/60">
           OSINT LIVE MAP / TEATRO REGIONAL 2026
         </div>
-        <div className="flex items-center gap-2">
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-critical-500" />
-          <span className="font-mono text-[9px] tracking-[0.3em] text-critical-500">ACTIVO</span>
+        <div className="flex items-center gap-2.5">
+          <span className="h-2 w-2 animate-pulse rounded-full bg-critical-500 shadow-[0_0_8px_rgba(var(--critical-500),0.8)]" />
+          <span className="font-mono text-[10px] tracking-widest text-critical-500 font-semibold">SISTEMA ACTIVO</span>
         </div>
       </div>
 
@@ -66,26 +66,26 @@ export default function CenterPanel() {
 
         {/* Selected event detail card ─────────────────────────────────────── */}
         {selectedEvent && (
-          <div className="pointer-events-none absolute bottom-3 left-3 w-[min(360px,calc(100%-24px))] rounded border border-white/10 bg-graphite-900/82 p-3 shadow-panel backdrop-blur-sm">
+          <div className="pointer-events-none absolute bottom-4 left-4 w-[min(420px,calc(100%-32px))] rounded-lg border border-white/10 bg-graphite-900/60 p-4 shadow-panel backdrop-blur-md">
             <div className="flex items-start justify-between gap-3">
               <div>
-                <div className="text-[9px] tracking-[0.24em] text-white/38">
+                <div className="text-[10px] tracking-widest text-white/50">
                   {selectedEvent.date} {selectedEvent.time}
                 </div>
-                <div className="mt-1 text-[12px] font-medium leading-snug text-white/78">
+                <div className="mt-1 text-base font-medium leading-snug text-white/90">
                   {selectedEvent.location}
                 </div>
               </div>
               <div
-                className={`rounded border px-2 py-1 text-[9px] tracking-[0.18em] ${eventBadgeClass(selectedEvent.severity)}`}
+                className={`rounded-md border px-3 py-1.5 text-[10px] font-semibold tracking-widest ${eventBadgeClass(selectedEvent.severity)}`}
               >
                 {selectedEvent.type}
               </div>
             </div>
-            <div className="mt-2 line-clamp-2 text-[10px] leading-snug text-white/52">
+            <div className="mt-3 line-clamp-2 text-sm leading-relaxed text-white/70">
               {selectedEvent.summary}
             </div>
-            <div className="mt-2 grid grid-cols-3 gap-1.5 font-mono text-[9px]">
+            <div className="mt-3 grid grid-cols-3 gap-2 font-mono text-xs">
               <MiniStat label="MUERTES"   value={selectedEvent.fatalities.toString()}                    tone="critical" />
               <MiniStat label="CONFIANZA" value={`${Math.round(selectedEvent.confidence * 100)}%`}       tone="system"   />
               <MiniStat label="FUENTE"    value={sourceLabel(selectedEvent.source)}                      tone="caution"  />
@@ -93,20 +93,7 @@ export default function CenterPanel() {
           </div>
         )}
 
-        {/* Legend / source chip ────────────────────────────────────────────── */}
-        <div className="pointer-events-none absolute right-3 top-3 rounded border border-white/10 bg-graphite-900/72 px-3 py-2 shadow-panel backdrop-blur-sm">
-          <div className="flex items-center gap-2 text-[8px] tracking-[0.18em] text-white/35">
-            <span className="h-1.5 w-1.5 rounded-full bg-critical-500" /> CRITICAL
-            <span className="ml-2 h-1.5 w-1.5 rounded-full bg-caution-500" /> HIGH
-            <span className="ml-2 h-1.5 w-1.5 rounded-full bg-system-500" /> MEDIUM
-          </div>
-          <div className="mt-2 grid grid-cols-4 gap-1 text-center text-[8px] tracking-[0.14em]">
-            <span className="rounded border border-white/10 bg-white/5 px-1.5 py-1 text-white/42">STRIKES</span>
-            <span className="rounded border border-white/10 bg-white/5 px-1.5 py-1 text-white/42">TARGETS</span>
-            <span className="rounded border border-white/10 bg-white/5 px-1.5 py-1 text-white/42">GDELT</span>
-            <span className="rounded border border-white/10 bg-white/5 px-1.5 py-1 text-white/42">2026</span>
-          </div>
-        </div>
+
       </div>
 
       {/* ── Bottom metrics bar ────────────────────────────────────────────────── */}
@@ -167,9 +154,9 @@ function MiniStat({
     tone === "caution"  ? "text-caution-500"  :
     "text-critical-500";
   return (
-    <div className="rounded border border-white/10 bg-graphite-950/55 px-2 py-1.5 text-center">
-      <div className="text-[7px] tracking-[0.16em] text-white/28">{label}</div>
-      <div className={`mt-0.5 text-[11px] ${color}`}>{value}</div>
+    <div className="rounded-md border border-white/10 bg-graphite-950/40 px-3 py-2 text-center shadow-inner">
+      <div className="text-[9px] tracking-widest text-white/40">{label}</div>
+      <div className={`mt-1 text-sm font-semibold ${color}`}>{value}</div>
     </div>
   );
 }
@@ -180,16 +167,16 @@ function MetricBox({
   label: string; value: string; sub: string; valueClass: string; small?: boolean;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center px-2 py-3 text-center">
-      <div className="text-[8.5px] tracking-[0.22em] text-white/40">{label}</div>
+    <div className="flex flex-col items-center justify-center px-4 py-4 text-center">
+      <div className="text-[10px] tracking-widest text-white/50">{label}</div>
       <div
-        className={`mt-1 font-mono font-medium leading-tight ${
-          small ? "text-[16px]" : "text-[22px]"
+        className={`mt-1.5 font-mono font-semibold leading-tight ${
+          small ? "text-xl" : "text-3xl"
         } ${valueClass}`}
       >
         {value}
       </div>
-      <div className="text-[8px] tracking-[0.18em] text-white/28">{sub}</div>
+      <div className="mt-1 text-[9px] tracking-widest text-white/40">{sub}</div>
     </div>
   );
 }

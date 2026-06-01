@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import ConfusionMatrixChart from "@/components/analysis/ConfusionMatrixChart";
 import CoefficientChart from "@/components/analysis/CoefficientChart";
 import KnnSensitivityChart from "@/components/analysis/KnnSensitivityChart";
@@ -8,7 +8,9 @@ import LineCurveChart from "@/components/analysis/LineCurveChart";
 import MetricBarChart from "@/components/analysis/MetricBarChart";
 import ProbabilityDistributionChart from "@/components/analysis/ProbabilityDistributionChart";
 import ThresholdChart from "@/components/analysis/ThresholdChart";
-import { metricLabels, models, prCurves, rocCurves, type MetricKey, type ModelKey, type SplitKey } from "@/components/analysis/analysisData";
+import dynamic from "next/dynamic";
+const RadarChart = dynamic(() => import("@/components/analysis/RadarChart"), { ssr: false });
+import { metricLabels, models, prCurves, type MetricKey, type ModelKey, type SplitKey } from "@/components/analysis/analysisData";
 
 const metricOrder: MetricKey[] = ["rocAuc", "f1", "precision", "recall", "averagePrecision"];
 
@@ -17,11 +19,25 @@ export default function ModelEvaluationDashboard() {
   const [metric, setMetric] = useState<MetricKey>("rocAuc");
   const [split, setSplit] = useState<SplitKey>("temporal");
   const [threshold, setThreshold] = useState(0.5);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const activeModel = useMemo(
     () => models.find((m) => m.key === selectedModel) ?? models[0],
     [selectedModel],
   );
+
+  const handleModelSelect = (key: ModelKey) => {
+    if (key === selectedModel) return;
+    setSelectedModel(key);
+    setIsProcessing(true);
+  };
+
+  useEffect(() => {
+    if (isProcessing) {
+      const timer = setTimeout(() => setIsProcessing(false), 800);
+      return () => clearTimeout(timer);
+    }
+  }, [isProcessing]);
 
   return (
     <div className="space-y-3">
@@ -39,7 +55,7 @@ export default function ModelEvaluationDashboard() {
             <button
               key={m.key}
               type="button"
-              onClick={() => setSelectedModel(m.key)}
+              onClick={() => handleModelSelect(m.key)}
               className={`rounded border px-2.5 py-1.5 text-[9px] tracking-[0.18em] transition ${selectedModel === m.key ? "border-white/25 bg-white/10 text-white/78" : "border-white/10 bg-white/5 text-white/42 hover:bg-white/8"}`}
             >
               <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full" style={{ backgroundColor: m.color }} />
@@ -48,7 +64,7 @@ export default function ModelEvaluationDashboard() {
           ))}
           <button
             type="button"
-            onClick={() => setSplit(split === "temporal" ? "cv" : "temporal")}
+            onClick={() => { setSplit(split === "temporal" ? "cv" : "temporal"); setIsProcessing(true); }}
             className="rounded border border-system-500/20 bg-system-500/8 px-2.5 py-1.5 text-[9px] tracking-[0.18em] text-system-500"
           >
             {split === "temporal" ? "TEMPORAL" : "CV/RANDOM"}
@@ -71,13 +87,22 @@ export default function ModelEvaluationDashboard() {
 
       <div className="overflow-x-auto pb-1 [scrollbar-width:thin]">
         <div className="flex snap-x snap-mandatory gap-3">
-          <section className="min-w-full snap-start">
-            <div className="grid grid-cols-12 gap-3">
+          <section className="min-w-full snap-start relative">
+            {isProcessing && (
+              <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-graphite-950/70 backdrop-blur-[2px] rounded-lg">
+                 <div className="h-1 w-48 bg-system-500/20 rounded-full overflow-hidden mb-4">
+                    <div className="h-full bg-system-500 animate-pulse w-full origin-left scale-x-0" style={{ animation: "progress 0.8s ease-in-out forwards" }} />
+                 </div>
+                 <div className="font-mono text-[10px] text-system-500 tracking-widest animate-pulse">RECALCULANDO VECTORES ML...</div>
+                 <style dangerouslySetInnerHTML={{ __html: `@keyframes progress { to { transform: scaleX(1); } }` }} />
+              </div>
+            )}
+            <div className={`grid grid-cols-12 gap-3 transition-opacity duration-300 ${isProcessing ? "opacity-30" : "opacity-100"}`}>
               <div className="col-span-12 md:col-span-3">
-                <MetricBarChart models={models} metric={metric} split={split} selected={selectedModel} onSelect={setSelectedModel} />
+                <MetricBarChart models={models} metric={metric} split={split} selected={selectedModel} onSelect={handleModelSelect} />
               </div>
               <div className="col-span-12 md:col-span-3">
-                <LineCurveChart title="CURVAS ROC" kicker="overlay 3 modelos" models={models} curves={rocCurves} selected={selectedModel} xLabel="FPR" yLabel="TPR" />
+                <RadarChart selectedModel={selectedModel} split={split} />
               </div>
               <div className="col-span-12 md:col-span-3">
                 <LineCurveChart title="PRECISION-RECALL" kicker="dataset desbalanceado" models={models} curves={prCurves} selected={selectedModel} xLabel="RECALL" yLabel="PRECISION" />

@@ -58,9 +58,25 @@ export default function ExperienceController() {
   useEffect(() => {
     setScroll(scroll);
     if (!initialized || missileActive) return;
-    if (useExperienceStore.getState().mode === "COMMAND_CENTER") return;
-    const { mode, t, orbit } = mapScrollToState(scroll);
-    setMode(mode);
+
+    const state = useExperienceStore.getState();
+
+    // Narrative modal open → let modal scroll freely
+    if (state.narrativeModalOpen) return;
+
+    // Locked modes that cannot be exited by scroll
+    if (state.mode === "CONFLICT_LOCK") return;
+    if (state.mode === "AVIATION_FRONT") return;
+
+    // COMMAND_CENTER: only transition forward to AVIATION_FRONT
+    if (state.mode === "COMMAND_CENTER") {
+      if (scroll >= 0.92) setMode("AVIATION_FRONT");
+      return;
+    }
+
+    // Normal cinematic scroll flow
+    const { mode: nextMode, t, orbit } = mapScrollToState(scroll);
+    setMode(nextMode);
     setCinematicT(t);
     setAllowUserOrbit(orbit);
   }, [scroll, initialized, missileActive, setMode, setCinematicT, setScroll, setAllowUserOrbit]);

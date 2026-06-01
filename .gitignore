@@ -60,3 +60,7 @@ models/*
 # FleetView / Claude Code internals
 .agents/
 skills-lock.json
+
+# Dev logs and local backups
+dashboard/dev.log
+backups_estables/
