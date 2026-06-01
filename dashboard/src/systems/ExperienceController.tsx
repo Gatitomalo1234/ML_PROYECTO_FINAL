@@ -64,15 +64,9 @@ export default function ExperienceController() {
     // Narrative modal open → let modal scroll freely
     if (state.narrativeModalOpen) return;
 
-    // Locked modes that cannot be exited by scroll
+    // CONFLICT_LOCK and COMMAND_CENTER are terminal — scroll cannot exit them
     if (state.mode === "CONFLICT_LOCK") return;
-    if (state.mode === "AVIATION_FRONT") return;
-
-    // COMMAND_CENTER: only transition forward to AVIATION_FRONT
-    if (state.mode === "COMMAND_CENTER") {
-      if (scroll >= 0.92) setMode("AVIATION_FRONT");
-      return;
-    }
+    if (state.mode === "COMMAND_CENTER") return;
 
     // Normal cinematic scroll flow
     const { mode: nextMode, t, orbit } = mapScrollToState(scroll);

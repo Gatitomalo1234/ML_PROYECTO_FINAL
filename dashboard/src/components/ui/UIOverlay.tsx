@@ -11,15 +11,11 @@ import CinematicTitles from "@/components/ui/panels/CinematicTitles";
 import BootSequence from "@/components/ui/BootSequence";
 import ProjectNarrativeSection from "@/components/ui/ProjectNarrativeSection";
 import NewsTicker from "@/components/ui/panels/NewsTicker";
-import AviationLeftRail from "@/components/ui/panels/AviationLeftRail";
-import AviationRightRail from "@/components/ui/panels/AviationRightRail";
-import AviationCenterPanel from "@/components/ui/panels/AviationCenterPanel";
 
 export default function UIOverlay() {
   const mode          = useExperienceStore((s) => s.mode);
   const missileActive = useExperienceStore((s) => s.missileActive);
   const isCommand     = mode === "COMMAND_CENTER";
-  const isAviation    = mode === "AVIATION_FRONT";
 
   return (
     <div className="pointer-events-none fixed inset-0 z-20">
@@ -65,51 +61,6 @@ export default function UIOverlay() {
       )}
       </AnimatePresence>
 
-      {/* AVIATION_FRONT: second scroll section */}
-      <AnimatePresence>
-      {isAviation && (
-        <motion.div key="aviation" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.9 }}>
-          {/* Aviation Header */}
-          <div className="absolute inset-x-6 top-6 flex items-center justify-between">
-            <motion.div initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
-              <div className="text-[9px] tracking-[0.4em] text-system-500/70">FRENTE</div>
-              <div className="font-display text-[15px] font-semibold tracking-[0.2em] text-white/85">INTELIGENCIA AÉREA</div>
-              <div className="mt-1 text-[9px] tracking-widest text-white/35">TRÁFICO · ANOMALÍAS · ESPACIO AÉREO MENA</div>
-            </motion.div>
-            <motion.div className="flex flex-col items-end gap-2"
-              initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.3 }}>
-              <div className="flex items-center gap-3 rounded-md border border-system-500/20 bg-graphite-900/60 px-4 py-2.5 backdrop-blur-sm">
-                <span className="h-2 w-2 rounded-full bg-system-500 animate-pulse" />
-                <span className="font-mono text-[11px] tracking-widest text-system-500">SNAPSHOT 2026-04-27</span>
-              </div>
-              <div className="rounded border border-caution-500/25 bg-caution-500/8 px-3 py-1 text-[9px] tracking-widest text-caution-500/80">
-                DATOS ILUSTRATIVOS · OPENSKY HISTÓRICO NO DISPONIBLE
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Aviation Panels */}
-          <div className="pointer-events-auto absolute inset-6 top-[76px] flex min-h-0 gap-5">
-            <motion.div className="w-[300px] shrink-0"
-              initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.55, delay: 0.25, ease: "easeOut" }}>
-              <AviationLeftRail />
-            </motion.div>
-            <motion.div className="min-w-0 flex-[2]"
-              initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.40, ease: "easeOut" }}>
-              <AviationCenterPanel />
-            </motion.div>
-            <motion.div className="w-[340px] shrink-0"
-              initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.55, delay: 0.55, ease: "easeOut" }}>
-              <AviationRightRail />
-            </motion.div>
-          </div>
-        </motion.div>
-      )}
-      </AnimatePresence>
-
       {missileActive && <MissileAlert />}
 
       {/* Big centered title — only during the initial cinematic phases */}
@@ -134,7 +85,7 @@ export default function UIOverlay() {
 // ─── Canvas mask ──────────────────────────────────────────────────────────────
 function CanvasMask() {
   const mode = useExperienceStore((s) => s.mode);
-  const darken = mode === "COMMAND_CENTER" || mode === "AVIATION_FRONT";
+  const darken = mode === "COMMAND_CENTER";
   return (
     <div
       className="pointer-events-none absolute inset-0 bg-graphite-950"
