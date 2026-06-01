@@ -261,6 +261,19 @@ export default function FinalSummarySection() {
           </div>
         </motion.div>
 
+        {/* ── Restart button ───────────────────────────────────────────────────── */}
+        <motion.div {...fadePure(3.6)} className="mt-12 flex justify-center">
+          <button
+            onClick={() => window.location.reload()}
+            className="group relative flex items-center gap-3 rounded-full border border-white/12 bg-white/[0.04]
+              px-8 py-3.5 font-mono text-[10px] tracking-[0.38em] text-white/45
+              transition-all duration-300 hover:border-system-500/40 hover:bg-system-500/8 hover:text-system-500/90"
+          >
+            <span className="text-[11px] transition-transform duration-300 group-hover:-translate-x-0.5">↺</span>
+            VOLVER AL INICIO
+          </button>
+        </motion.div>
+
       </div>
     </motion.div>
   );
