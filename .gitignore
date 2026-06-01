@@ -64,3 +64,8 @@ skills-lock.json
 # Dev logs and local backups
 dashboard/dev.log
 backups_estables/
+
+# Internal planning docs — not part of submission
+contexto/
+PLAN_MAESTRO.md
+*.pdf
