@@ -488,6 +488,8 @@ export default function BootParticleIntro({ onStart }: { onStart: () => void }) 
           aisCardRef.current.style.opacity       = "1";
           aisCardRef.current.style.pointerEvents = "auto";
         }
+        // Auto-trigger after 2.5 s if no click — runs the full disperse animation
+        setTimeout(() => { clickRef.current(); }, 2500);
       }
 
       if (st.ph === "DISPERSING") {

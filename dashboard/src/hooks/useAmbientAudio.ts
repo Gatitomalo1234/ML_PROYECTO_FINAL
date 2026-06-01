@@ -23,9 +23,11 @@ export function useAmbientAudio(mode: ExperienceMode) {
     };
     window.addEventListener("pointerdown", resume, { once: true });
     window.addEventListener("keydown",     resume, { once: true });
+    window.addEventListener("wheel",       resume, { once: true, passive: true });
     return () => {
       window.removeEventListener("pointerdown", resume);
       window.removeEventListener("keydown",     resume);
+      window.removeEventListener("wheel",       resume);
     };
   }, []);
 
